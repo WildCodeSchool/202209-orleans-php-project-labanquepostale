@@ -1,0 +1,23 @@
+@import "~bootstrap/scss/bootstrap";
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Montserrat:wght@700&display=swap');
+
+$font-body: 'Lato', sans-serif;
+$font-title: 'Montserrat', sans-serif;
+$font-size: 1.3rem;
+
+$primary: #39A8E5;
+$secondary: #003DA5;
+$intermediate: #9BCCE7;
+$light: #FBFDFF;
+$dark: #000611;
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $font-body;
+    font-size: $font-size;
+}
