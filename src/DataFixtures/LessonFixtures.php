@@ -9,7 +9,7 @@ use Faker\Factory;
 
 class LessonFixtures extends Fixture
 {
-   public const TITLES = [
+    public const TITLES = [
         'Utiliser Blue Line',
         'Allumer son téléphone',
         'Gérer sa batterie',
