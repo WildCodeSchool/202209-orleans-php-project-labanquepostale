@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Leçons
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row px-2">
+			{% for lesson in lessons %}
+				<h1 class="text-primary text-center">
+					<a href="{{ path('lesson_show', {id: lesson.id}) }}">{{ lesson.title }}</h1>
+				</a>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

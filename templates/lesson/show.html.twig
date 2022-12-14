@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Leçon
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row px-2">
+			<h1 class="text-primary text-center">Leçon
+				{{ lesson.id }}</h1>
+			<h2 class="text-primary text-center mt-2">{{ lesson.title }}</h2>
+			<p class="mt-3">{{ lesson.description }}</p>
+		</div>
+	</div>
+{% endblock %}
