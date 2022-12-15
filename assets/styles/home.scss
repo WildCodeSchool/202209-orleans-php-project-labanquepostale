@@ -1,0 +1,20 @@
+.header {
+    --header-size: 500px;
+    height: var(--header-size);
+    background-image: url(../images/header.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: darken;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.header h1 {
+    font-family: $font-title;
+    color: $light;
+    text-shadow: 0.5px 0.5px $dark;
+}
+
+.middle-text {
+    color: $primary;
+}
