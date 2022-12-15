@@ -16,6 +16,9 @@ class Question
     #[ORM\Column(length: 255)]
     private ?string $test = null;
 
+    #[ORM\ManyToOne(inversedBy: 'questions')]
+    private ?Lesson $lesson = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -29,6 +32,18 @@ class Question
     public function setTest(string $test): self
     {
         $this->test = $test;
+
+        return $this;
+    }
+
+    public function getLesson(): ?Lesson
+    {
+        return $this->lesson;
+    }
+
+    public function setLesson(?Lesson $lesson): self
+    {
+        $this->lesson = $lesson;
 
         return $this;
     }

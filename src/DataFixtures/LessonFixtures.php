@@ -20,11 +20,13 @@ class LessonFixtures extends Fixture
         $faker = Factory::create();
 
         foreach (self::TITLES as $lessonName) {
-            $lesson = new Lesson();
-            $lesson->setTitle($lessonName);
-            $lesson->setDescription(($faker->paragraphs(1, true)));
-            $manager->persist($lesson);
+                $lesson = new Lesson();
+                $lesson->setTitle($lessonName);
+                $lesson->setDescription(($faker->paragraphs(1, true)));
+                $manager->persist($lesson);
+                $this->addReference('lesson_' . $lessonName, $lesson);
+            }
+            $manager->flush();
         }
-        $manager->flush();
     }
-}
+
