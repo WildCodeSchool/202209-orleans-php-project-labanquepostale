@@ -7,7 +7,7 @@
 	<div class="container">
 		<div class="row px-2">
 			{% for lesson in lessons %}
-				<h1 class="text-primary text-center">
+				<h2 class="text-primary text-center">
 					<a href="{{ path('lesson_show', {id: lesson.id}) }}">{{ lesson.title }}</h1>
 				</a>
 			{% endfor %}

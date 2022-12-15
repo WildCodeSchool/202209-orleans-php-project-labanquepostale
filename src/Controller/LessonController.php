@@ -20,7 +20,7 @@ class LessonController extends AbstractController
             'lessons' => $lessons,
         ]);
     }
-    #[Route('show/{id}', requirements: ['id' => '\d+'], name: 'show')]
+    #[Route('/show/{id}', requirements: ['id' => '\d+'], name: 'show')]
     public function show(Lesson $lesson): Response
     {
         return $this->render('lesson/show.html.twig', [
