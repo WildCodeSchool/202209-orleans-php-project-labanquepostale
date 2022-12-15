@@ -18,5 +18,10 @@
     </head>
     <body>
         {% block body %}{% endblock %}
+        <footer>
+        {% block footer %}
+        {% include 'component/_navbar.html.twig' %}
+        {% endblock %}
+        </footer>
     </body>
 </html>
