@@ -21,9 +21,7 @@ class QuestionFixtures extends Fixture implements DependentFixtureInterface
         foreach (self::TESTS as $test) {
             $question = new Question();
             $question->setTest($test);
-            foreach (LessonFixtures::TITLES as $lessonName) {
-                $lesson = $this->getReference('lesson_Utiliser Blue Line');
-            }
+            $lesson = $this->getReference('lesson_Utiliser Blue Line');
             $question->setLesson($lesson);
             $manager->persist($question);
         }
