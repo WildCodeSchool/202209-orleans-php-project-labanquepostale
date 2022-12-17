@@ -9,7 +9,7 @@ use Faker\Factory;
 
 class LessonFixtures extends Fixture
 {
-    public const TITLES = [
+    public const LESSONS = [
         'Utiliser Blue Line',
         'Allumer son téléphone',
         'Gérer sa batterie',
@@ -19,12 +19,12 @@ class LessonFixtures extends Fixture
     {
         $faker = Factory::create();
 
-        foreach (self::TITLES as $lessonName) {
+        foreach (self::LESSONS as $lessonKey => $lessonName) {
             $lesson = new Lesson();
             $lesson->setTitle($lessonName);
             $lesson->setDescription(($faker->paragraphs(1, true)));
             $manager->persist($lesson);
-            $this->addReference('lesson_' . $lessonName, $lesson);
+            $this->addReference('lesson_' . $lessonKey, $lesson);
         }
         $manager->flush();
     }
