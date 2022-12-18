@@ -1,21 +1,19 @@
 {% block body %}
 
-	<div class="accordion col-11 m-auto" id="accordionPanelsStayOpenExample">
+
+	<div class="accordion col-11 m-auto" id="quiz">
 		{% for question in questions %}
 			<div class="accordion-item">
-				<h2 class="accordion-header text-white" id="panelsStayOpen-headingOne">
+				<h2 class="accordion-header" id="panelsStayOpen-headingOne">
 					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-						{{ question.text }}
+						{{question.text}}
 					</button>
 				</h2>
 				<div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
 					<div class="accordion-body">
-						<div class="form-check"></div>
-						<div class="form-check"></div>
 					</div>
 				</div>
 			</div>
 		{% endfor %}
 	</div>
-
 {% endblock %}
