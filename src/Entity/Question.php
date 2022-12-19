@@ -15,7 +15,7 @@ class Question
 
     #[ORM\Column(length: 255)]
     private ?string $questionText = null;
- 
+
     #[ORM\ManyToOne(inversedBy: 'questions')]
     private ?Lesson $lesson = null;
 
