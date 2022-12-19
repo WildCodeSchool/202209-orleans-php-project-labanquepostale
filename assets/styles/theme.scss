@@ -15,11 +15,15 @@ $dark: #000611;
 
 * {
     box-sizing: border-box;
+    
 }
 
 body {
+    min-height: 100vh;
+    background-repeat: no-repeat;
     font-family: $font-body;
     font-size: $font-size;
+    background: radial-gradient($light, #deedf5);  
 }
 
 h1 {
