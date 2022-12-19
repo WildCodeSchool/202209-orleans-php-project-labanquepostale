@@ -14,7 +14,7 @@ class Question
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $text = null;
+    private ?string $questionText = null;
  
     #[ORM\ManyToOne(inversedBy: 'questions')]
     private ?Lesson $lesson = null;
@@ -36,14 +36,14 @@ class Question
         return $this;
     }
 
-    public function getText(): ?string
+    public function getQuestionText(): ?string
     {
-        return $this->text;
+        return $this->questionText;
     }
 
-    public function setText(string $text): self
+    public function setQuestionText(string $questionText): self
     {
-        $this->text = $text;
+        $this->questionText = $questionText;
 
         return $this;
     }

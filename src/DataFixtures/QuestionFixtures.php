@@ -31,7 +31,7 @@ class QuestionFixtures extends Fixture implements DependentFixtureInterface
         for ($key=0; $key < count(LessonFixtures::LESSONS); $key++) {
             foreach (self::QUESTIONS[$key] as $questionText) { 
                 $question = new Question();
-                $question->setText($questionText);
+                $question->setQuestionText($questionText);
                 $lesson = $this->getReference('lesson_' . $key);
                 $question->setLesson($lesson);
                 $manager->persist($question);
