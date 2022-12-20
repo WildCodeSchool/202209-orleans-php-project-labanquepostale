@@ -5,7 +5,7 @@
 
 {% block body %}
 	<div class="container">
-		<div class="row px-2">
+		<div class="row">
 			<h1 class="text-primary text-center">Leçon
 				{{ lesson.id }}</h1>
 			<h2 class="text-primary text-center mt-2">{{ lesson.title }}</h2>
@@ -13,4 +13,5 @@
 			<iframe width="450" height="315" src="{{lesson.video}}"></iframe>
 		</div>
 	</div>
+		{% include 'Components/_quiz.html.twig' %}
 {% endblock %}
