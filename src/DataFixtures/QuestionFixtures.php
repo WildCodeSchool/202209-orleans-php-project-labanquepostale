@@ -24,6 +24,11 @@ class QuestionFixtures extends Fixture implements DependentFixtureInterface
             'Augmenter la luminosité consomme plus de batterie',
             'La performance de la batterie diminue avec le temps',
         ],
+        [
+            'Je ne peux pas allumer mon téléphone s\'il charge',
+            'Augmenter la luminosité consomme plus de batterie',
+            'La performance de la batterie diminue avec le temps',
+        ],
     ];
 
     public function load(ObjectManager $manager): void
