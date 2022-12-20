@@ -13,6 +13,7 @@ class LessonFixtures extends Fixture
         'Utiliser Blue Line',
         'Allumer son téléphone',
         'Gérer sa batterie',
+        'Activer les notifications'
     ];
 
     public const VIDEO = [

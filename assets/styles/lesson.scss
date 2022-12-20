@@ -1,0 +1,20 @@
+@import "theme.scss";
+
+.card {
+    width: 180px;
+    height: 180px;
+    background: $primary;
+    margin-bottom: 10px;
+    text-align: center;
+    border: 0.5rem solid $intermediate;
+}
+
+.card:hover {
+    text-decoration: none;
+    transform: scale(1.05);
+    transition: 0.4s;
+} 
+
+.lesson{
+    text-decoration: none; 
+}
