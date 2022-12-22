@@ -10,13 +10,13 @@ $secondary: #003DA5;
 $intermediate: #9BCCE7;
 $light: #FBFDFF;
 $dark: #000611;
-$background: #C7FCFF;
+$background: #d4eff1;
 
 @import "~bootstrap/scss/bootstrap";
 
 * {
     box-sizing: border-box;
-    
+  
 }
 
 body {
@@ -24,7 +24,7 @@ body {
     background-repeat: no-repeat;
     font-family: $font-body;
     font-size: $font-size;
-    background: radial-gradient($light, $background);  
+    color: radial-gradient($light, $background);  
 }
 
 h1 {
