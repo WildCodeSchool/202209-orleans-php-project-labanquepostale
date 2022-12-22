@@ -24,7 +24,7 @@ body {
     background-repeat: no-repeat;
     font-family: $font-body;
     font-size: $font-size;
-    color: radial-gradient($light, $background);  
+    background: radial-gradient($light, $background);  
 }
 
 h1 {
