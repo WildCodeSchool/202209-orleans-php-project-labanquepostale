@@ -3,8 +3,7 @@
 {% block stylesheets %}
 	{{ encore_entry_link_tags('app') }}
 {% endblock %}
-{% block header %}
-{% endblock %}
+{% block header %}{% endblock %}
 
 {% block title %}Home
 {% endblock %}
@@ -31,4 +30,5 @@
 			</svg>
 			Se connecter</a>
 	</div>
+	{% block footer %}{% endblock %}
 {% endblock %}
