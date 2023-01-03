@@ -33,7 +33,7 @@ class LessonFixtures extends Fixture
             $lesson->setDescription(($faker->paragraphs(1, true)));
             $lesson->setVideo(self::VIDEO[$key]);
             $manager->persist($lesson);
-            $this->addReference('lesson_' . $key, $lesson);
+            $this->addReference('_lesson_' . $key, $lesson);
         }
         $manager->flush();
     }

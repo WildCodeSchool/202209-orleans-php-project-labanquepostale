@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Lesson;
+use App\Entity\Question;
 use App\Repository\LessonRepository;
 use App\Repository\QuestionRepository;
+use App\Repository\ResponseRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,13 +24,20 @@ class LessonController extends AbstractController
         ]);
     }
     #[Route('/show/{id}', requirements: ['id' => '\d+'], name: 'show')]
-    public function show(Lesson $lesson, QuestionRepository $questionRepository): Response
+    public function show(
+        Lesson $lesson,
+        Question $question,
+        QuestionRepository $questionRepository,
+        ResponseRepository $responseRepository
+    ): Response 
     {
         $questions = $questionRepository->findBy(['lesson' => $lesson]);
+        $responses = $responseRepository->findBy(['question' => $question]);
 
         return $this->render('lesson/show.html.twig', [
             'lesson' => $lesson,
-            'questions' => $questions
+            'questions' => $questions,
+            'responses' => $responses
         ]);
     }
 }

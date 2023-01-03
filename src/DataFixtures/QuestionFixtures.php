@@ -33,13 +33,14 @@ class QuestionFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager): void
     {
-        for ($key = 0; $key < count(LessonFixtures::LESSONS); $key++) {
-            foreach (self::QUESTIONS[$key] as $questionText) {
+        for ($i = 0; $i < count(LessonFixtures::LESSONS); $i++) {
+            foreach (self::QUESTIONS[$i] as $j => $questionText) {
                 $question = new Question();
                 $question->setQuestionText($questionText);
-                $lesson = $this->getReference('lesson_' . $key);
+                $lesson = $this->getReference('_lesson_' . $i);
                 $question->setLesson($lesson);
                 $manager->persist($question);
+                $this->addReference('_lesson_' . $i . '_question_' . $j, $question);
             }
         }
         $manager->flush();
