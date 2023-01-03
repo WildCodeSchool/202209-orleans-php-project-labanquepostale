@@ -4,6 +4,8 @@
 	{{ encore_entry_link_tags('lessonTheme') }}
 {% endblock %}
 {% set title = 'Leçons' %}
+{% set return_path = path('tutorial_index', {id: tutorial.id}) %}
+ 
 
 {% block title %}Leçons
 {% endblock %}

@@ -14,9 +14,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class LessonController extends AbstractController
 {
     #[Route('/show/{id}', requirements: ['id' => '\d+'], name: 'show')]
-    public function show(Tutorial $tutorial, Lesson $lesson, QuestionRepository $questionRepository): Response
+    public function show(Lesson $lesson, QuestionRepository $questionRepository): Response
     {
         $questions = $questionRepository->findBy(['lesson' => $lesson]);
+        $tutorial = $lesson->getTutorial();
 
         return $this->render('lesson/show.html.twig', [
             'tutorial' => $tutorial,
@@ -31,8 +32,8 @@ class LessonController extends AbstractController
         $lessons = $tutorial->getLessons();
 
         return $this->render('lesson/index.html.twig', [
-            'tutorial' => $tutorial,
             'lessons' => $lessons,
+            'tutorial' => $tutorial
         ]);
     }
 }
