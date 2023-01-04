@@ -18,7 +18,6 @@ class ResponseFixtures extends Fixture implements DependentFixtureInterface
 
         for ($i = 0; $i < count(QuestionFixtures::QUESTIONS); $i++) {
             for ($j = 0; $j < count(QuestionFixtures::QUESTIONS[$i]); $j++) {
-                /* foreach (QuestionFixtures::QUESTIONS[$i] as $j => $questionText) { */
                 for ($k = 0; $k < self::NB_ANSWERS; $k++) {
                     $response = new Response();
                     if ($k == 1) {

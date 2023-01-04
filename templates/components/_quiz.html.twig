@@ -1,22 +1,46 @@
 {% block body %}
+	{# {{ form_start(form) }}
+									<div class="accordion mx-2" id="quiz">
+										<div class="accordion-item">
+											{% for questionForm in form.questions %}
+												<h2 class="accordion-header" id="panelsStayOpen-headingOne">
+													<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne{{ loop.index }}" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+														{{questionForm.vars.data.questionText}}
+													</button>
+												</h2>
+												<div id="panelsStayOpen-collapseOne{{ loop.index }}" class="accordion-collapse collapse {{ loop.first ? 'show' : '' }}" aria-labelledby="panelsStayOpen-headingOne">
+													<div class="accordion-body"></div>
+													{% for responseForm in questionForm.response %}
+														<div>
+															{{ form_widget(responseForm) }}
+															{{ form_label(responseForm )}}
+														</div>
+													{% endfor %}
+												</div>
+											{% endfor %}
+										</div>
+									</div>
+									{{ form_end(form) }} #}
 
-
-						{{ form_start(form) }}
-						{{ form_widget(form) }}
-						{{ form_end(form) }}
-	<div class="accordion mx-2" id="quiz">
-		{% for question in questions %}
-			<div class="accordion-item">
-				<h2 class="accordion-header" id="panelsStayOpen-headingOne">
-					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-						{{question.questiontext}}
-					</button>
-				</h2>
-				<div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-					<div class="accordion-body"></div>
-				
+	{{ form_start(form) }}
+	<h1 class="text-center my-3">Quiz</h1>
+	<div class="container item">
+		<div class="row">
+			{% for questionForm in form.questions %}
+				<div class="question rounded-top bg-primary">
+					<h3 class="text-center">{{questionForm.vars.data.questionText}}</h3>
 				</div>
-			</div>
-		{% endfor %}
+				<div class="answer rounded-bottom bg-white p-3 mb-4">
+					{% for responseForm in questionForm.response %}
+						<p>{{ form_widget(responseForm) }}
+							{{ form_label(responseForm )}}</p>
+					{% endfor %}
+				</div>
+			{% endfor %}
+		</div>
 	</div>
+		<button class="btn btn-primary">Valider</button>
+	{{ form_end(form) }}
+
+
 {% endblock %}

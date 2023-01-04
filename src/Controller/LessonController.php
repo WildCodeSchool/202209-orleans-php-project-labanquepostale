@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Lesson;
 use App\Entity\Question;
+use App\Form\LessonType;
 use App\Form\ResponseType;
 use App\Form\QuizzQuestionType;
 use App\Repository\LessonRepository;
@@ -26,7 +27,8 @@ class LessonController extends AbstractController
             'lessons' => $lessons,
         ]);
     }
-    #[Route('/show/{id}', requirements: ['id' => '\d+'], name: 'show')]
+
+    /* #[Route('/show/{id}', requirements: ['id' => '\d+'], name: 'show')]
     public function show(
         Lesson $lesson,
         Question $question,
@@ -45,6 +47,28 @@ class LessonController extends AbstractController
             'questions' => $questions,
             'responses' => $responses,
             'form' => $form
+        ]);
+    } */
+    #[Route('/show/{id}', name: 'show')]
+    public function test(
+    Lesson $lesson, 
+    Request $request, 
+    ResponseRepository $responseRepository,
+    QuestionRepository $questionRepository
+    ): Response {
+
+        $form = $this->createForm(LessonType::class, $lesson);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            foreach($request->request->all()['lesson']['questions'] as $response) {
+                $selectedResponse = $responseRepository->find($response['response']);
+                dump($selectedResponse->isIsCorrect());
+            }
+        }
+
+        return $this->renderForm('lesson/show.html.twig', [
+            'form' => $form,
+            'lesson' => $lesson,
         ]);
     }
 }
