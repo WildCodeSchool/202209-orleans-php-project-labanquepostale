@@ -14,9 +14,7 @@ class QuizzQuestionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('responses', CollectionType::class, [
-                'entry_type' => ResponseType::class,
-            ]);
+            ->add('responses');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -48,21 +48,3 @@ class LessonController extends AbstractController
         ]);
     }
 }
-
-
-
-/* $form = $this->createForm(SearchProgramType::class);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $search = $form->getData()['search'];
-            $programs = $programRepository->findLikeName($search);
-        } else {
-            $programs = $programRepository->findAll();
-        }
-
-        return $this->renderForm('program/index.html.twig', [
-            'programs' => $programs,
-            'form' => $form
-        ]); */
-    
