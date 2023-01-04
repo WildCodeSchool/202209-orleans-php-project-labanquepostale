@@ -1,7 +1,6 @@
-{# templates/login/index.html.twig #}
 {% extends 'base.html.twig' %}
 {% set title = 'Login' %}
-{# ... #}
+
 {% block stylesheets %}
 	{{ encore_entry_link_tags('app') }}
 {% endblock %}
@@ -24,9 +23,8 @@
 					<label for="password" class="form-label fw-normal">Mot de passe</label>
 					<input type="password" class="form-control" id="password" name="_password">
 				</div>
-				<input
-				type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-				{# If you want to control the URL the user is redirected to on success <input type="hidden" name="_target_path" value="/account"> #}
+				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
 				<button type="submit" class="btn btn-secondary col-10 m-auto mb-5 mt-3">Se connecter</button>
 			</form>
 			<div class="text-center mb-3">
