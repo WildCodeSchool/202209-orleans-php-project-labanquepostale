@@ -3,32 +3,32 @@
 {% block stylesheets %}
 	{{ encore_entry_link_tags('app') }}
 {% endblock %}
-{% block header %}
-{% endblock %}
+{% block header %}{% endblock %}
 
 {% block title %}Home
 {% endblock %}
 
 {% block body %}
-	<header class="header d-flex justify-content-center align-items-center">
+	<header class="header d-flex justify-content-center align-items-center vh-100 vw-100">
 		<div class="">
 			<h1 class="first-title display-1 text-center p-2">
-				Blue Line
+				Bienvenue sur Blue Line
 			</h1>
 			<p class="slogan text-light fs-3 fw-normal text-center mt-4">Rendre visible les invisibles du numérique</p>
+			<div class="d-grid gap-2 col-9 mx-auto mt-5">
+				<a class="btn btn-lg btn-secondary shadow px-5 my-3" type="button" role="button" href="">
+					<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-plus mx-1" viewbox="0 0 16 16">
+						<path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+						<path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+					</svg>
+					Créer un compte</a>
+				<a class="btn btn-lg btn-secondary shadow px-6 mb-3" type="button" role="button" href="">
+					<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person mx-1" viewbox="0 0 16 16">
+						<path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+					</svg>
+					Se connecter</a>
+			</div>
 		</div>
 	</header>
-	<div class="d-grid gap-2 col-9 mx-auto mt-3">
-		<a class="btn btn-lg btn-outline-primary shadow px-5 my-5" type="button" role="button" href="">
-			<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-plus mx-1" viewbox="0 0 16 16">
-				<path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-				<path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
-			</svg>
-			Créer un compte</a>
-		<a class="btn btn-lg btn-outline-primary shadow px-6 mb-5" type="button" role="button" href="">
-			<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person mx-1" viewbox="0 0 16 16">
-				<path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
-			</svg>
-			Se connecter</a>
-	</div>
+	{% block footer %}{% endblock %}
 {% endblock %}
