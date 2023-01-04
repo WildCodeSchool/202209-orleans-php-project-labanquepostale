@@ -2,12 +2,15 @@
 
 namespace App\DataFixtures;
 
+use Faker\Factory;
+use App\Entity\Tutorial;
 use App\Entity\Lesson;
+use App\DataFixtures\TutorialFixtures;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Faker\Factory;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class LessonFixtures extends Fixture
+class LessonFixtures extends Fixture implements DependentFixtureInterface
 {
     public const LESSONS = [
         'Utiliser Blue Line',
@@ -27,14 +30,24 @@ class LessonFixtures extends Fixture
     {
         $faker = Factory::create();
 
-        foreach (self::LESSONS as $key => $lessonName) {
-            $lesson = new Lesson();
-            $lesson->setTitle($lessonName);
-            $lesson->setDescription(($faker->paragraphs(1, true)));
-            $lesson->setVideo(self::VIDEO[$key]);
-            $manager->persist($lesson);
-            $this->addReference('lesson_' . $key, $lesson);
+        for ($i = 0; $i < count(TutorialFixtures::TUTORIALS); $i++) {
+            foreach (self::LESSONS as $lessonKey => $lessonName) {
+                $lesson = new Lesson();
+                $lesson->setTitle($lessonName);
+                $lesson->setDescription(($faker->paragraphs(1, true)));
+                $lesson->setVideo(self::VIDEO[$lessonKey]);
+                $tutorial = $this->getReference('tutorial_' . $i);
+                $lesson->setTutorial($tutorial);
+                $this->addReference('tutorial_' . $i . '_lesson_' . $lessonKey, $lesson);
+                $manager->persist($lesson);
+            }
+            $manager->flush();
         }
-        $manager->flush();
+    }
+    public function getDependencies()
+    {
+        return [
+            TutorialFixtures::class
+        ];
     }
 }
