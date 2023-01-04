@@ -51,16 +51,16 @@ class LessonController extends AbstractController
     } */
     #[Route('/show/{id}', name: 'show')]
     public function test(
-    Lesson $lesson, 
-    Request $request, 
-    ResponseRepository $responseRepository,
-    QuestionRepository $questionRepository
+        Lesson $lesson,
+        Request $request,
+        ResponseRepository $responseRepository,
+        QuestionRepository $questionRepository
     ): Response {
 
         $form = $this->createForm(LessonType::class, $lesson);
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()) {
-            foreach($request->request->all()['lesson']['questions'] as $response) {
+        if ($form->isSubmitted() && $form->isValid()) {
+            foreach ($request->request->all()['lesson']['questions'] as $response) {
                 $selectedResponse = $responseRepository->find($response['response']);
                 dump($selectedResponse->isIsCorrect());
             }
