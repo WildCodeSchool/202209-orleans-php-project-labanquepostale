@@ -28,35 +28,12 @@ class LessonController extends AbstractController
         ]);
     }
 
-    /* #[Route('/show/{id}', requirements: ['id' => '\d+'], name: 'show')]
-    public function show(
-        Lesson $lesson,
-        Question $question,
-        QuestionRepository $questionRepository,
-        ResponseRepository $responseRepository,
-        Request $request
-    ): Response {
-        $questions = $questionRepository->findBy(['lesson' => $lesson]);
-        $responses = $responseRepository->findBy(['question' => $question]);
-
-        $form = $this->createForm(QuizzQuestionType::class);
-        $form->handleRequest($request);
-
-        return $this->renderForm('lesson/show.html.twig', [
-            'lesson' => $lesson,
-            'questions' => $questions,
-            'responses' => $responses,
-            'form' => $form
-        ]);
-    } */
     #[Route('/show/{id}', name: 'show')]
     public function test(
         Lesson $lesson,
         Request $request,
         ResponseRepository $responseRepository,
-        QuestionRepository $questionRepository
     ): Response {
-
         $form = $this->createForm(LessonType::class, $lesson);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -64,6 +41,7 @@ class LessonController extends AbstractController
                 $selectedResponse = $responseRepository->find($response['response']);
                 dump($selectedResponse->isIsCorrect());
             }
+            $this->addFlash('success', 'BRAVO ! Vous avez validé le quiz !');
         }
 
         return $this->renderForm('lesson/show.html.twig', [

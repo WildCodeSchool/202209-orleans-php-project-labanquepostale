@@ -1,27 +1,4 @@
 {% block body %}
-	{# {{ form_start(form) }}
-									<div class="accordion mx-2" id="quiz">
-										<div class="accordion-item">
-											{% for questionForm in form.questions %}
-												<h2 class="accordion-header" id="panelsStayOpen-headingOne">
-													<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne{{ loop.index }}" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-														{{questionForm.vars.data.questionText}}
-													</button>
-												</h2>
-												<div id="panelsStayOpen-collapseOne{{ loop.index }}" class="accordion-collapse collapse {{ loop.first ? 'show' : '' }}" aria-labelledby="panelsStayOpen-headingOne">
-													<div class="accordion-body"></div>
-													{% for responseForm in questionForm.response %}
-														<div>
-															{{ form_widget(responseForm) }}
-															{{ form_label(responseForm )}}
-														</div>
-													{% endfor %}
-												</div>
-											{% endfor %}
-										</div>
-									</div>
-									{{ form_end(form) }} #}
-
 	{{ form_start(form) }}
 	<h1 class="text-center my-3">Quiz</h1>
 	<div class="container item">
@@ -39,8 +16,15 @@
 			{% endfor %}
 		</div>
 	</div>
-		<button class="btn btn-primary">Valider</button>
+	<button class="btn btn-primary">Valider</button>
+	<div class="result my-3">
+		{% for category, messages in app.flashes %}
+			{% for message in messages %}
+				<div class="alert alert-{{ category }}">
+					{{ message }}
+				</div>
+			{% endfor %}
+		{% endfor %}
+	</div>
 	{{ form_end(form) }}
-
-
 {% endblock %}

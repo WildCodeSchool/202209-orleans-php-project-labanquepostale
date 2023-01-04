@@ -25,7 +25,7 @@ class ResponseFixtures extends Fixture implements DependentFixtureInterface
                     } else {
                         $response->setIsCorrect(false);
                     }
-                    $response->setAnswer($faker->sentence(3));
+                    $response->setAnswer($faker->sentence(3, false));
                     $question = $this->getReference('_lesson_' . $i . '_question_' . $j);
                     $response->setQuestion($question);
                     $manager->persist($response);
