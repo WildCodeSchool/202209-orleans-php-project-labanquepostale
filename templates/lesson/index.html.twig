@@ -4,6 +4,8 @@
 	{{ encore_entry_link_tags('lessonTheme') }}
 {% endblock %}
 {% set title = 'Leçons' %}
+{% set return_path = path('tutorial_index') %}
+ 
 
 {% block title %}Leçons
 {% endblock %}
@@ -11,7 +13,7 @@
 {% block body %}
 	<div class="container">
 		<div class="row">
-			<h2 class=" text-center text-primary mb-3 g-5 display-2">Utiliser Blue Line</h2>
+			<h2 class=" text-center text-primary mb-3 g-5 display-2">{{ tutorial.title }}</h2>
 			{% for lesson in lessons %}
 				<div class="col-sm-6 g-5">
 					<div class="d-flex justify-content-center">
