@@ -4,9 +4,12 @@ namespace App\Controller;
 
 use App\Entity\Lesson;
 use App\Entity\Question;
+use App\Form\ResponseType;
+use App\Form\QuizzQuestionType;
 use App\Repository\LessonRepository;
 use App\Repository\QuestionRepository;
 use App\Repository\ResponseRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,16 +31,38 @@ class LessonController extends AbstractController
         Lesson $lesson,
         Question $question,
         QuestionRepository $questionRepository,
-        ResponseRepository $responseRepository
-    ): Response 
-    {
+        ResponseRepository $responseRepository,
+        Request $request
+    ): Response {
         $questions = $questionRepository->findBy(['lesson' => $lesson]);
         $responses = $responseRepository->findBy(['question' => $question]);
 
-        return $this->render('lesson/show.html.twig', [
+        $form = $this->createForm(QuizzQuestionType::class);
+        $form->handleRequest($request);
+
+        return $this->renderForm('lesson/show.html.twig', [
             'lesson' => $lesson,
             'questions' => $questions,
-            'responses' => $responses
+            'responses' => $responses,
+            'form' => $form
         ]);
     }
 }
+
+
+
+/* $form = $this->createForm(SearchProgramType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $search = $form->getData()['search'];
+            $programs = $programRepository->findLikeName($search);
+        } else {
+            $programs = $programRepository->findAll();
+        }
+
+        return $this->renderForm('program/index.html.twig', [
+            'programs' => $programs,
+            'form' => $form
+        ]); */
+    

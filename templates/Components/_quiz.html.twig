@@ -1,6 +1,9 @@
 {% block body %}
 
 
+						{{ form_start(form) }}
+						{{ form_widget(form) }}
+						{{ form_end(form) }}
 	<div class="accordion mx-2" id="quiz">
 		{% for question in questions %}
 			<div class="accordion-item">
@@ -11,9 +14,7 @@
 				</h2>
 				<div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
 					<div class="accordion-body"></div>
-					{% for response in responses %}
-						{{response.answer}}
-					{% endfor %}
+				
 				</div>
 			</div>
 		{% endfor %}
