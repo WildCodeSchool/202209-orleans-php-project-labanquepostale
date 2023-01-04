@@ -2,24 +2,37 @@
 {% extends 'base.html.twig' %}
 {% set title = 'Login' %}
 {# ... #}
+{% block stylesheets %}
+	{{ encore_entry_link_tags('app') }}
+{% endblock %}
 
 {% block body %}
-	{% if error %}
-		<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-	{% endif %}
+	<h1 class="text-center text-secondary mt-5">Connectez-vous !</h1>
 
-	<form action="{{ path('app_login') }}" method="post">
-		<label for="username">Email:</label>
-		<input type="text" id="username" name="_username" value="{{ last_username }}">
+	<div class="container-fluid">
+		{% if error %}
+			<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+		{% endif %}
 
-		<label for="password">Password:</label>
-		<input type="password" id="password" name="_password">
-		<input
-		type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-		{# If you want to control the URL the user is redirected to on success
-																        <input type="hidden" name="_target_path" value="/account"> #}
-
-		<button type="submit">login</button>
-	</form>
+		<div class="login border rounded-2 border-secondary bg-light shadow">
+			<form class="d-flex flex-column" action="{{ path('app_login') }}" method="post">
+				<div class="my-3 col-10 m-auto">
+					<label for="username" class="form-label fw-normal">Adresse mail</label>
+					<input type="text" id="username" class="form-control" name="_username" value="{{ last_username }}">
+				</div>
+				<div class="my-3 col-10 m-auto">
+					<label for="password" class="form-label fw-normal">Mot de passe</label>
+					<input type="password" class="form-control" id="password" name="_password">
+				</div>
+				<input
+				type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+				{# If you want to control the URL the user is redirected to on success <input type="hidden" name="_target_path" value="/account"> #}
+				<button type="submit" class="btn btn-secondary col-10 m-auto mb-5 mt-3">Se connecter</button>
+			</form>
+			<div class="text-center mb-3">
+				<div class="my-2 fw-normal">Vous n'avez pas de compte ?</div>
+				<a href="">Inscrivez-vous</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}
