@@ -1,17 +1,19 @@
-<header class="container-header bg-primary text-center">
-	<div class="row p-3">
-		<div class="col">
-			<a class="link active text-start" aria-current="page" href="#">
-				<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="text-light bi bi-arrow-left" viewbox="0 0 16 16">
-					<path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-				</svg>
-			</a>
-		</div>
-		<div class="col-8">
-			<h1 class="fw-bold text-light text-center ">{{ title }}</h1>
-		</div>
-		<div class="col">
-			<img src="{{ asset('build/images/Logo.png') }}" width="40" height="40" class="fs-5 fw-bold text-light text-end" alt="Logo de Blue Line">
+<div class="header bg-primary">
+	<div class="container-fluid bg-primary text-center">
+		<div class="row pt-1">
+			<div class="col pt-3">
+				<a class="link active text-start" aria-current="page" href="{{ return_path |default(path('app_home')) }}">
+					<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="text-light bi bi-arrow-left" viewbox="0 0 16 16">
+						<path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+					</svg>
+				</a>
+			</div>
+			<div class="col-6 mt-2">
+				<p class="fs-1 fw-bold text-light text-center">{{ title|default('') }}</p>
+			</div>
+			<div class="col mt-3">
+				<img src="{{ asset('build/images/Logo.png') }}" width="32" height="32" class="fs-4 fw-bold text-light text-end" alt="Logo de Blue Line">
+			</div>
 		</div>
 	</div>
-</header>
+</div>

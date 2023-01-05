@@ -1,16 +1,29 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('lessonTheme') }}
+{% endblock %}
 {% set title = 'Leçons' %}
+{% set return_path = path('tutorial_index') %}
+ 
 
 {% block title %}Leçons
 {% endblock %}
 
 {% block body %}
 	<div class="container">
-		<div class="row px-2 mt-4">
+		<div class="row">
+			<h2 class=" text-center text-primary mb-3 g-5 display-2">{{ tutorial.title }}</h2>
 			{% for lesson in lessons %}
-				<h2 class="text-primary text-center">
-					<a href="{{ path('lesson_show', {id: lesson.id}) }}">{{ lesson.title }}</h1>
-				</a>
+				<div class="col-sm-6 g-5">
+					<div class="d-flex justify-content-center">
+						<div class="card rounded-circle justify-content-center mt-2">
+							<a class="lesson" href="{{ path('lesson_show', {id: lesson.id}) }}">
+								<h2 class="text-light fs-3">{{ lesson.title }}</h2>
+							</a>
+						</div>
+					</div>
+				</div>
 			{% endfor %}
 		</div>
 	</div>
