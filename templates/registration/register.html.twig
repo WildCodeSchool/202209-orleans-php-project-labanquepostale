@@ -1,0 +1,48 @@
+{% extends 'layout.html.twig' %}
+{% set title = 'Registration' %}
+
+{% block stylesheets %}
+	{{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{% block title %}Register
+{% endblock %}
+
+{% block body %}
+	<h1 class="text-center text-secondary my-4">Créez votre compte !</h1>
+	<div class="container-fluid">
+		<div>
+			<h2 class="text-secondary text-center fw-bold">Pourquoi créer un compte ?"</h2>
+			<p class="fs-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		</div>
+		<div>
+			<h2 class="text-secondary text-center fw-bold">Avez-vous une adresse mail ?</h2>
+			<p class="fs-5">Si oui : passez à l'étape suivante</p>
+			<p class="fs-5">Si non : créez une adresse mail</p>
+		</div>
+		{{ form_start(registrationForm) }}
+		<div class="login border rounded-2 border-secondary bg-light shadow">
+			<h3 class="text-center mt-3 mb-4">Remplissez les champs</h3>
+
+			<div class="my-3 col-10 m-auto">
+				{{ form_row(registrationForm.lastName, {
+            label: 'Nom' }) }}
+			</div>
+			<div class="my-3 col-10 m-auto">
+				{{ form_row(registrationForm.firstName, {
+            label: 'Prénom' }) }}
+			</div>
+			<div class="my-3 col-10 m-auto">
+				{{ form_row(registrationForm.email) }}
+			</div>
+			<div class="my-3 col-10 m-auto">
+				{{ form_row(registrationForm.plainPassword, {
+            label: 'Mot de passe' }) }}
+			</div>
+			<div class="my-3 col-10 m-auto">
+				<button type="submit" class="btn btn-secondary my-3">Valider</button>
+			</div>
+		</div>
+		{{ form_end(registrationForm) }}
+	</div>
+{% endblock %}
