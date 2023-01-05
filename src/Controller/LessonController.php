@@ -39,7 +39,6 @@ class LessonController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             foreach ($request->request->all()['lesson']['questions'] as $response) {
                 $selectedResponse = $responseRepository->find($response['response']);
-                dump($selectedResponse->isIsCorrect());
             }
             $this->addFlash('success', 'BRAVO ! Vous avez validé le quiz !');
         }
