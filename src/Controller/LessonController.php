@@ -34,11 +34,11 @@ class LessonController extends AbstractController
         LessonRepository $lessonRepository,
     ): Response {
         $tutorial = $lesson->getTutorial();
-        $user = new User();
 
         $form = $this->createForm(LessonType::class, $lesson);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var User */
             $user = $this->getUser();
             $lesson->addUser($user);
             $lessonRepository->save($lesson, true);
