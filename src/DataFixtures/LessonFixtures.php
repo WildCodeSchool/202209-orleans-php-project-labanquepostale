@@ -38,12 +38,13 @@ class LessonFixtures extends Fixture implements DependentFixtureInterface
                 $lesson->setVideo(self::VIDEO[$lessonKey]);
                 $tutorial = $this->getReference('tutorial_' . $i);
                 $lesson->setTutorial($tutorial);
-                $this->addReference('tutorial_' . $i . '_lesson_' . $lessonKey, $lesson);
                 $manager->persist($lesson);
+                $this->addReference('tutorial_' . $i . '_lesson_' . $lessonKey, $lesson);
             }
-            $manager->flush();
         }
+        $manager->flush();
     }
+
     public function getDependencies()
     {
         return [

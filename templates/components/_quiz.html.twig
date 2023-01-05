@@ -1,0 +1,30 @@
+{% block body %}
+	{{ form_start(form) }}
+	<h1 class="text-center my-3">Quiz</h1>
+	<div class="container item">
+		<div class="row">
+			{% for questionForm in form.questions %}
+				<div class="question rounded-top bg-primary">
+					<h3 class="text-center">{{questionForm.vars.data.questionText}}</h3>
+				</div>
+				<div class="answer rounded-bottom bg-white p-3 mb-4">
+					{% for responseForm in questionForm.response %}
+						<p>{{ form_widget(responseForm) }}
+							{{ form_label(responseForm )}}</p>
+					{% endfor %}
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+	<button class="btn btn-primary">Valider</button>
+	<div class="result my-3">
+		{% for category, messages in app.flashes %}
+			{% for message in messages %}
+				<div class="alert alert-{{ category }}">
+					{{ message }}
+				</div>
+			{% endfor %}
+		{% endfor %}
+	</div>
+	{{ form_end(form) }}
+{% endblock %}
