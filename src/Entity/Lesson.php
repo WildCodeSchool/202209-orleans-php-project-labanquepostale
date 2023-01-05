@@ -30,9 +30,13 @@ class Lesson
     #[ORM\ManyToOne(inversedBy: 'lessons')]
     private ?Tutorial $tutorial = null;
 
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'lessons')]
+    private Collection $users;
+
     public function __construct()
     {
         $this->questions = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -114,6 +118,33 @@ class Lesson
     public function setTutorial(?Tutorial $tutorial): self
     {
         $this->tutorial = $tutorial;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addLesson($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeLesson($this);
+        }
 
         return $this;
     }
