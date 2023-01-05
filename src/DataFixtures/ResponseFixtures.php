@@ -16,22 +16,23 @@ class ResponseFixtures extends Fixture implements DependentFixtureInterface
     {
         $faker = Factory::create();
 
-        for ($i = 0; $i < count(QuestionFixtures::QUESTIONS); $i++) {
-            for ($j = 0; $j < count(QuestionFixtures::QUESTIONS[$i]); $j++) {
-                for ($k = 0; $k < self::NB_ANSWERS; $k++) {
-                    $response = new Response();
-                    if ($k == 1) {
-                        $response->setIsCorrect(true);
-                    } else {
-                        $response->setIsCorrect(false);
+        for ($tutoKey = 0; $tutoKey < count(TutorialFixtures::TUTORIALS); $tutoKey++)
+            for ($i = 0; $i < count(QuestionFixtures::QUESTIONS); $i++) {
+                for ($j = 0; $j < count(QuestionFixtures::QUESTIONS[$i]); $j++) {
+                    for ($k = 0; $k < self::NB_ANSWERS; $k++) {
+                        $response = new Response();
+                        if ($k == 1) {
+                            $response->setIsCorrect(true);
+                        } else {
+                            $response->setIsCorrect(false);
+                        }
+                        $response->setAnswer($faker->sentence(3, false));
+                        $question = $this->getReference('tutorial_' . $tutoKey . '_lesson_' . $i . '_question_' . $j);
+                        $response->setQuestion($question);
+                        $manager->persist($response);
                     }
-                    $response->setAnswer($faker->sentence(3, false));
-                    $question = $this->getReference('_lesson_' . $i . '_question_' . $j);
-                    $response->setQuestion($question);
-                    $manager->persist($response);
                 }
             }
-        }
         $manager->flush();
     }
 
