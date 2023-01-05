@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Lesson;
-use App\Form\LessonType;
 use App\Entity\Tutorial;
+use App\Form\LessonType;
+use App\Repository\LessonRepository;
 use App\Repository\ResponseRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,12 +31,17 @@ class LessonController extends AbstractController
     public function show(
         Lesson $lesson,
         Request $request,
-        ResponseRepository $responseRepository,
+        LessonRepository $lessonRepository,
     ): Response {
         $tutorial = $lesson->getTutorial();
+
         $form = $this->createForm(LessonType::class, $lesson);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var User */
+            $user = $this->getUser();
+            $lesson->addUser($user);
+            $lessonRepository->save($lesson, true);
             $this->addFlash('success', 'BRAVO ! Vous avez validé le quiz !');
         }
 
