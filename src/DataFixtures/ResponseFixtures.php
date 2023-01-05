@@ -16,7 +16,7 @@ class ResponseFixtures extends Fixture implements DependentFixtureInterface
     {
         $faker = Factory::create();
 
-        for ($tutoKey = 0; $tutoKey < count(TutorialFixtures::TUTORIALS); $tutoKey++)
+        for ($tutoKey = 0; $tutoKey < count(TutorialFixtures::TUTORIALS); $tutoKey++) {
             for ($i = 0; $i < count(QuestionFixtures::QUESTIONS); $i++) {
                 for ($j = 0; $j < count(QuestionFixtures::QUESTIONS[$i]); $j++) {
                     for ($k = 0; $k < self::NB_ANSWERS; $k++) {
@@ -33,7 +33,8 @@ class ResponseFixtures extends Fixture implements DependentFixtureInterface
                     }
                 }
             }
-        $manager->flush();
+            $manager->flush();
+        }
     }
 
     public function getDependencies()
