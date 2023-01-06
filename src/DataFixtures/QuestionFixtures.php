@@ -3,6 +3,8 @@
 namespace App\DataFixtures;
 
 use App\Entity\Question;
+use App\DataFixtures\LessonFixtures;
+use App\DataFixtures\TutorialFixtures;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -34,13 +36,14 @@ class QuestionFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         for ($i = 0; $i < count(TutorialFixtures::TUTORIALS); $i++) {
-            for ($key = 0; $key < count(LessonFixtures::LESSONS); $key++) {
-                foreach (self::QUESTIONS[$key] as $questionText) {
+            for ($lessonKey = 0; $lessonKey < count(LessonFixtures::LESSONS); $lessonKey++) {
+                foreach (self::QUESTIONS[$lessonKey] as $j => $questionText) {
                     $question = new Question();
                     $question->setQuestionText($questionText);
-                    $lesson = $this->getReference('tutorial_' . $i . '_lesson_' . $key);
+                    $lesson = $this->getReference('tutorial_' . $i . '_lesson_' . $lessonKey);
                     $question->setLesson($lesson);
                     $manager->persist($question);
+                    $this->addReference('tutorial_' . $i . '_lesson_' . $lessonKey . '_question_' . $j, $question);
                 }
             }
         }
