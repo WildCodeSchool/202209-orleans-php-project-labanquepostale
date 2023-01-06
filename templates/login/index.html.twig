@@ -25,11 +25,11 @@
 				</div>
 				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-				<button type="submit" class="btn btn-secondary col-10 m-auto mb-5 mt-3">Se connecter</button>
+				<button type="submit" class="btn btn-secondary m-auto mb-5 mt-3">Se connecter</button>
 			</form>
 			<div class="text-center mb-3">
 				<div class="my-2 fw-normal">Vous n'avez pas de compte ?</div>
-				<a href="">Inscrivez-vous</div>
+				<a class="btn btn-outline-primary" href="{{ path('app_register')}}">Inscrivez-vous</a>
 			</div>
 		</div>
 	</div>
