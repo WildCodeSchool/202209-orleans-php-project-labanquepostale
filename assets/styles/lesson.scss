@@ -1,12 +1,28 @@
 @import "theme.scss";
 
+.cards-container {
+	display: flex;
+	justify-content: space-between;
+    flex-direction: column;
+    margin: 10px;
+}
+
 .card {
     width: 180px;
     height: 180px;
     background: $primary;
     margin-bottom: 10px;
     text-align: center;
-    border: 0.5rem solid $intermediate;
+    border: 0.5rem solid $intermediate; 
+    box-shadow: 0px 15px 20px -5px #38222e;
+}
+
+.card:nth-child(even) {
+    align-self: flex-end;
+}
+
+.card:nth-child(odd) {
+    align-self: flex-start;
 }
 
 .card:hover {
