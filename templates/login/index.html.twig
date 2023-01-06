@@ -14,7 +14,7 @@
 		{% endif %}
 
 		<div class="login border rounded-2 border-secondary bg-light shadow">
-			<form class="d-flex flex-column" action="{{ path('tutorial_index') }}" method="post">
+			<form class="d-flex flex-column" action="{{ path('app_login') }}" method="post">
 				<div class="my-3 col-10 m-auto">
 					<label for="username" class="form-label fw-normal">Adresse mail</label>
 					<input type="text" id="username" class="form-control" name="_username" value="{{ last_username }}">
@@ -24,6 +24,7 @@
 					<input type="password" class="form-control" id="password" name="_password">
 				</div>
 				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+				<input type="hidden" name="_target_path" value="{{ path('tutorial_index') }}">
 
 				<button type="submit" class="btn btn-secondary m-auto mb-5 mt-3">Se connecter</button>
 			</form>
@@ -33,4 +34,5 @@
 			</div>
 		</div>
 	</div>
+	{% block footer %}{% endblock %}
 {% endblock %}
