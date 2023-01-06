@@ -11,14 +11,12 @@
 
 {% block body %}
 	<div class="container">
-		<div class="row">
+		<div class="cards-container">
 			{% for tutorial in tutorials %}
-				<div class="d-flex justify-content-center">
-					<div class="card rounded-circle justify-content-center mt-5">
-						<a class="lesson" href="{{ path('lesson_index', {id: tutorial.id}) }}">
-							<h2 class="text-light fs-3">{{ tutorial.title }}</h2>
-						</a>
-					</div>
+				<div class="card rounded-circle justify-content-center mt-5">
+					<a class="lesson" href="{{ path('lesson_index', {id: tutorial.id}) }}">
+						<h2 class="text-light fs-3">{{ tutorial.title }}</h2>
+					</a>
 				</div>
 			{% endfor %}
 		</div>
