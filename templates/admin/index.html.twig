@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+	{{ encore_entry_link_tags('adminTheme') }}
+{% endblock %}
+
+{% block title %}Admin - Accueil
+{% endblock %}
+
+
+{% block header %}
+	{% include 'components/_headerAdmin.html.twig' %}
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-5">
+		<nav class="navbar navbar-expand-lg bg-light">
+			<div class="container">
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav">
+						<li class="nav-item mx-3">
+							<a class="nav-link" aria-current="page" href="{{ path('app_admin')}}">Accueil</a>
+						</li>
+						<li class="nav-item mx-3">
+							<a class="nav-link" aria-current="page" href="#">Tutoriels</a>
+						</li>
+						<li class="nav-item mx-3">
+							<a class="nav-link" href="#">Leçons</a>
+						</li>
+						<li class="nav-item mx-3">
+							<a class="nav-link" href="#">Quizz</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="row">
+			<div class="block card p-5">
+				<div class="text-center p-4">
+					<h2 class="fw-bold mb-5">Accueil</h2>
+					<p>Bienvenue dans votre espace administrateur. Utilisez la barre de navigation ci-dessus pour administrer la catégorie de votre choix.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
