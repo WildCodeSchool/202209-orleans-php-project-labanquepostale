@@ -69,7 +69,7 @@ class AdminTutorialController extends AbstractController
     #[Route('/{id}', name: 'app_admin_tutorial_delete', methods: ['POST'])]
     public function delete(Request $request, Tutorial $tutorial, TutorialRepository $tutorialRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$tutorial->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $tutorial->getId(), $request->request->get('_token'))) {
             $tutorialRepository->remove($tutorial, true);
         }
 
