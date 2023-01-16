@@ -1,8 +1,14 @@
-{% extends 'base.html.twig' %}
+{% extends 'layoutAdmin.html.twig' %}
 
-{% block title %}Tutorial index{% endblock %}
+{% block header %}
+	{% include 'components/_headerAdmin.html.twig' %}
+{% endblock %}
 
-{% block body %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
     <h1>Tutorial index</h1>
 
     <table class="table">
