@@ -1,16 +1,15 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Montserrat:wght@700&display=swap');
 
 $font-body: 'Lato', sans-serif;
 $font-title: 'Montserrat', sans-serif;
 $font-size: 1.3rem;
 
-$primary: #39A8E5;
-$secondary: #003DA5;
-$intermediate: #9BCCE7;
-$light: #FBFDFF;
+$primary: #5864AB;
+$secondary: #FBDC6D;
+$intermediate: #21214F;
+$light: #FAFAFA;
 $dark: #000611;
-$background: #d4eff1;
+$background: #EFEFEF;
 
 @import "~bootstrap/scss/bootstrap";
 
@@ -19,7 +18,18 @@ body {
     background-repeat: no-repeat;
     font-family: $font-body;
     font-size: $font-size;
-    background: radial-gradient($light, $background);  
+    background: $background;
+}
+
+.top-bg {
+    background: $primary;
+    height: 50vh;
+    border-radius: 0 0 30px 30px;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    z-index: -1;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 2px 0px;
 }
 
 h1 {
