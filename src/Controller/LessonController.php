@@ -6,13 +6,12 @@ use App\Entity\User;
 use App\Entity\Lesson;
 use App\Entity\Tutorial;
 use App\Form\LessonType;
+use App\Entity\Explanation;
 use App\Repository\LessonRepository;
-use App\Repository\ResponseRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Service\ValidateAnswer;
 
 #[Route('/lesson', name: 'lesson_')]
 class LessonController extends AbstractController
@@ -33,6 +32,7 @@ class LessonController extends AbstractController
         Lesson $lesson,
         Request $request,
         LessonRepository $lessonRepository,
+        Explanation $explanation
     ): Response {
         $tutorial = $lesson->getTutorial();
 
@@ -42,6 +42,7 @@ class LessonController extends AbstractController
             /** @var User */
             $user = $this->getUser();
             $lesson->addUser($user);
+
             $lessonRepository->save($lesson, true);
             $this->addFlash('success', 'BRAVO ! Vous avez validé le quiz !');
         }
@@ -49,7 +50,8 @@ class LessonController extends AbstractController
         return $this->renderForm('lesson/show.html.twig', [
             'form' => $form,
             'lesson' => $lesson,
-            'tutorial' => $tutorial
+            'tutorial' => $tutorial,
+            'explanation' => $explanation
         ]);
     }
 }

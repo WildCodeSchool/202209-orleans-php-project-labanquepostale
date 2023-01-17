@@ -11,6 +11,12 @@
 					{% for responseForm in questionForm.response %}
 						<p>{{ form_widget(responseForm) }}
 							{{ form_label(responseForm )}}</p>
+						{% if explanation.isIsCorrect == true %}
+							{{ dump(explanation) }}
+							<span style="color:green">Correct</span>
+						{% else %}
+							<span style="color:red">Incorrect</span>
+						{% endif %}
 					{% endfor %}
 				</div>
 			{% endfor %}

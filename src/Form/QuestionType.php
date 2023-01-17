@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Question;
-use App\Entity\Response;
+use App\Entity\Explanation;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -21,7 +21,7 @@ class QuestionType extends AbstractType
             $form = $event->getForm();
 
             $form->add('response', EntityType::class, [
-                'class' => Response::class,
+                'class' => Explanation::class,
                 'label' => false,
                 'choice_label' => 'answer',
                 'multiple' => false,

@@ -21,7 +21,7 @@ class Question
     #[ORM\ManyToOne(inversedBy: 'questions')]
     private ?Lesson $lesson = null;
 
-    #[ORM\OneToMany(mappedBy: 'question', targetEntity: Response::class)]
+    #[ORM\OneToMany(mappedBy: 'question', targetEntity: Explanation::class)]
     private Collection $responses;
 
     public function __construct()
@@ -59,14 +59,14 @@ class Question
     }
 
     /**
-     * @return Collection<int, Response>
+     * @return Collection<int, Explanation>
      */
     public function getResponses(): Collection
     {
         return $this->responses;
     }
 
-    public function addResponse(Response $response): self
+    public function addResponse(Explanation $response): self
     {
         if (!$this->responses->contains($response)) {
             $this->responses->add($response);
@@ -76,7 +76,7 @@ class Question
         return $this;
     }
 
-    public function removeResponse(Response $response): self
+    public function removeResponse(Explanation $response): self
     {
         if ($this->responses->removeElement($response)) {
             // set the owning side to null (unless already changed)

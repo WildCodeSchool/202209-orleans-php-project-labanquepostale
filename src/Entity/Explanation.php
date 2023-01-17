@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\ResponseRepository;
+use App\Repository\ExplanationRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ResponseRepository::class)]
-class Response
+#[ORM\Entity(repositoryClass:ExplanationRepository::class)]
+class Explanation
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
