@@ -35,20 +35,22 @@ class LessonController extends AbstractController
         Explanation $explanation
     ): Response {
         $tutorial = $lesson->getTutorial();
+        $quizzDone = $lesson->getUsers()->contains($this->getUser());
+        if (!$quizzDone) {
+            $form = $this->createForm(LessonType::class, $lesson);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                /** @var User */
+                $user = $this->getUser();
+                $lesson->addUser($user);
 
-        $form = $this->createForm(LessonType::class, $lesson);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            /** @var User */
-            $user = $this->getUser();
-            $lesson->addUser($user);
-
-            $lessonRepository->save($lesson, true);
-            $this->addFlash('success', 'BRAVO ! Vous avez validé le quiz !');
+                $lessonRepository->save($lesson, true);
+                return $this->redirectToRoute('lesson_show', ['id' => $lesson->getId()]);
+            }
         }
-
         return $this->renderForm('lesson/show.html.twig', [
-            'form' => $form,
+            'form' => $form ?? null,
+            'quizzDone' => $quizzDone,
             'lesson' => $lesson,
             'tutorial' => $tutorial,
             'explanation' => $explanation
