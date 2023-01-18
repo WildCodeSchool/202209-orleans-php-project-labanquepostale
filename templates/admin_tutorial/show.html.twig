@@ -1,26 +1,35 @@
 {% extends 'layoutAdmin.html.twig' %}
 
-{% block title %}Tutorial{% endblock %}
+{% block title %}Tutoriel
+{% endblock %}
 
 {% block content %}
-    <h1>Tutorial</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ tutorial.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ tutorial.title }}</td>
-            </tr>
-        </tbody>
-    </table>
+	
+	<div class="container text-start">
+		<div class="col justify-content-start">
+			<div class="row">
+				<h1>Tutoriel</h1>
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>Id</th>
+							<td>{{ tutorial.id }}</td>
+						</tr>
+						<tr>
+							<th>Title</th>
+							<td>{{ tutorial.title }}</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="gap 3">
+					<a href="{{ path('app_admin_tutorial_index') }}" class="btn btn-outline-primary me-1" role="button">Retour à la liste</a>
 
-    <a href="{{ path('app_admin_tutorial_index') }}">back to list</a>
+					<a href="{{ path('app_admin_tutorial_edit', {'id': tutorial.id}) }}" class="btn btn-outline-primary" tabindex="-1" role="button">Éditer</a>
+				</div>
 
-    <a href="{{ path('app_admin_tutorial_edit', {'id': tutorial.id}) }}">edit</a>
-
-    {{ include('admin_tutorial/_delete_form.html.twig') }}
+				{{ include('admin_tutorial/_delete_form.html.twig') }}
+			</div>
+		</div>
+	</div>
 {% endblock %}

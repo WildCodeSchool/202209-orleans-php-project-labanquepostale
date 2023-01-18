@@ -1,6 +1,4 @@
-if ($form->isSubmitted() && $form->isValid()) {
 {{ form_start(form) }}
 {{ form_widget(form) }}
-<button class="btn">{{ button_label|default('Save') }}</button>
+<button type="button" class="btn btn-outline-success">{{ button_label|default('Sauvegarder') }}</button>
 {{ form_end(form) }}
-}

@@ -8,55 +8,34 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-	<div class="container text-start">
-		<div class="col justify-content-start">
-			<div class="row">
-				<h1>Tutorial index</h1>
-			</div>
-			<table class="table">
-				<div class="container text-center">
-					<div class="row">
-						<thead>
-							<div class="col">
-								<tr>
-									<th>Id</th>
-								</tr>
-							</div>
-							<div class="col">
-								<tr>
-									<th>Title</th>
-								</tr>
-							</div>
-							<div class="col">
-								<tr>
-									<th>Actions</th>
-								</tr>
-							</div>
-						</thead>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<tbody>
-					{% for tutorial in tutorials %}
-						<tr>
-							<td>{{ tutorial.id }}</td>
-							<td>{{ tutorial.title }}</td>
-							<td>
-								<a href="{{ path('app_admin_tutorial_show', {'id': tutorial.id}) }}">Show</a>
-								<a href="{{ path('app_admin_tutorial_edit', {'id': tutorial.id}) }}">Edit</a>
-							</td>
-						</tr>
-					{% else %}
-						<tr>
-							<td colspan="3">No records found</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-			</div>
+	<h1 class="d-flex justify-content-start">Tutoriel</h1>
+	<section class="d-flex justify-content-start">
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Titre</th>
+					<th scope="col">Administrer</th>
+				</tr>
+			</thead>
+			<tbody class="table-group-divider">
+				{% for tutorial in tutorials %}
+					<tr>
+						<td scope="row">{{ tutorial.id }}</td>
+						<td>{{ tutorial.title }}</td>
+						<td>
+							<a class="btn btn-outline-primary mt-1 me-2" href="{{ path('app_admin_tutorial_show', {'id': tutorial.id}) }}" role="button">Voir</a>
+							<a class="btn btn-outline-primary mt-1 me-2" href="{{ path('app_admin_tutorial_edit', {'id': tutorial.id}) }}" role="button">Éditer</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="3">Aucun enregistrement trouvé</td>
+					</tr>
+				{% endfor %}
+			</tbody>
 		</table>
-		<button>
-			<a href="{{ path('app_admin_tutorial_new') }}">Create new</a>
-		</button>
-	</div>
-</div>{% endblock %}
+	</section>
+	<a class="btn btn-outline-primary mt-2" href="{{ path('app_admin_tutorial_new') }}" role="button">Créer un nouveau tutoriel</a>
+
+{% endblock %}

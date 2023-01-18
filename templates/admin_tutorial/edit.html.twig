@@ -1,13 +1,22 @@
 {% extends 'layoutAdmin.html.twig' %}
 
-{% block title %}Edit Tutorial{% endblock %}
+{% block title %}Éditer tutoriel
+{% endblock %}
 
 {% block content %}
-    <h1>Edit Tutorial</h1>
+	<div class="container text-start">
+		<div class="col justify-content-start">
+			<div class="row">
+				<h1>Éditer tutoriel</h1>
+				<div class="gap-2">
 
-    {{ include('admin_tutorial/_form.html.twig', {'button_label': 'Update'}) }}
+				{{ include('admin_tutorial/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_admin_tutorial_index') }}">back to list</a>
+				<a href="{{ path('app_admin_tutorial_index') }}" class="btn btn-outline-primary mt-2" role="button" aria-disabled="true">Retour à la liste</a>
 
-    {{ include('admin_tutorial/_delete_form.html.twig') }}
+				{{ include('admin_tutorial/_delete_form.html.twig') }}
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}
