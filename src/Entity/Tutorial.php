@@ -16,12 +16,7 @@ class Tutorial
     #[ORM\Column]
     private ?int $id = null;
 
-    #[Assert\NotBlank(message: 'Le titre est obligatoire et ne peut rester vide.')]
-    #[Assert\Length(
-        max: 255,
-        maxMessage:
-        'Le tutoriel saisie {{ value }} est trop longue, elle ne devrait pas dépasser {{ limit }} caractères',
-    )]
+    #[Assert\NotBlank]
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $title = null;
 
