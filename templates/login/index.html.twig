@@ -2,7 +2,7 @@
 {% set title = 'Login' %}
 
 {% block stylesheets %}
-	{{ encore_entry_link_tags('app') }}
+	{{ encore_entry_link_tags('login') }}
 {% endblock %}
 
 {% block body %}
@@ -14,7 +14,7 @@
 		{% endif %}
 
 		<div class="login border rounded-2 border-secondary bg-light shadow">
-			<form class="d-flex flex-column" action="{{ path('app_login') }}" method="post">
+			<form class="d-flex flex-column" action="{{ path('app_admin_quizz') }}" method="post">
 				<div class="my-3 col-10 m-auto">
 					<label for="username" class="form-label fw-normal">Adresse mail</label>
 					<input type="text" id="username" class="form-control" name="_username" value="{{ last_username }}">
