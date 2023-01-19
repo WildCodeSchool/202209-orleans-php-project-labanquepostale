@@ -7,7 +7,7 @@
 	<div class="container text-start">
 		<div class="col justify-content-start">
 			<div class="row">
-				<h1>Éditer leçon</h1>
+				<h1>Éditer leçon : {{ lesson.title }}</h1>
 				<div class="gap-2">
 
 				{{ include('admin_lesson/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
