@@ -23,7 +23,7 @@ class LessonController extends AbstractController
 
         return $this->render('lesson/index.html.twig', [
             'lessons' => $lessons,
-            'tutorial' => $tutorial
+            'tutorial' => $tutorial,
         ]);
     }
 
