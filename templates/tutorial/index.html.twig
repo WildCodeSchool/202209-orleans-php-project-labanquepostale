@@ -3,20 +3,26 @@
 	{{ parent() }}
 	{{ encore_entry_link_tags('lessonTheme') }}
 {% endblock %}
-{% set title = 'Tutoriel' %}
 
 
 {% block title %}Tutoriel
 {% endblock %}
 
 {% block body %}
-	<div class="container">
+	<p class="titleTuto fs-1 fw-bold">Tutoriels</p>
+	<div class="wordMain">
+		<h2>Bonjour,</h2>
+		<h2 class="userName">{{ user.firstName }}!</h2>
+	</div>
+	<div class="bodyContainer container-fluid">
 		<div class="cards-container">
 			{% for tutorial in tutorials %}
-				<div class="card rounded-circle justify-content-center mt-5">
+				<div class="card justify-content-center col-5 col-lg-4">
 					<a class="lesson" href="{{ path('lesson_index', {id: tutorial.id}) }}">
-						<h2 class="text-light fs-3">{{ tutorial.title }}</h2>
+						<h2 class="descript fs-4">{{ tutorial.title }}</h2>
 					</a>
+					<p class="lessonNb fs-6 mt-2">
+						{{ lessonsByTutorial[0]['lesson_count'] }} Leçons</p>
 				</div>
 			{% endfor %}
 		</div>
