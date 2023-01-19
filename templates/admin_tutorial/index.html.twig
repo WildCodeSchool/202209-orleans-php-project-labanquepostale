@@ -1,0 +1,45 @@
+{% extends 'layoutAdmin.html.twig' %}
+
+{% block header %}
+	{% include 'components/_headerAdmin.html.twig' %}
+{% endblock %}
+
+
+{% block title %}{% endblock %}
+
+{% block content %}
+	<div class="container text-start">
+		<div class="col justify-content-start">
+			<h1 class="d-flex justify-content-start">Tutoriels</h1>
+			<section class="d-flex justify-content-start">
+				<table class="table overflow-auto">
+					<thead>
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Titre</th>
+							<th scope="col">Administrer</th>
+						</tr>
+					</thead>
+					<tbody class="table-group-divider">
+						{% for tutorial in tutorials %}
+							<tr>
+								<td scope="row">{{ tutorial.id }}</td>
+								<td>{{ tutorial.title }}</td>
+								<td>
+									<a class="btn btn-outline-primary mt-1 me-2" href="{{ path('app_admin_tutorial_show', {'id': tutorial.id}) }}" role="button">Voir</a>
+									<a class="btn btn-outline-primary mt-1 me-2" href="{{ path('app_admin_tutorial_edit', {'id': tutorial.id}) }}" role="button">Éditer</a>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="3">Aucun tutoriel trouvé</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</section>
+			
+			<a class="btn btn-primary mt-2" href="{{ path('app_admin_tutorial_new') }}" role="button">Créer un nouveau tutoriel</a>
+		</div>
+	</div>
+{% endblock %}
