@@ -12,7 +12,7 @@
 		<div class="col justify-content-start">
 			<h1 class="d-flex justify-content-start">Tutoriels</h1>
 			<section class="d-flex justify-content-start">
-				<table class="table">
+				<table class="table overflow-auto">
 					<thead>
 						<tr>
 							<th scope="col">ID</th>
@@ -38,15 +38,7 @@
 					</tbody>
 				</table>
 			</section>
-			{% for tutorial, messages in app.flashes %}
-				<tr>
-					{% for message in messages %}
-						<div class="alert alert-{{ tutorial }}">
-							<td>{{ message }}</td>
-						</div>
-					{% endfor %}
-				</tr>
-			{% endfor %}
+			
 			<a class="btn btn-primary mt-2" href="{{ path('app_admin_tutorial_new') }}" role="button">Créer un nouveau tutoriel</a>
 		</div>
 	</div>

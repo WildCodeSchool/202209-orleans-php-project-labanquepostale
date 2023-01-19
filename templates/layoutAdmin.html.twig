@@ -34,10 +34,16 @@
 			</div>
 		</nav>
 		<div class="row">
-			<div class="block card p-5">
+			<div class="block card p-5 overflow-auto">
 				<div class="text-center p-4">
-                    {% block content %}
-                    {% endblock %}
+					{% for tutorial, messages in app.flashes %}
+						{% for message in messages %}
+							<div class="alert alert-{{ tutorial }}">
+								{{ message }}
+							</div>
+						{% endfor %}
+					{% endfor %}
+					{% block content %}{% endblock %}
 				</div>
 			</div>
 		</div>
