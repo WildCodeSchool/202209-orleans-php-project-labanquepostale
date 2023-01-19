@@ -1,20 +1,9 @@
 @import "theme.scss";
 
-.header {
-    background-image: url(../images/header.jpeg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: right 35% bottom 45%;
-    background-blend-mode: darken;
-    background-color: rgba(0, 0, 0, 0.3);
-}
-
-.header h1 {
-    font-family: $font-title;
-    color: $light;
-    text-shadow: 0.1px 0.1px $dark;
-}
-
-.titleHome {
-    margin-bottom: 250px;
+.head-home {
+    height: 50vh;
+    border-radius: 0 0 30px 30px;
+    inset: 0;
+    z-index: -1;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 2px 0px;
 }

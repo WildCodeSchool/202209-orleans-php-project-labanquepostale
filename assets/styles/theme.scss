@@ -31,3 +31,8 @@ body {
 h1 {
     font-family: $font-title;
 }
+
+.btn {
+    --bs-btn-border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 2px 0px;
+}
