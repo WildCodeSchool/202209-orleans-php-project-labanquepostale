@@ -3,7 +3,7 @@
 namespace App\DataFixtures;
 
 use Faker\Factory;
-use App\Entity\Response;
+use App\Entity\Explanation;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -20,7 +20,7 @@ class ResponseFixtures extends Fixture implements DependentFixtureInterface
             for ($i = 0; $i < count(QuestionFixtures::QUESTIONS); $i++) {
                 for ($j = 0; $j < count(QuestionFixtures::QUESTIONS[$i]); $j++) {
                     for ($k = 0; $k < self::NB_ANSWERS; $k++) {
-                        $response = new Response();
+                        $response = new Explanation();
                         if ($k == 1) {
                             $response->setIsCorrect(true);
                         } else {
