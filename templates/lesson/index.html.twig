@@ -14,7 +14,7 @@
 	<p class="titleTuto fs-1 fw-bold">{{ tutorial.title }}</p>
 	<div class="container-fluid">
 		<div class="progress card">
-			<p class="texProgress text-center fs-5">progression</p>
+			<p class="texProgress text-center fs-5">{{ app.user.lessons|length }}/{{ tutorial.lessons|length }} leçons terminées</p>
 		</div>
 	</div>
 	<div class="bodyContainer container-fluid">
