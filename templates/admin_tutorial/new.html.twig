@@ -1,0 +1,20 @@
+{% extends 'layoutAdmin.html.twig' %}
+
+{% block title %}Créer un nouveau tutoriel
+{% endblock %}
+
+{% block content %}
+	<div class="container text-start">
+		<div class="col justify-content-start">
+			<div class="row">
+				<h1 class="p-0">Créer un nouveau tutoriel</h1>
+				<div class="g-2">
+
+					{{ include('admin_tutorial/_form.html.twig') }}
+
+					<a href="{{ path('app_admin_tutorial_index') }}" class="btn btn-outline-primary mt-2" role="button" aria-disabled="true">Retour à la liste</a>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
