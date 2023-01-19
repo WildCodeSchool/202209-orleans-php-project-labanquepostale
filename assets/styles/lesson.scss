@@ -7,25 +7,26 @@
     margin: 10px;
 }
 
-.card {
-    width: 180px;
-    height: 180px;
-    background: $primary;
-    margin-bottom: 10px;
-    text-align: center;
-    border: 0.5rem solid $intermediate; 
-    box-shadow: 0px 15px 20px -5px #38222e;
+.alignCard{
+    width: 48%;
+    height: 170px;
+    background: $light;
+    text-align: center; 
+    box-shadow: rgba(0, 0, 0, 0.15) 1px 3px 4px 0px;
+    border-radius: 30px;
 }
 
-.card:nth-child(even) {
+.alignCard:nth-child(even) {
     align-self: flex-end;
+    margin-top: -70px;
 }
 
-.card:nth-child(odd) {
+.alignCard:nth-child(odd) {
     align-self: flex-start;
+    margin-top: -70px;
 }
 
-.card:hover {
+.alignCard:hover {
     text-decoration: none;
     transform: scale(1.05);
     transition: 0.4s;
@@ -33,5 +34,35 @@
 
 .lesson{
     text-decoration: none; 
+}
+
+.descript{
+    color: $intermediate;
+    font-weight: 300;
+}
+
+.titleTuto{
+    display: flex;
+    justify-content: center;
+    color: $secondary;
+    margin-top: 4.5rem;
+}
+
+.lessonSpace {
+    margin-top: 100px;
+}
+
+.progress{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 50px;
+    margin-bottom: 130px;
+    background-color: $intermediate;
+    height: 70px;
+    color: $light;
+    border-radius: 10px;
+    padding-left: 15px;
+    font-weight: 600;
 }
 
