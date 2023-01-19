@@ -22,7 +22,7 @@
 						<h2 class="descript fs-4">{{ tutorial.title }}</h2>
 					</a>
 					<p class="lessonNb fs-6 mt-2">
-						{{ lessonsByTutorial[0]['lesson_count'] }} Leçons</p>
+						{{ tutorial.lessons|length }} Leçons</p>
 				</div>
 			{% endfor %}
 		</div>

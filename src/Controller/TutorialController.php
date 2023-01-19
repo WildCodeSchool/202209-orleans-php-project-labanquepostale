@@ -17,18 +17,10 @@ class TutorialController extends AbstractController
     {
         $tutorials = $tutorialRepository->findAll();
         $user = $this->getUser();
-        $lessonsByTutorial = $lessonRepository->createQueryBuilder('l')
-            ->select('tutorial.id, COUNT(l.id) as lesson_count')
-            ->join('l.tutorial', 'tutorial')
-            ->groupBy('tutorial.id')
-            ->getQuery()
-            ->getResult();
-
 
         return $this->render('tutorial/index.html.twig', [
             'tutorials' => $tutorials,
             'user' => $user,
-            'lessonsByTutorial' => $lessonsByTutorial
         ]);
     }
 
