@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Response;
+use App\Entity\Explanation;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,7 +19,7 @@ class ResponseType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Response::class,
+            'data_class' => Explanation::class,
         ]);
     }
 }

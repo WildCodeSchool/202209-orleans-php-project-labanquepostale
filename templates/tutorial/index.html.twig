@@ -1,7 +1,7 @@
 {% extends 'layout.html.twig' %}
 {% block stylesheets %}
 	{{ parent() }}
-	{{ encore_entry_link_tags('lessonTheme') }}
+	{{ encore_entry_link_tags('lesson') }}
 {% endblock %}
 {% set title = 'Tutoriel' %}
 
@@ -13,7 +13,8 @@
 	<div class="container">
 		<div class="cards-container">
 			{% for tutorial in tutorials %}
-				<div class="card rounded-circle justify-content-center mt-5">
+				<div class="card rounded-circle
+				 justify-content-center mt-5">
 					<a class="lesson" href="{{ path('lesson_index', {id: tutorial.id}) }}">
 						<h2 class="text-light fs-3">{{ tutorial.title }}</h2>
 					</a>
