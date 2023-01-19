@@ -9,40 +9,48 @@
 {% endblock %}
 
 {% block body %}
-	<h1 class="text-center text-secondary my-4">Créez votre compte !</h1>
 	<div class="container-fluid">
-		<div>
-			<h2 class="text-secondary text-center fw-bold">Pourquoi créer un compte ?</h2>
-			<p class="fs-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-		</div>
-		<div>
-			<h2 class="text-secondary text-center fw-bold">Avez-vous une adresse mail ?</h2>
-			<p class="fs-5">Si oui : passez à l'étape suivante</p>
-			<p class="fs-5">Si non : créez une adresse mail</p>
-		</div>
-		{{ form_start(registrationForm) }}
-		<div class="login border rounded-2 border-secondary bg-light shadow">
-			<h3 class="text-center mt-3 mb-4">Remplissez les champs</h3>
+		<div class="block-registration">
+			<p class="registration-title text-center fs-1 text-secondary my-3 fw-bold">Créez votre compte !</p>
+			<div class="mx-3">
+				<div class="text-center">
+					<h2 class="text-secondary fs-5">Pourquoi créer un compte ?</h2>
+					<p class="fs-6 text-light">Un compte
+						<span class="fw-bold">Blue Line</span>
+						vous permettra d'accedez aux différents tutoriels.</p>
+				</div>
+				<div class="text-center">
+					<h2 class="text-secondary fs-5">Avez-vous une adresse mail ?</h2>
+					<p class="fs-6 text-light p-0 m-0">Si oui : passez à l'étape suivante
 
-			<div class="my-3 col-10 m-auto">
-				{{ form_row(registrationForm.lastName, {
-            label: 'Nom' }) }}
+					</p>
+					<p class="mail-registration fs-6 p-0 m-0 text-light">Si non : créez une adresse mail
+					</p>
+				</div>
 			</div>
-			<div class="my-3 col-10 m-auto">
-				{{ form_row(registrationForm.firstName, {
-            label: 'Prénom' }) }}
+			{{ form_start(registrationForm) }}
+			<div class="col">
+				<div class="registration-form bg-light mx-4 mx-lg-auto mb-3 col-lg-4">
+					<h3 class="text-center mt-4 mb-4 pt-3 fs-5">Remplissez les champs</h3>
+
+					<div class="my-3 col-10 m-auto fs-6">
+						{{ form_row(registrationForm.lastName, { 'attr': {'class': 'registration-input'} }) }}
+					</div>
+					<div class="my-3 col-10 m-auto fs-6">
+						{{ form_row(registrationForm.firstName, { 'attr': {'class': 'registration-input'} }) }}
+					</div>
+					<div class="my-3 col-10 m-auto fs-6">
+						{{ form_row(registrationForm.email, { 'attr': {'class': 'registration-input'} }) }}
+					</div>
+					<div class="my-3 col-10 m-auto fs-6">
+						{{ form_row(registrationForm.plainPassword, { 'attr': {'class': 'registration-input'} }) }}
+					</div>
+					<div class="my-3 col-10 m-auto d-flex justify-content-center">
+						<button type="submit" class="btn btn-primary col-10 my-3 fs-6 p-1">Valider</button>
+					</div>
+				</div>
 			</div>
-			<div class="my-3 col-10 m-auto">
-				{{ form_row(registrationForm.email) }}
-			</div>
-			<div class="my-3 col-10 m-auto">
-				{{ form_row(registrationForm.plainPassword, {
-            label: 'Mot de passe' }) }}
-			</div>
-			<div class="my-3 col-10 m-auto">
-				<button type="submit" class="btn btn-secondary my-3">Valider</button>
-			</div>
+			{{ form_end(registrationForm) }}
 		</div>
-		{{ form_end(registrationForm) }}
 	</div>
 {% endblock %}
