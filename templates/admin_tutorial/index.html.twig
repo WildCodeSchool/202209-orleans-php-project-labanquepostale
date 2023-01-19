@@ -32,12 +32,21 @@
 							</tr>
 						{% else %}
 							<tr>
-								<td colspan="3">Aucun enregistrement trouvé</td>
+								<td colspan="3">Aucun tutoriel trouvé</td>
 							</tr>
 						{% endfor %}
 					</tbody>
 				</table>
 			</section>
+			{% for tutorial, messages in app.flashes %}
+				<tr>
+					{% for message in messages %}
+						<div class="alert alert-{{ tutorial }}">
+							<td>{{ message }}</td>
+						</div>
+					{% endfor %}
+				</tr>
+			{% endfor %}
 			<a class="btn btn-primary mt-2" href="{{ path('app_admin_tutorial_new') }}" role="button">Créer un nouveau tutoriel</a>
 		</div>
 	</div>

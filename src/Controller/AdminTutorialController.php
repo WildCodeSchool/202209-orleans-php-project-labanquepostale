@@ -5,10 +5,11 @@ namespace App\Controller;
 use App\Entity\Tutorial;
 use App\Form\TutorialType;
 use App\Repository\TutorialRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/admin/tutoriel')]
 class AdminTutorialController extends AbstractController
@@ -30,7 +31,7 @@ class AdminTutorialController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $tutorialRepository->save($tutorial, true);
-            $this->addFlash('success', 'Le nouveau tutoriel a été créé');
+            $this->addFlash('success', 'Le nouveau tutoriel a été créé avec succès');
 
             return $this->redirectToRoute('app_admin_tutorial_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -57,6 +58,7 @@ class AdminTutorialController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $tutorialRepository->save($tutorial, true);
+            $this->addFlash('success', 'Le tutoriel a été édité avec succès');
 
             return $this->redirectToRoute('app_admin_tutorial_index', [], Response::HTTP_SEE_OTHER);
         }
