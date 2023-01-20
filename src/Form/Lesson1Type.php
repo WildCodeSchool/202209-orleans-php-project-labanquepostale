@@ -28,7 +28,6 @@ class Lesson1Type extends AbstractType
                 'choice_label' => 'title',
                 'multiple' => false,
                 'expanded' => true,
-                'mapped' => true,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Choisissez un tutoriel'
