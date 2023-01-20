@@ -19,6 +19,7 @@ body {
     font-family: $font-body;
     font-size: $font-size;
     background: $background;
+    margin-bottom: 20px;
 }
 
 .top-bg {
@@ -30,6 +31,11 @@ body {
 
 h1 {
     font-family: $font-title;
+}
+
+.navigation {
+    border-radius: 20px;
+    margin: 15px;
 }
 
 .btn {
