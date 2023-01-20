@@ -23,9 +23,9 @@
 					</div>
 					<div class="answer rounded bg-white p-3 mb-4">
 						{% for responseForm in questionForm.response %}
-						<div class="border my-3">
-							<p>{{ form_widget(responseForm) }}
-								{{ form_label(responseForm )}}</p>
+						<div class="response my-3">
+							<p class="choice mx-3">{{ form_widget(responseForm) }}
+								{{ form_label(responseForm)}}</p>
 								</div>
 						{% endfor %}
 					</div>
