@@ -30,7 +30,7 @@ class AdminLessonController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $lessonRepository->save($lesson, true);
-            $this->addFlash('success', 'La nouvelle leçon a été crééé avec succès');
+            $this->addFlash('success', 'La nouvelle leçon a été crééé avec succès.');
 
             return $this->redirectToRoute('app_admin_lesson_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -57,7 +57,7 @@ class AdminLessonController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $lessonRepository->save($lesson, true);
-            $this->addFlash('success', 'La leçon a été éditée avec succès');
+            $this->addFlash('success', 'La leçon a été éditée avec succès.');
 
             return $this->redirectToRoute('app_admin_lesson_index', [], Response::HTTP_SEE_OTHER);
         }
