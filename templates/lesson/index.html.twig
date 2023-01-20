@@ -1,30 +1,32 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 {% block stylesheets %}
 	{{ parent() }}
-	{{ encore_entry_link_tags('lessonTheme') }}
+	{{ encore_entry_link_tags('lesson') }}
 {% endblock %}
 {% set title = 'Leçons' %}
 {% set return_path = path('tutorial_index') %}
- 
+
 
 {% block title %}Leçons
 {% endblock %}
 
 {% block body %}
-	<div class="container">
-		<div class="row">
-			<h2 class=" text-center text-primary mb-3 g-5 display-2">{{ tutorial.title }}</h2>
-			{% for lesson in lessons %}
-				<div class="col-sm-6 g-5">
-					<div class="d-flex justify-content-center">
-						<div class="card rounded-circle justify-content-center mt-2">
-							<a class="lesson" href="{{ path('lesson_show', { id: lesson.id }) }}">
-								<h2 class="text-light fs-3">{{ lesson.title }}</h2>
-							</a>
-						</div>
-					</div>
-				</div>
-			{% endfor %}
+	<p class="titleTuto fs-1 fw-bold">{{ tutorial.title }}</p>
+	<div class="container-fluid">
+		<div class="progress card">
+			<p class="texProgress text-center fs-5">{{ app.user.lessons|length }}/{{ tutorial.lessons|length }} leçons terminées</p>
 		</div>
 	</div>
-{% endblock %}
+	<div class="bodyContainer container-fluid">
+		<div>
+			<div class="lessonSpace cards-container">
+				{% for lesson in lessons %}
+					<div class="alignCard card justify-content-center col-5 col-lg-4">
+						<a class="lesson" href="{{ path('lesson_show', { id: lesson.id }) }}">
+							<h2 class="descript fs-4">{{ lesson.title }}</h2>
+						</a>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	{% endblock %}

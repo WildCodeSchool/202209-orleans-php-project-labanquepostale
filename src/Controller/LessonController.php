@@ -6,8 +6,8 @@ use App\Entity\User;
 use App\Entity\Lesson;
 use App\Entity\Tutorial;
 use App\Form\LessonType;
+use App\Entity\Explanation;
 use App\Repository\LessonRepository;
-use App\Repository\ResponseRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,7 +23,7 @@ class LessonController extends AbstractController
 
         return $this->render('lesson/index.html.twig', [
             'lessons' => $lessons,
-            'tutorial' => $tutorial
+            'tutorial' => $tutorial,
         ]);
     }
 
@@ -32,23 +32,28 @@ class LessonController extends AbstractController
         Lesson $lesson,
         Request $request,
         LessonRepository $lessonRepository,
+        Explanation $explanation
     ): Response {
         $tutorial = $lesson->getTutorial();
+        $quizzDone = $lesson->getUsers()->contains($this->getUser());
+        if (!$quizzDone) {
+            $form = $this->createForm(LessonType::class, $lesson);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                /** @var User */
+                $user = $this->getUser();
+                $lesson->addUser($user);
 
-        $form = $this->createForm(LessonType::class, $lesson);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            /** @var User */
-            $user = $this->getUser();
-            $lesson->addUser($user);
-            $lessonRepository->save($lesson, true);
-            $this->addFlash('success', 'BRAVO ! Vous avez validé le quiz !');
+                $lessonRepository->save($lesson, true);
+                return $this->redirectToRoute('lesson_show', ['id' => $lesson->getId()]);
+            }
         }
-
         return $this->renderForm('lesson/show.html.twig', [
-            'form' => $form,
+            'form' => $form ?? null,
+            'quizzDone' => $quizzDone,
             'lesson' => $lesson,
-            'tutorial' => $tutorial
+            'tutorial' => $tutorial,
+            'explanation' => $explanation
         ]);
     }
 }

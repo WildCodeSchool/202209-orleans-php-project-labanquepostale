@@ -33,7 +33,11 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
-    .addStyleEntry('lessonTheme', './assets/styles/lesson.scss')
+    .addStyleEntry('home', './assets/styles/home.scss')
+    .addStyleEntry('registration', './assets/styles/registration.scss')
+    .addStyleEntry('login', './assets/styles/login.scss')
+    .addStyleEntry('lesson', './assets/styles/lesson.scss')
+    .addStyleEntry('admin', './assets/styles/admin.scss')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
