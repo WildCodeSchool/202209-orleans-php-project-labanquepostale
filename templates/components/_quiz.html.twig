@@ -2,6 +2,7 @@
 	{{ encore_entry_link_tags('quiz') }}
 {% endblock %}
 
+
 {% block body %}
 	{% if quizzDone == true %}
 		<h2 class="text-center">Bravo !</h2>
@@ -13,7 +14,7 @@
 			</svg>
 		</div>
 	{% else %}
-		<h1 class="quiztitle text-center my-4 fs-2">Quiz</h1>
+		<p class="quiztitle text-center my-4 fs-2">Quiz</p>
 		{{ form_start(form) }}
 		<div class="container item">
 			<div class="row">
@@ -32,7 +33,7 @@
 				{% endfor %}
 			</div>
 		</div>
-		<button class="btn btn-primary">Valider</button>
+		<button class="validate btn btn-lg btn-primary col-6 col-lg-3 ms-1 mb-5">VALIDER</button>
 		{{ form_end(form) }}
 	{% endif %}
 {% endblock %}
