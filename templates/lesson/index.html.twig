@@ -11,12 +11,21 @@
 {% endblock %}
 
 {% block body %}
-	<p class="titleTuto fs-1 fw-bold">{{ tutorial.title }}</p>
+	<p class="titleTuto text-center fs-1 fw-bold">{{ tutorial.title }}</p>
 	<div class="container-fluid">
-		<div class="progress card">
-			<p class="texProgress text-center fs-5">{{ app.user.lessons|length }}/{{ tutorial.lessons|length }} leçons terminées</p>
+		<div class="progress">
+			<p class="progress-text fs-3">Progression</p>
+			<div class="progress-circle">
+				<svg viewbox="0 0 36 36">
+					<path class="bg-path" d="M 18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+					<path class="bar-path" style="stroke-dasharray: {{ (app.user.lessons|filter(lesson => lesson.tutorial == tutorial)|length / tutorial.lessons|length)*100 }} 100;" d="M 18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+				</svg>
+				<span class="percentage">{{ (app.user.lessons|filter(lesson => lesson.tutorial == tutorial)|length / tutorial.lessons|length)*100|round }}%</span>
+			</div>
 		</div>
 	</div>
+
+
 	<div class="bodyContainer container-fluid">
 		<div>
 			<div class="lessonSpace cards-container">
