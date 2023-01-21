@@ -19,6 +19,7 @@
 .form-check {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex-direction: row-reverse;
     padding: 0;
     margin-inline: 16px;
@@ -30,7 +31,8 @@
 }
 
 .form-check-input:checked {
-    background-color: green;
+    background-color: limegreen;
+    transition: 0.3s;
 }
 
 .validate {
