@@ -41,14 +41,6 @@ class AdminLessonController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_admin_lesson_show', methods: ['GET'])]
-    public function show(Lesson $lesson): Response
-    {
-        return $this->render('admin_lesson/show.html.twig', [
-            'lesson' => $lesson,
-        ]);
-    }
-
     #[Route('/{id}/editer', name: 'app_admin_lesson_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Lesson $lesson, LessonRepository $lessonRepository): Response
     {
