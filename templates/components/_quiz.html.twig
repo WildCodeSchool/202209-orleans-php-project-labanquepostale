@@ -27,14 +27,16 @@
 							<div class="response my-3">
 								<p class="choice mx-3">{{ form_widget(responseForm) }}
 									{{ form_label(responseForm)}}</p>
-									<div class="checkmark"></div>
+								<div class="checkmark"></div>
 							</div>
 						{% endfor %}
 					</div>
 				{% endfor %}
 			</div>
 		</div>
-		<button class="validate btn btn-lg btn-primary col-6 col-lg-3 ms-1 mb-5">VALIDER</button>
+		<div class="d-flex justify-content-center">
+			<button class="btn btn-lg btn-primary px-6 mb-5 col-10 col-lg-4 fs-5 mx-auto">Valider</button>
+		</div>
 		{{ form_end(form) }}
 	{% endif %}
 {% endblock %}
