@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Lesson;
-use App\Form\Lesson1Type;
+use App\Form\LessonType;
 use App\Repository\LessonRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +25,7 @@ class AdminLessonController extends AbstractController
     public function new(Request $request, LessonRepository $lessonRepository): Response
     {
         $lesson = new Lesson();
-        $form = $this->createForm(Lesson1Type::class, $lesson);
+        $form = $this->createForm(LessonType::class, $lesson);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -52,7 +52,7 @@ class AdminLessonController extends AbstractController
     #[Route('/{id}/editer', name: 'app_admin_lesson_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Lesson $lesson, LessonRepository $lessonRepository): Response
     {
-        $form = $this->createForm(Lesson1Type::class, $lesson);
+        $form = $this->createForm(LessonType::class, $lesson);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

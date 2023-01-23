@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Lesson;
 use App\Entity\Tutorial;
 use App\Form\TutorialType;
 use App\Repository\TutorialRepository;
@@ -42,11 +43,15 @@ class AdminTutorialController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_admin_tutorial_show', methods: ['GET'])]
-    public function show(Tutorial $tutorial): Response
+    #[Route('/{id}/lesson', name: 'app_admin_tutorial_lesson_show', methods: ['GET'])]
+    public function showLesson(Tutorial $tutorial, Lesson $lesson): Response
     {
-        return $this->render('admin_tutorial/show.html.twig', [
+        $lessons = $tutorial->getLessons();
+        
+        return $this->render('admin_tutorial/lessons_index.html.twig', [
             'tutorial' => $tutorial,
+            'lessons' => $lessons
+          
         ]);
     }
 
