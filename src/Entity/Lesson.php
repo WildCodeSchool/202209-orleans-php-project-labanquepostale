@@ -6,6 +6,7 @@ use App\Repository\LessonRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: LessonRepository::class)]
 class Lesson
@@ -16,18 +17,24 @@ class Lesson
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 255)]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 255)]
     private ?string $description = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank]
     private ?string $video = null;
 
     #[ORM\OneToMany(mappedBy: 'lesson', targetEntity: Question::class)]
     private Collection $questions;
 
     #[ORM\ManyToOne(inversedBy: 'lessons')]
+    #[Assert\NotBlank]
     private ?Tutorial $tutorial = null;
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'lessons')]
@@ -49,7 +56,7 @@ class Lesson
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(?string $title): self
     {
         $this->title = $title;
 
@@ -61,7 +68,7 @@ class Lesson
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
@@ -73,7 +80,7 @@ class Lesson
         return $this->video;
     }
 
-    public function setVideo(string $video): self
+    public function setVideo(?string $video): self
     {
         $this->video = $video;
 

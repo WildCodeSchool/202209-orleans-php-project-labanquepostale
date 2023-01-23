@@ -31,7 +31,7 @@ class AdminTutorialController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $tutorialRepository->save($tutorial, true);
-            $this->addFlash('success', 'Le nouveau tutoriel a été créé avec succès');
+            $this->addFlash('success', 'Le nouveau tutoriel a été créé avec succès.');
 
             return $this->redirectToRoute('app_admin_tutorial_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -58,7 +58,7 @@ class AdminTutorialController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $tutorialRepository->save($tutorial, true);
-            $this->addFlash('success', 'Le tutoriel a été édité avec succès');
+            $this->addFlash('success', 'Le tutoriel a été édité avec succès.');
 
             return $this->redirectToRoute('app_admin_tutorial_index', [], Response::HTTP_SEE_OTHER);
         }

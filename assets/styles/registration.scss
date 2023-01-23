@@ -1,1 +1,19 @@
 @import "theme.scss";
+
+.block-registration {
+    margin-top: 4rem;
+}
+
+.registration-form {
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 2px 0px;
+    color: $intermediate;
+}
+
+.mail-registration {
+    color: $intermediate;
+}
+
+.registration-input {
+    border-radius: 15px;
+}

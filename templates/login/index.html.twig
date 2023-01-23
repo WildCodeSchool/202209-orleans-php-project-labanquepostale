@@ -13,7 +13,7 @@
 			<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 		{% endif %}
 
-		<div class="login bg-light mx-4">
+		<div class="login bg-light mx-4 mx-lg-auto col-lg-4">
 			<form class="d-flex flex-column" action="{{ path('app_login') }}" method="post">
 				<div class="my-3 col-10 m-auto">
 					<label for="username" class="form-label fw-bold fs-5 ms-1">Adresse e-mail</label>
@@ -30,7 +30,7 @@
 			</form>
 			<div class="text-center mb-3">
 				<div class="my-2 fw-normal fs-5">Vous n'avez pas de compte ?</div>
-				<a class="btn btn-outline-primary mt-2 mb-5 w-75 fw-bold" href="{{ path('app_register')}}">S'inscrire</a>
+				<a class="btn btn-outline-primary mt-2 mb-5 w-75 fw-bold fs-5" href="{{ path('app_register')}}">S'inscrire</a>
 			</div>
 		</div>
 	</div>
