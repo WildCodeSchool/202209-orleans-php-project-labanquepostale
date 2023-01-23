@@ -10,7 +10,7 @@
 {% block content %}
 	<div class="container text-start">
 		<div class="col justify-content-start">
-			<h1 class="d-flex justify-content-start">Leçons</h1>
+			<h1 class="d-flex justify-content-start">{{ tutorial.title }} : Leçons</h1>
 			<section class="d-flex justify-content-start">
 				<table class="table overflow-auto">
 					<thead>
@@ -31,7 +31,7 @@
 							</tr>
 						{% else %}
 							<tr>
-								<td colspan="3">Aucun tutoriel trouvé</td>
+								<td colspan="3">Aucune leçon trouvée</td>
 							</tr>
 						{% endfor %}
 					</tbody>
