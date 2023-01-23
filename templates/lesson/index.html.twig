@@ -15,13 +15,15 @@
 	<div class="container-fluid">
 		<div class="progress">
 			<p class="progress-text fs-3">Progression</p>
-			<div class="progress-circle">
-				<svg viewbox="0 0 36 36">
-					<path class="bg-path" d="M 18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-					<path class="bar-path" style="stroke-dasharray: {{ (app.user.lessons|filter(lesson => lesson.tutorial == tutorial)|length / tutorial.lessons|length)*100 }} 100;" d="M 18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-				</svg>
-				<span class="percentage">{{ (app.user.lessons|filter(lesson => lesson.tutorial == tutorial)|length / tutorial.lessons|length)*100|round }}%</span>
-			</div>
+			{% if tutorial.lessons|length > 0 %}
+				<div class="progress-circle">
+					<svg viewbox="0 0 36 36">
+						<path class="bg-path" d="M 18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+						<path class="bar-path" style="stroke-dasharray: {{ (app.user.lessons|filter(lesson => lesson.tutorial == tutorial)|length / tutorial.lessons|length)*100 }} 100;" d="M 18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+					</svg>
+					<span class="percentage">{{ (app.user.lessons|filter(lesson => lesson.tutorial == tutorial)|length / tutorial.lessons|length)*100|round }}%</span>
+				</div>
+			{% endif %}
 		</div>
 	</div>
 
