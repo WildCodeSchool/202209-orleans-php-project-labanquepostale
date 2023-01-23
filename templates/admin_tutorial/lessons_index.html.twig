@@ -10,7 +10,7 @@
 {% block content %}
 	<div class="container text-start">
 		<div class="col justify-content-start">
-			<h1 class="d-flex justify-content-start">Leçons</h1>
+			<h1 class="d-flex justify-content-start">{{ tutorial.title }} : Leçons</h1>
 			<section class="d-flex justify-content-start">
 				<table class="table overflow-auto">
 					<thead>
@@ -26,13 +26,12 @@
 								<td scope="row">{{ lesson.id }}</td>
 								<td>{{ lesson.title }}</td>
 								<td>
-									<a class="btn btn-outline-primary mt-1 me-2" href="{{ path('app_admin_lesson_show', {'id': lesson.id}) }}" role="button">Voir</a>
 									<a class="btn btn-outline-primary mt-1 me-2" href="{{ path('app_admin_lesson_edit', {'id': lesson.id}) }}" role="button">Éditer</a>
 								</td>
 							</tr>
 						{% else %}
 							<tr>
-								<td colspan="3">Aucun tutoriel trouvé</td>
+								<td colspan="3">Aucune leçon trouvée</td>
 							</tr>
 						{% endfor %}
 					</tbody>
