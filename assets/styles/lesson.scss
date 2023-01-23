@@ -9,7 +9,7 @@
 
 .alignCard{
     width: 48%;
-    height: 170px;
+    height: 160px;
     background: $light;
     text-align: center; 
     box-shadow: rgba(0, 0, 0, 0.15) 1px 3px 4px 0px;
@@ -52,10 +52,9 @@
     margin-top: 100px;
 }
 
-.progress{
+.progress {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     margin-top: 50px;
     margin-bottom: 130px;
     background-color: $intermediate;
@@ -64,10 +63,6 @@
     border-radius: 10px;
     padding-left: 15px;
     font-weight: 600;
-}
-
-.texProgress {
-    margin: 0;
 }
 
 .userName{
@@ -82,3 +77,39 @@
     margin-bottom: 100px;
     margin-left: 25px;
 }
+
+.progress-circle {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 70px;
+    height: 70px;
+    margin-right: 15px;
+    position: relative;
+    text-align: center;
+}
+
+.bg-path,
+.bar-path {
+    fill: none;
+    stroke: $validation;
+    stroke-width: 2.5;
+}
+
+.bg-path {
+    stroke: $light;
+}
+
+.percentage {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.progress-text {
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+
+
+    
