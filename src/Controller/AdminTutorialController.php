@@ -47,11 +47,11 @@ class AdminTutorialController extends AbstractController
     public function showLesson(Tutorial $tutorial): Response
     {
         $lessons = $tutorial->getLessons();
-        
+
         return $this->render('admin_tutorial/lessons_index.html.twig', [
             'tutorial' => $tutorial,
             'lessons' => $lessons
-          
+
         ]);
     }
 
