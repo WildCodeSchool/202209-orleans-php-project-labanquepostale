@@ -92,12 +92,12 @@
 .bg-path,
 .bar-path {
     fill: none;
-    stroke: #00BC40;
+    stroke: $validation;
     stroke-width: 2.5;
 }
 
 .bg-path {
-    stroke: #e5e5e5;
+    stroke: $light;
 }
 
 .percentage {
