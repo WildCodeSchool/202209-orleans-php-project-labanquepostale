@@ -34,6 +34,7 @@ class Lesson
     private Collection $questions;
 
     #[ORM\ManyToOne(inversedBy: 'lessons')]
+    #[Assert\NotBlank]
     private ?Tutorial $tutorial = null;
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'lessons')]
@@ -55,7 +56,7 @@ class Lesson
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(?string $title): self
     {
         $this->title = $title;
 
@@ -67,7 +68,7 @@ class Lesson
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
@@ -79,7 +80,7 @@ class Lesson
         return $this->video;
     }
 
-    public function setVideo(string $video): self
+    public function setVideo(?string $video): self
     {
         $this->video = $video;
 

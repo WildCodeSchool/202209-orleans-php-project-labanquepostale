@@ -1,0 +1,43 @@
+@import "theme.scss";
+
+.quizbody {
+    margin-top: 4rem;
+}
+
+.quiztitle {
+    font-weight: bold;
+}
+
+.answer {
+    box-shadow: rgba(0, 0, 0, 0.15) 2px 2px 3px;
+}
+
+.response {
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-inline: -5px;
+}
+
+.form-check {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
+    padding: 0;
+    margin-inline: 16px;
+}
+
+.form-check-label {
+    font-size: 24px;
+    max-width: 85%;
+}
+
+.form-check-input:checked {
+    background-color: $answercolor;
+    transition: 0.3s;
+}
+
+.validate {
+    margin-bottom: 10px;
+    border-radius: 15px;
+}
