@@ -12,7 +12,6 @@ use App\Repository\TutorialRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/admin/tutoriel')]
@@ -59,8 +58,13 @@ class AdminTutorialController extends AbstractController
     }
 
     #[Route('/{tutorial}/leçons/{lesson}/quiz', name: 'app_admin_tutorial_lesson_quiz', methods: ['GET'])]
-    public function showQuiz(Request $request, Tutorial $tutorial, Lesson $lesson, Question $question, QuestionRepository $questionRepository): Response
-    {
+    public function showQuiz(
+        Request $request,
+        Tutorial $tutorial,
+        Lesson $lesson,
+        Question $question,
+        QuestionRepository $questionRepository
+    ): Response {
         $questions = $lesson->getQuestions();
 
         $form = $this->createForm(QuestionType::class, $question);
@@ -71,7 +75,6 @@ class AdminTutorialController extends AbstractController
 
             return $this->redirectToRoute('app_admin_tutorial_lesson_quiz', [], Response::HTTP_SEE_OTHER);
         }
-
 
         return $this->renderForm('admin_tutorial/quiz_index.html.twig', [
             'tutorial' => $tutorial,

@@ -69,7 +69,7 @@ class AdminQuestionController extends AbstractController
     #[Route('/{id}', name: 'app_admin_question_delete', methods: ['POST'])]
     public function delete(Request $request, Question $question, QuestionRepository $questionRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$question->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $question->getId(), $request->request->get('_token'))) {
             $questionRepository->remove($question, true);
         }
 
