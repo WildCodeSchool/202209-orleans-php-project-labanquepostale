@@ -34,7 +34,6 @@ class Lesson
     private Collection $questions;
 
     #[ORM\ManyToOne(inversedBy: 'lessons')]
-    #[Assert\NotBlank]
     private ?Tutorial $tutorial = null;
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'lessons')]

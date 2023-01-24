@@ -22,13 +22,6 @@ class LessonType extends AbstractType
             ->add('description', TextType::class)
             ->add('video', UrlType::class, [
                 'label' => 'Vidéo'
-            ])
-            ->add('tutorial', EntityType::class, [
-                'class' => Tutorial::class,
-                'label' => 'Tutoriel',
-                'choice_label' => 'title',
-                'multiple' => false,
-                'expanded' => true,
             ]);
     }
 
