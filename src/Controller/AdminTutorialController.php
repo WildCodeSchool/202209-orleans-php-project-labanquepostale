@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Lesson;
+use App\Entity\Question;
 use App\Entity\Tutorial;
+use App\Form\QuestionType;
 use App\Form\TutorialType;
+use App\Repository\QuestionRepository;
 use App\Repository\TutorialRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,6 +55,29 @@ class AdminTutorialController extends AbstractController
             'tutorial' => $tutorial,
             'lessons' => $lessons
 
+        ]);
+    }
+
+    #[Route('/{tutorial}/leçons/{lesson}/quiz', name: 'app_admin_tutorial_lesson_quiz', methods: ['GET'])]
+    public function showQuiz(Request $request, Tutorial $tutorial, Lesson $lesson, Question $question, QuestionRepository $questionRepository): Response
+    {
+        $questions = $lesson->getQuestions();
+
+        $form = $this->createForm(QuestionType::class, $question);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $questionRepository->save($question, true);
+
+            return $this->redirectToRoute('app_admin_tutorial_lesson_quiz', [], Response::HTTP_SEE_OTHER);
+        }
+
+
+        return $this->renderForm('admin_tutorial/quiz_index.html.twig', [
+            'tutorial' => $tutorial,
+            'lesson' => $lesson,
+            'questions' => $questions,
+            'form' => $form
         ]);
     }
 

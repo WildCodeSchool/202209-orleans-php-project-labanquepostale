@@ -10,7 +10,8 @@
 {% block content %}
 	<div class="container text-start">
 		<div class="col justify-content-start">
-			<h1 class="d-flex justify-content-start">{{ tutorial.title }} : Leçons</h1>
+			<h1 class="d-flex justify-content-start">{{ lesson.title }}
+				: Quiz</h1>
 			<section class="d-flex justify-content-start">
 				<table class="table overflow-auto">
 					<thead>
@@ -21,25 +22,24 @@
 						</tr>
 					</thead>
 					<tbody class="table-group-divider">
-						{% for lesson in lessons %}
+						{% for question in questions %}
 							<tr>
-								<td scope="row">{{ lesson.id }}</td>
-								<td>{{ lesson.title }}</td>
+								<td scope="row">{{ question.id }}</td>
+								<td>{{ question.questiontext }}</td>
 								<td>
-									<a class="btn btn-outline-primary mt-1 me-2" href="{{ path('app_admin_lesson_edit', {'id': lesson.id}) }}" role="button">Éditer</a>
-									<a class="btn btn-outline-primary mt-1 me-2" href="{{ path('app_admin_tutorial_lesson_quiz', {'tutorial': tutorial.id, 'lesson': lesson.id}) }}" role="button">Quiz</a>
+									<a class="btn btn-outline-primary mt-1 me-2" href="{{ path('app_admin_question_edit', {'id': question.id}) }}" role="button">Éditer</a>
 								</td>
 							</tr>
 						{% else %}
 							<tr>
-								<td colspan="3">Aucune leçon trouvée</td>
+								<td colspan="3">Aucune question trouvée</td>
 							</tr>
 						{% endfor %}
 					</tbody>
 				</table>
 			</section>
 
-			<a class="btn btn-primary mt-2" href="{{ path('app_admin_lesson_new') }}" role="button">Créer une nouvelle leçon</a>
+			<a class="btn btn-primary mt-2" href="{{ path('app_admin_lesson_new') }}" role="button">Créer une nouvelle question</a>
 		</div>
 	</div>
 {% endblock %}

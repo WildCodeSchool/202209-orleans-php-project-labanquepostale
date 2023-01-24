@@ -16,19 +16,19 @@ class LessonType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title', TextType::class, [
-                'label' => 'Titre'
-            ])
-            ->add('description', TextType::class)
-            ->add('video', UrlType::class, [
-                'label' => 'Vidéo'
-            ])
             ->add('tutorial', EntityType::class, [
                 'class' => Tutorial::class,
                 'label' => 'Tutoriel',
                 'choice_label' => 'title',
                 'multiple' => false,
                 'expanded' => true,
+            ])
+            ->add('title', TextType::class, [
+                'label' => 'Titre'
+            ])
+            ->add('description', TextType::class)
+            ->add('video', UrlType::class, [
+                'label' => 'Vidéo'
             ]);
     }
 
