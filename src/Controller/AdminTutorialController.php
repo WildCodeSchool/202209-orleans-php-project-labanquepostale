@@ -45,7 +45,7 @@ class AdminTutorialController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/leçons', name: 'app_admin_tutorial_lesson_show', methods: ['GET'])]
+    #[Route('/{id}/lecons', name: 'app_admin_tutorial_lesson_show', methods: ['GET'])]
     public function showLesson(Tutorial $tutorial): Response
     {
         $lessons = $tutorial->getLessons();
