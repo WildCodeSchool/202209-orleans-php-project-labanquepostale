@@ -10,13 +10,13 @@
 {% block content %}
 	<div class="container text-start">
 		<div class="col justify-content-start">
-			<h1 class="d-flex justify-content-start">{{ lesson.title }}
-				: Quiz</h1>
+			<h1 class="d-flex justify-content-center mb-4">Tutoriel : {{ lesson.tutorial.title }}</h1>
+			<h1 class="d-flex justify-content-center fs-2 mb-4">Leçon : {{ lesson.title }}</h1>
+			<h1 class="d-flex justify-content-start fs-2">Questions</h1>
 			<section class="d-flex justify-content-start">
 				<table class="table overflow-auto">
 					<thead>
 						<tr>
-							<th scope="col">ID</th>
 							<th scope="col">Titre</th>
 							<th scope="col">Administrer</th>
 						</tr>
@@ -24,7 +24,6 @@
 					<tbody class="table-group-divider">
 						{% for question in questions %}
 							<tr>
-								<td scope="row">{{ question.id }}</td>
 								<td>{{ question.questiontext }}</td>
 								<td>
 									<a class="btn btn-outline-primary mt-1 me-2" href="{{ path('app_admin_question_edit', {'id': question.id}) }}" role="button">Éditer</a>
