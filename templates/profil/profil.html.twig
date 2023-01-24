@@ -10,31 +10,18 @@
 {% endblock %}
 
 {% block body %}
-	<div class="profil card mb-3 ms-3 me-3" style="max-width: 540px;">
+	<div class="profil card m-3 mt-5" style="max-width: 540px;">
 		<div class="row g-0">
-			<div class="col-md-4">
-				<img src="..." class="img-fluid rounded-start" alt="...">
+			<div class="col">
+				<img src="{{ asset('build/images/profil.png') }}" class="profilImg img-fluid rounded-start ms-4 mt-4" alt="Profil photo">
 			</div>
-			<div class="col-md-8">
+			<div class="col">
 				<div class="card-body">
-					<p class="titleProfil card-title fs-1 fw-bold mt-1">Bonjour,</p>
-					{# <p class="titleProfil fs-1 fw-bold">{{ app.user.firstName }}!</p>
-					<p class="titleProfil fs-1 fw-bold">{{ app.user.email }}!</p> #}
-				</div>
-			</div>
-		</div>
-	</div>
-
-    <div class="progress card mb-3 ms-3 me-3" style="max-width: 540px;">
-		<div class="row g-0">
-			<div class="col-md-4">
-				<img src="..." class="img-fluid rounded-start" alt="...">
-			</div>
-			<div class="col-md-8">
-				<div class="card-body">
-					<p class="titleProfil card-title fs-1 fw-bold mt-1">Bonjour,</p>
-					{# <p class="titleProfil fs-1 fw-bold">{{ app.user.firstName }}!</p>
-					<p class="titleProfil fs-1 fw-bold">{{ app.user.email }}!</p> #}
+					<h5 class="titleProfil card-title mt-3">Bonjour</h5>
+					<p class="titleProfil card-text fs-1 fw-bold">{{ app.user.firstName }}!</p>
+					<p class="titleProfil card-text">
+						<small class="text-muted">{{ app.user.email }}!</small>
+					</p>
 				</div>
 			</div>
 		</div>
