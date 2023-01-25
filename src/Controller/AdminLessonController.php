@@ -11,11 +11,64 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/admin/lesson')]
+#[Route('/admin/tutoriel', name: 'app_admin_tutorial_lesson_')]
 class AdminLessonController extends AbstractController
 {
-    #[Route('/{id}', name: 'app_admin_lesson_delete', methods: ['POST'])]
-    public function delete(Request $request, Lesson $lesson, LessonRepository $lessonRepository): Response
+    #[Route('/{id}/lecons', name: 'show', methods: ['GET'])]
+    public function showLessons(Tutorial $tutorial): Response
+    {
+        $lessons = $tutorial->getLessons();
+
+        return $this->render('admin_tutorial/lessons_index.html.twig', [
+            'tutorial' => $tutorial,
+            'lessons' => $lessons,
+            'tutoriel' => $tutorial
+        ]);
+    }
+
+    #[Route('/{tutoriel}/lecons/ajouter', name: 'new', methods: ['GET', 'POST'])]
+    public function newLesson(Request $request, LessonRepository $lessonRepository, Tutorial $tutoriel): Response
+    {
+        $lesson = new Lesson();
+        $form = $this->createForm(LessonType::class, $lesson);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $lesson->setTutorial($tutoriel);
+            $lessonRepository->save($lesson, true);
+            $this->addFlash('success', 'La nouvelle leçon a été crééé avec succès.');
+
+            return $this->redirectToRoute('app_admin_tutorial_lesson_show', ['id' => $tutoriel->getId()]);
+        }
+
+        return $this->renderForm('admin_lesson/new.html.twig', [
+            'lesson' => $lesson,
+            'form' => $form,
+            'tutorial' => $tutoriel
+        ]);
+    }
+
+    #[Route('/{tutorial}/lecon/{lesson}/editer', name: 'edit', methods: ['GET', 'POST'])]
+    public function editLesson(Request $request, Lesson $lesson, LessonRepository $lessonRepository): Response
+    {
+        $form = $this->createForm(LessonType::class, $lesson);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $lessonRepository->save($lesson, true);
+            $this->addFlash('success', 'La leçon a été éditée avec succès.');
+
+            return $this->redirectToRoute('app_admin_tutorial_lesson_show', ['id' => $lesson->getTutorial()->getId()]);
+        }
+
+        return $this->renderForm('admin_lesson/edit.html.twig', [
+            'lesson' => $lesson,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}', name: 'delete', methods: ['POST'])]
+    public function deleteLesson(Request $request, Lesson $lesson, LessonRepository $lessonRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $lesson->getId(), $request->request->get('_token'))) {
             $lessonRepository->remove($lesson, true);

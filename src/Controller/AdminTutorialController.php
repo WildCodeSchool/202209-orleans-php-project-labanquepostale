@@ -44,41 +44,6 @@ class AdminTutorialController extends AbstractController
         ]);
     }
 
-
-    #[Route('/{id}/lecons', name: 'lesson_show', methods: ['GET'])]
-    public function showLessons(Tutorial $tutorial): Response
-    {
-        $lessons = $tutorial->getLessons();
-
-        return $this->render('admin_tutorial/lessons_index.html.twig', [
-            'tutorial' => $tutorial,
-            'lessons' => $lessons,
-            'tutoriel' => $tutorial
-        ]);
-    }
-
-    #[Route('/{tutoriel}/lecons/ajouter', name: 'lesson_new', methods: ['GET', 'POST'])]
-    public function newLesson(Request $request, LessonRepository $lessonRepository, Tutorial $tutoriel): Response
-    {
-        $lesson = new Lesson();
-        $form = $this->createForm(LessonType::class, $lesson);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $lesson->setTutorial($tutoriel);
-            $lessonRepository->save($lesson, true);
-            $this->addFlash('success', 'La nouvelle leçon a été crééé avec succès.');
-
-            return $this->redirectToRoute('app_admin_tutorial_lesson_show', ['id' => $tutoriel->getId()]);
-        }
-
-        return $this->renderForm('admin_lesson/new.html.twig', [
-            'lesson' => $lesson,
-            'form' => $form,
-            'tutorial' => $tutoriel
-        ]);
-    }
-
     #[Route('/{id}/editer', name: 'edit', methods: ['GET', 'POST'])]
     public function editTutorial(Request $request, Tutorial $tutorial, TutorialRepository $tutorialRepository): Response
     {
@@ -94,25 +59,6 @@ class AdminTutorialController extends AbstractController
 
         return $this->renderForm('admin_tutorial/edit.html.twig', [
             'tutorial' => $tutorial,
-            'form' => $form,
-        ]);
-    }
-
-    #[Route('/{tutorial}/lecon/{lesson}/editer', name: 'lesson_edit', methods: ['GET', 'POST'])]
-    public function editLesson(Request $request, Lesson $lesson, LessonRepository $lessonRepository): Response
-    {
-        $form = $this->createForm(LessonType::class, $lesson);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $lessonRepository->save($lesson, true);
-            $this->addFlash('success', 'La leçon a été éditée avec succès.');
-
-            return $this->redirectToRoute('app_admin_tutorial_lesson_show', ['id' => $lesson->getTutorial()->getId()]);
-        }
-
-        return $this->renderForm('admin_lesson/edit.html.twig', [
-            'lesson' => $lesson,
             'form' => $form,
         ]);
     }
