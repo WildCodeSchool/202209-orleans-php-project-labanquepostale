@@ -6,48 +6,50 @@ use App\Entity\Lesson;
 use App\Entity\Tutorial;
 use App\Form\LessonType;
 use App\Repository\LessonRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/admin/lesson')]
+#[Route('/admin/tutoriel', name: 'app_admin_tutorial_lesson_')]
 class AdminLessonController extends AbstractController
 {
-    #[Route('/{id}/lecons', name: 'app_admin_tutorial_lesson_show', methods: ['GET'])]
+    #[Route('/{id}/lecons', name: 'show', methods: ['GET'])]
     public function showLessons(Tutorial $tutorial): Response
     {
         $lessons = $tutorial->getLessons();
 
         return $this->render('admin_tutorial/lessons_index.html.twig', [
             'tutorial' => $tutorial,
-            'lessons' => $lessons
-
+            'lessons' => $lessons,
+            'tutoriel' => $tutorial
         ]);
     }
-    
-    #[Route('/ajouter', name: 'app_admin_lesson_new', methods: ['GET', 'POST'])]
-    public function newLesson(Request $request, LessonRepository $lessonRepository): Response
+
+    #[Route('/{tutoriel}/lecons/ajouter', name: 'new', methods: ['GET', 'POST'])]
+    public function newLesson(Request $request, LessonRepository $lessonRepository, Tutorial $tutoriel): Response
     {
         $lesson = new Lesson();
         $form = $this->createForm(LessonType::class, $lesson);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $lesson->setTutorial($tutoriel);
             $lessonRepository->save($lesson, true);
             $this->addFlash('success', 'La nouvelle leçon a été crééé avec succès.');
 
-            return $this->redirectToRoute('app_admin_lesson_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_admin_tutorial_lesson_show', ['id' => $tutoriel->getId()]);
         }
 
         return $this->renderForm('admin_lesson/new.html.twig', [
             'lesson' => $lesson,
             'form' => $form,
+            'tutorial' => $tutoriel
         ]);
     }
 
-    #[Route('/{id}/editer', name: 'app_admin_lesson_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Lesson $lesson, LessonRepository $lessonRepository): Response
+    #[Route('/{tutorial}/lecon/{lesson}/editer', name: 'edit', methods: ['GET', 'POST'])]
+    public function editLesson(Request $request, Lesson $lesson, LessonRepository $lessonRepository): Response
     {
         $form = $this->createForm(LessonType::class, $lesson);
         $form->handleRequest($request);
@@ -56,7 +58,7 @@ class AdminLessonController extends AbstractController
             $lessonRepository->save($lesson, true);
             $this->addFlash('success', 'La leçon a été éditée avec succès.');
 
-            return $this->redirectToRoute('app_admin_lesson_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_admin_tutorial_lesson_show', ['id' => $lesson->getTutorial()->getId()]);
         }
 
         return $this->renderForm('admin_lesson/edit.html.twig', [
@@ -65,13 +67,14 @@ class AdminLessonController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_admin_lesson_delete', methods: ['POST'])]
-    public function delete(Request $request, Lesson $lesson, LessonRepository $lessonRepository): Response
+    #[Route('/{id}', name: 'delete', methods: ['POST'])]
+    public function deleteLesson(Request $request, Lesson $lesson, LessonRepository $lessonRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $lesson->getId(), $request->request->get('_token'))) {
             $lessonRepository->remove($lesson, true);
+            $this->addFlash('danger', 'La nouvelle leçon a été supprimée avec succès.');
         }
 
-        return $this->redirectToRoute('app_admin_lesson_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_admin_tutorial_lesson_show', ['id' => $lesson->getTutorial()->getId()]);
     }
 }
