@@ -3,26 +3,31 @@
 namespace App\Controller;
 
 use App\Entity\Lesson;
+use App\Entity\Tutorial;
 use App\Form\LessonType;
 use App\Repository\LessonRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/admin/lesson')]
 class AdminLessonController extends AbstractController
 {
-    #[Route('/', name: 'app_admin_lesson_index', methods: ['GET'])]
-    public function index(LessonRepository $lessonRepository): Response
+    #[Route('/{id}/lecons', name: 'app_admin_tutorial_lesson_show', methods: ['GET'])]
+    public function showLessons(Tutorial $tutorial): Response
     {
-        return $this->render('admin_lesson/index.html.twig', [
-            'lessons' => $lessonRepository->findAll(),
+        $lessons = $tutorial->getLessons();
+
+        return $this->render('admin_tutorial/lessons_index.html.twig', [
+            'tutorial' => $tutorial,
+            'lessons' => $lessons
+
         ]);
     }
-
+    
     #[Route('/ajouter', name: 'app_admin_lesson_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, LessonRepository $lessonRepository): Response
+    public function newLesson(Request $request, LessonRepository $lessonRepository): Response
     {
         $lesson = new Lesson();
         $form = $this->createForm(LessonType::class, $lesson);

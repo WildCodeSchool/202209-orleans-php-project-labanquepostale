@@ -45,18 +45,6 @@ class AdminTutorialController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/lecons', name: 'app_admin_tutorial_lesson_show', methods: ['GET'])]
-    public function showLesson(Tutorial $tutorial): Response
-    {
-        $lessons = $tutorial->getLessons();
-
-        return $this->render('admin_tutorial/lessons_index.html.twig', [
-            'tutorial' => $tutorial,
-            'lessons' => $lessons
-
-        ]);
-    }
-
     #[Route('/{tutorial}/leçons/{lesson}/quiz', name: 'app_admin_tutorial_lesson_quiz', methods: ['GET'])]
     public function showQuiz(
         Request $request,
