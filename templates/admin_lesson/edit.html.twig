@@ -12,7 +12,7 @@
 
 				{{ include('admin_lesson/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
-				<a href="{{ path('app_admin_tutorial_lesson_show', {'id': lesson.tutorial.id }) }}" class="btn btn-outline-primary mt-2" role="button">Retour à la liste</a>
+				<a href="{{ path('app_admin_tutorial_lesson_show', {'id': lesson.tutorial.id}) }}" class="btn btn-outline-primary mt-2" role="button">Retour à la liste</a>
 
 				{{ include('admin_lesson/_delete_form.html.twig') }}
 				</div>
