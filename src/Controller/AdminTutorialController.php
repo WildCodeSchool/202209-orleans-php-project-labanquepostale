@@ -2,11 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Lesson;
 use App\Entity\Tutorial;
-use App\Form\LessonType;
 use App\Form\TutorialType;
-use App\Repository\LessonRepository;
 use App\Repository\TutorialRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
