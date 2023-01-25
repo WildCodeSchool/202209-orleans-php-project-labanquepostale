@@ -38,7 +38,7 @@
 				</table>
 			</section>
 
-			<a class="btn btn-primary mt-2" href="{{ path('app_admin_lesson_new') }}" role="button">Créer une nouvelle question</a>
+			<a class="btn btn-primary mt-2" href="{{ path('app_admin_tutorial_lesson_new', { 'tutoriel': tutorial.id }) }}" role="button">Créer une nouvelle question</a>
 		</div>
 	</div>
 {% endblock %}
