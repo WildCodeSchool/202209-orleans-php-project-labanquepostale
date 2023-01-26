@@ -25,6 +25,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "@popperjs/core": "^2.11.6"
+        "@popperjs/core": "^2.11.6",
+        "ckeditor4": "^4.13.0"
     }
 }
