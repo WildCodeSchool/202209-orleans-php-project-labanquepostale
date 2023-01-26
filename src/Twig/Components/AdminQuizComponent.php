@@ -22,9 +22,9 @@ final class AdminQuizComponent extends AbstractController
 
     protected function instantiateForm(): FormInterface
     {
-
         return $this->createForm(
-            QuestionType::class, $this->quizQuestion
+            QuestionType::class,
+            $this->quizQuestion
         );
     }
 }
