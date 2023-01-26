@@ -21,7 +21,7 @@ class QuestionType extends AbstractType
             ])
             ->add('responses', LiveCollectionType::class, [
                 'entry_type' => ExplanationType::class,
-                'label' => 'Réponses possibles :',
+                'label' => false,
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
