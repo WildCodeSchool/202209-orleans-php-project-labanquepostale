@@ -1,51 +1,34 @@
 <div{{attributes}}>
 	{{form_start(form)}}
-     <div class="row">
-            <div class="col-4">
-                {{ form_row(form.questionText, {
+	<div class="row">
+		<div class="col-4">
+			{{ form_row(form.questionText, {
                     label: 'Question',
                     attr: {
                         placeholder: 'Entrez votre question'
                     }
                 }) }}
-            </div>
-        </div>
-
-	<table class="table table-borderless form-no-mb">
-		<thead>
-			<tr>
-				<td>Réponse</td>
-				<td class="ms-1">Correct ?</td>
-			</tr>
-		</thead>
-		<tbody>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row justify-content-around">
 			{% for key, responseForm in form.responses %}
-				<tr>
-					<td>
-						{{ form_row(responseForm.answer, {
-                                label: false,
-                                attr: {
-                                    placeholder: 'Entrez une réponse de votre choix'
-                                }
-                            }) }}
-					</td>
-
-					<td>
-						{{ form_row(responseForm.isCorrect, {
-                                row_attr: {class: ''},
-                                label: false,
-                            }) }}
-					</td>
-					<td>
-						{{ form_row(responseForm.vars.button_delete, { label: 'X', attr: { class: 'btn btn-outline-danger' } }) }}
-					</td>
-				</tr>
+				<div class="col-4">
+					<p>Réponse</p>
+					{{ form_row(responseForm.answer, {label: false, attr: { placeholder: 'Entrez une réponse de votre choix'}}) }}
+				</div>
+				<div class="col-4 ms-5 d-flex flex-column justify-content-center align-items-center">
+					<p>Correct ?</p>
+					<span class="p-0 ms-3 form-check form-switch">{{ form_row(responseForm.isCorrect, {row_attr: {class: ''}, label: false, }) }}</span>
+				</div>
+				<div class="col-3 mt-5 ms-4">
+					{{ form_row(responseForm.vars.button_delete, { label: 'X', attr: { class: 'btn btn-outline-danger' } }) }}
+				</div>
 			{% endfor %}
-		</tbody>
-	</table>
-
-	{{ form_widget(form.responses.vars.button_add, { label: '+ Ajouter réponse', attr: { class: 'btn btn-outline-primary' } }) }}
-
-	<button type="submit" class="btn btn-success" formnovalidate>Sauvegarder</button>
-	{{ form_end(form) }}
-</div>
+		</div>
+		<div class="d-flex mt-2 gap-4">
+			{{ form_widget(form.responses.vars.button_add, { label: '+ Ajouter réponse', attr: { class: 'btn btn-outline-primary' } }) }}
+			<button type="submit" class="btn btn-success" formnovalidate>Sauvegarder</button>
+			{{ form_end(form) }}
+		</div>
+	</div>
