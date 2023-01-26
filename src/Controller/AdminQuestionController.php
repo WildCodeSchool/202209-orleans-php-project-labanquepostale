@@ -6,8 +6,6 @@ use App\Entity\Lesson;
 use App\Entity\Question;
 use App\Entity\Tutorial;
 use App\Form\QuestionType;
-use App\Entity\Explanation;
-use App\Repository\ExplanationRepository;
 use App\Repository\QuestionRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
