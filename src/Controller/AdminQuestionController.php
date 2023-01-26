@@ -6,6 +6,8 @@ use App\Entity\Lesson;
 use App\Entity\Question;
 use App\Entity\Tutorial;
 use App\Form\QuestionType;
+use App\Entity\Explanation;
+use App\Repository\ExplanationRepository;
 use App\Repository\QuestionRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -43,16 +45,21 @@ class AdminQuestionController extends AbstractController
     }
 
     #[Route('/{tutorial}/leçons/{lesson}/quiz/ajouter', name: 'new', methods: ['GET', 'POST'])]
-    public function newQuiz(Request $request, Tutorial $tutorial, Lesson $lesson, QuestionRepository $questionRepository): Response
-    {
+    public function newQuiz(
+        Request $request,
+        Tutorial $tutorial,
+        Lesson $lesson,
+        QuestionRepository $questionRepository,
+    ): Response {
         $question = new Question();
+        $question->setLesson($lesson);
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $questionRepository->save($question, true);
 
-            return $this->redirectToRoute('app_admin_question_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_admin_tutorial_lesson_quiz_show', ['tutorial' => $tutorial->getId(), 'lesson' => $lesson->getId()]);
         }
 
         return $this->renderForm('admin_question/new.html.twig', [
