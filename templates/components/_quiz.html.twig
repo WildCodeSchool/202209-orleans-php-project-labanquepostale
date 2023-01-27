@@ -4,13 +4,6 @@
 
 
 {% block body %}
-	{% for type, messages in app.session.flashbag.all %}
-		{% for message in messages %}
-			<div class="alert alert-{{ type }}">
-				{{ message|trans }}
-			</div>
-		{% endfor %}
-	{% endfor %}
 	{% if quizzDone  == true %}
 		<h2 class="text-center">Bravo !</h2>
 		<h2 class="text-center">Vous avez validé le quiz !</h2>

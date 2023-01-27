@@ -42,7 +42,6 @@ class LessonController extends AbstractController
         LessonRepository $lessonRepository,
         Explanation $explanation,
     ): Response {
-        $tutorial = $lesson->getTutorial();
         $quizzDone = $lesson->getUsers()->contains($this->getUser());
 
         if (!$quizzDone) {
@@ -50,11 +49,11 @@ class LessonController extends AbstractController
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
+                /** @var User */
+                $user = $this->getUser();
                 $answerIds = $request->request->all('quiz_lesson')['questions'];
                 $isGoodAnswer = $this->checkGoodAnswer->checkQuizz($answerIds);
                 if ($isGoodAnswer) {
-                    /** @var User */
-                    $user = $this->getUser();
                     $lesson->addUser($user);
                     $lessonRepository->save($lesson, true);
                     return $this->redirectToRoute('lesson_show', ['id' => $lesson->getId()]);
@@ -67,7 +66,6 @@ class LessonController extends AbstractController
             'form' => $form ?? null,
             'quizzDone' => $quizzDone,
             'lesson' => $lesson,
-            'tutorial' => $tutorial,
             'explanation' => $explanation,
         ]);
     }
