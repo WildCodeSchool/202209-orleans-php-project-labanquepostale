@@ -26,7 +26,7 @@
 								<td>{{ lesson.title }}</td>
 								<td>
 									<a class="btn btn-outline-primary mt-1 me-2" href="{{ path('app_admin_tutorial_lesson_edit', {'tutorial': tutorial.id, 'lesson': lesson.id}) }}" role="button">Éditer</a>
-									<a class="btn btn-outline-primary mt-1 me-2" href="{{ path('app_admin_tutorial_lesson_quiz', {'tutorial': tutorial.id, 'lesson': lesson.id}) }}" role="button">Quiz</a>
+									<a class="btn btn-outline-primary mt-1 me-2" href="{{ path('app_admin_tutorial_lesson_quiz_show', {'tutorial': tutorial.id, 'lesson': lesson.id}) }}" role="button">Quiz</a>
 								</td>
 							</tr>
 						{% else %}

@@ -12,37 +12,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/admin/question')]
+#[Route('/admin/tutoriel', name: 'app_admin_tutorial_lesson_quiz_')]
 class AdminQuestionController extends AbstractController
 {
-    #[Route('/', name: 'app_admin_question_index', methods: ['GET'])]
-    public function index(QuestionRepository $questionRepository): Response
-    {
-        return $this->render('admin_question/index.html.twig', [
-            'questions' => $questionRepository->findAll(),
-        ]);
-    }
-
-    #[Route('/new', name: 'app_admin_question_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, QuestionRepository $questionRepository): Response
-    {
-        $question = new Question();
-        $form = $this->createForm(QuestionType::class, $question);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $questionRepository->save($question, true);
-
-            return $this->redirectToRoute('app_admin_question_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('admin_question/new.html.twig', [
-            'question' => $question,
-            'form' => $form,
-        ]);
-    }
-
-    #[Route('/{tutorial}/leçons/{lesson}/quiz', name: 'app_admin_tutorial_lesson_quiz', methods: ['GET'])]
+    #[Route('/{tutorial}/leçons/{lesson}/quiz', name: 'show', methods: ['GET'])]
     public function showQuiz(
         Request $request,
         Tutorial $tutorial,
@@ -69,7 +42,37 @@ class AdminQuestionController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_admin_question_edit', methods: ['GET', 'POST'])]
+    #[Route('/{tutorial}/leçons/{lesson}/quiz/ajouter', name: 'new', methods: ['GET', 'POST'])]
+    public function newQuiz(
+        Request $request,
+        Tutorial $tutorial,
+        Lesson $lesson,
+        QuestionRepository $questionRepository,
+    ): Response {
+        $question = new Question();
+        $question->setLesson($lesson);
+        $form = $this->createForm(QuestionType::class, $question);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $questionRepository->save($question, true);
+
+            return $this->redirectToRoute(
+                'app_admin_tutorial_lesson_quiz_show',
+                ['tutorial' => $tutorial->getId(), 'lesson' => $lesson->getId()]
+            );
+        }
+
+        return $this->renderForm('admin_question/new.html.twig', [
+            'tutorial' => $tutorial,
+            'lesson' => $lesson,
+            'question' => $question,
+            'form' => $form,
+        ]);
+    }
+
+
+    #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Question $question, QuestionRepository $questionRepository): Response
     {
         $form = $this->createForm(QuestionType::class, $question);
