@@ -56,6 +56,7 @@ class AdminQuestionController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $questionRepository->save($question, true);
+            $this->addFlash('success', 'La nouvelle leçon a été crééé avec succès.');
 
             return $this->redirectToRoute(
                 'app_admin_tutorial_lesson_quiz_show',
@@ -72,31 +73,51 @@ class AdminQuestionController extends AbstractController
     }
 
 
-    #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Question $question, QuestionRepository $questionRepository): Response
-    {
+    #[Route('/{tutorial}/leçons/{lesson}/quiz/editer', name: 'edit', methods: ['GET', 'POST'])]
+    public function editQuiz(
+        Request $request,
+        Question $question,
+        Tutorial $tutorial,
+        Lesson $lesson,
+        QuestionRepository $questionRepository
+    ): Response {
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $questionRepository->save($question, true);
+            $this->addFlash('info', 'La nouvelle leçon a été éditée avec succès.');
 
-            return $this->redirectToRoute('app_admin_question_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute(
+                'app_admin_tutorial_lesson_quiz_show',
+                ['tutorial' => $tutorial->getId(), 'lesson' => $lesson->getId()]
+            );
         }
 
         return $this->renderForm('admin_question/edit.html.twig', [
+            'tutorial' => $tutorial,
+            'lesson' => $lesson,
             'question' => $question,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_admin_question_delete', methods: ['POST'])]
-    public function delete(Request $request, Question $question, QuestionRepository $questionRepository): Response
-    {
+    #[Route('/{tutorial}/leçons/{lesson}/quiz/{question}/supprimer', name: 'delete', methods: ['POST'])]
+    public function deleteQuiz(
+        Request $request,
+        Question $question,
+        Tutorial $tutorial,
+        Lesson $lesson,
+        QuestionRepository $questionRepository
+    ): Response {
         if ($this->isCsrfTokenValid('delete' . $question->getId(), $request->request->get('_token'))) {
             $questionRepository->remove($question, true);
+            $this->addFlash('danger', 'La nouvelle leçon a été supprimée avec succès.');
         }
 
-        return $this->redirectToRoute('app_admin_question_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute(
+            'app_admin_tutorial_lesson_quiz_show',
+            ['tutorial' => $tutorial->getId(), 'lesson' => $lesson->getId()]
+        );
     }
 }
