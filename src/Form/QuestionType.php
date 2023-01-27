@@ -2,13 +2,12 @@
 
 namespace App\Form;
 
-use App\Entity\Lesson;
 use App\Entity\Question;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\UX\LiveComponent\Form\Type\LiveCollectionType;
 
 class QuestionType extends AbstractType
 {
@@ -16,13 +15,14 @@ class QuestionType extends AbstractType
     {
         $builder
             ->add('questionText', TextType::class, [
-                'label' => 'Questions',
+                'label' => 'Question',
             ])
-            ->add('lesson', EntityType::class, [
-                'class' => Lesson::class,
-                'choice_label' => 'title',
-                'multiple' => false,
-                'expanded' => true,
+            ->add('responses', LiveCollectionType::class, [
+                'entry_type' => ExplanationType::class,
+                'label' => false,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
             ]);
     }
 
