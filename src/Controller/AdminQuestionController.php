@@ -102,13 +102,22 @@ class AdminQuestionController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_admin_question_delete', methods: ['POST'])]
-    public function delete(Request $request, Question $question, QuestionRepository $questionRepository): Response
-    {
+    #[Route('/{tutorial}/leçons/{lesson}/quiz/{question}/supprimer', name: 'delete', methods: ['POST'])]
+    public function deleteQuiz(
+        Request $request,
+        Question $question,
+        Tutorial $tutorial,
+        Lesson $lesson,
+        QuestionRepository $questionRepository
+    ): Response {
         if ($this->isCsrfTokenValid('delete' . $question->getId(), $request->request->get('_token'))) {
             $questionRepository->remove($question, true);
+            $this->addFlash('danger', 'La nouvelle leçon a été supprimée avec succès.');
         }
 
-        return $this->redirectToRoute('app_admin_question_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute(
+            'app_admin_tutorial_lesson_quiz_show',
+            ['tutorial' => $tutorial->getId(), 'lesson' => $lesson->getId()]
+        );
     }
 }
