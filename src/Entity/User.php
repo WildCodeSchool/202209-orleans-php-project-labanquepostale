@@ -2,17 +2,24 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use DateTime;
+use DateTimeImmutable;
+use DateTimeInterface;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'Il existe déjà un compte avec cet email.')]
+#[Vich\Uploadable]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -45,9 +52,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Lesson::class, inversedBy: 'users')]
     private Collection $lessons;
 
+    #[Assert\Length(max: 255)]
+    #[ORM\Column(type: 'string', nullable: true)]
+    private string $profileImageName;
+
+    #[Vich\UploadableField(mapping: 'profileImages', fileNameProperty: 'profileImageName')]
+    #[Assert\File(
+        maxSize: '1M',
+        mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
+    )]
+    private ?File $profileImageFile = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?DatetimeInterface $updatedAt = null;
+
     public function __construct()
     {
         $this->lessons = new ArrayCollection();
+        $this->updatedAt = new DateTime();
     }
 
     public function getId(): ?int
@@ -166,5 +188,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->lessons->removeElement($lesson);
 
         return $this;
+    }
+
+    public function getProfileImageFile(): ?File
+    {
+        return $this->profileImageFile;
+    }
+
+    public function setProfileImageFile(File $profileImageFile = null): void
+    {
+        $this->profileImageFile = $profileImageFile;
+        if ($profileImageFile) {
+            $this->updatedAt = new DateTime('now');
+        }
+    }
+
+    public function getProfileImageName(): string
+    {
+        return $this->profileImageName;
+    }
+
+    public function setProfileImageName(string $profileImageName): void
+    {
+        $this->profileImageName = $profileImageName;
     }
 }

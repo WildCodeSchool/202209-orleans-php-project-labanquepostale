@@ -14,7 +14,11 @@
 	<div class="profile card m-3 mt-5" style="max-width: 540px;">
 		<div class="row g-0">
 			<div class="col">
-				<img src="{{ asset('build/images/profil.png') }}" class="profileImg img-fluid rounded-start ms-4 mt-4" alt="Profil photo">
+				{% if app.user.profileImageName %}
+					<img src="{{ asset('uploads/userImages/' ~ app.user.profileImageName) }}" class="profileImg img-fluid rounded ms-4 mt-4" alt="{{ app.user.lastName }} {{ app.user.firstName }}"/>
+				{% else %}
+					<img src="{{ asset('build/images/profil.png') }}" class="profileImg img-fluid rounded ms-4 mt-4" alt="{{ app.user.lastName }} {{ app.user.firstName }}">
+				{% endif %}
 			</div>
 			<div class="col">
 				<div class="card-body">
