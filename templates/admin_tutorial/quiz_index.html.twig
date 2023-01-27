@@ -26,7 +26,8 @@
 							<tr>
 								<td>{{ question.questiontext }}</td>
 								<td>
-									<a class="btn btn-outline-primary mt-1 me-2" href="{{ path('app_admin_tutorial_lesson_quiz_edit', {'id': question.id}) }}" role="button">Éditer</a>
+									<a class="btn btn-outline-primary mt-1 me-2" href="{{ path('app_admin_tutorial_lesson_quiz_edit', {'tutorial': tutorial.id, 'lesson': lesson.id }) }}" role="button">Éditer</a>
+									{{ include('admin_question/_delete_form.html.twig') }}
 								</td>
 							</tr>
 						{% else %}
