@@ -23,7 +23,7 @@
 						<a class="lesson" href="{{ path('lesson_index', {id: tutorial.id}) }}">
 							<h2 class="descript fs-4 mx-1">{{ tutorial.title }}</h2>
 						</a>
-						<p class="lessonNb fs-6 text-primary">
+						<p class="lessonNb fs-6 text-primary">{{ (app.user.lessons|filter(lesson => lesson.tutorial == tutorial)|length) }} sur
 							{{ tutorial.lessons|length }}
 							Leçon(s)</p>
 					</div>
