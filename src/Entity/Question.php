@@ -6,6 +6,7 @@ use App\Repository\QuestionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: QuestionRepository::class)]
 class Question
@@ -16,12 +17,19 @@ class Question
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $questionText = null;
 
     #[ORM\ManyToOne(inversedBy: 'questions')]
     private ?Lesson $lesson = null;
 
-    #[ORM\OneToMany(mappedBy: 'question', targetEntity: Explanation::class)]
+    #[
+        ORM\OneToMany(
+            mappedBy: 'question',
+            targetEntity: Explanation::class,
+            cascade: ["persist", "remove"]
+        )
+    ]
     private Collection $responses;
 
     public function __construct()

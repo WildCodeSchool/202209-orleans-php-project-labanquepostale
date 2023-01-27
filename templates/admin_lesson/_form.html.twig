@@ -1,4 +1,6 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.video) }}
+    {{ form_row(form.description, {'attr': {'rows': '12'}}) }}
     <button class="btn">{{ button_label|default('Sauvegarder') }}</button>
 {{ form_end(form) }}

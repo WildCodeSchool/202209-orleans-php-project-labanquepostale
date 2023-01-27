@@ -2,16 +2,15 @@
 	<div class="container-fluid bg-primary text-center">
 		<div class="row pt-1">
 			<div class="col pt-3">
-				<a class="link active text-start" aria-current="page" href="{{ return_path |default(path('app_home')) }}">
-					<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="text-light bi bi-arrow-left" viewbox="0 0 16 16">
-						<path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+				<a class=" link active text-start" aria-current="page" href="{{ return_path |default(path('app_home')) }}">
+					<svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" fill="currentColor" class="btnReturn text-light bi bi-arrow-left-square-fill" viewbox="0 0 16 16">
+						<path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
 					</svg>
 				</a>
 			</div>
-			<div class="col-6 mt-2">
-			</div>
-			<div class="col mt-3">
-				<img src="{{ asset('build/images/Logo.png') }}" width="32" height="32" class="fs-4 fw-bold text-light text-end" alt="Logo de Blue Line">
+			<div class="col-6 mt-2"></div>
+			<div class="col mt-3 ms-5">
+				<img src="{{ asset('build/images/Logo.png') }}" width="35" height="35" class="fs-4 fw-bold text-light text-end" alt="Logo de Blue Line">
 			</div>
 		</div>
 	</div>

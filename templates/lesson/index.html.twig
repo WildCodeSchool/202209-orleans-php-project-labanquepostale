@@ -11,22 +11,35 @@
 {% endblock %}
 
 {% block body %}
-	<p class="titleTuto fs-1 fw-bold">{{ tutorial.title }}</p>
+	<p class="titleTuto text-center fs-1 fw-bold mx-2">{{ tutorial.title }}</p>
 	<div class="container-fluid">
-		<div class="progress card">
-			<p class="texProgress text-center fs-5">{{ app.user.lessons|length }}/{{ tutorial.lessons|length }} leçons terminées</p>
+		<div class="progress col-lg-6 mx-auto">
+			<p class="progress-text fs-3">Progression</p>
+			{% if tutorial.lessons|length > 0 %}
+				<div class="progress-circle">
+					<svg viewbox="0 0 36 36">
+						<path class="bg-path" d="M 18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+						<path class="bar-path" style="stroke-dasharray: {{ (app.user.lessons|filter(lesson => lesson.tutorial == tutorial)|length / tutorial.lessons|length)*100 }} 100;" d="M 18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+					</svg>
+					<span class="percentage">{{ (app.user.lessons|filter(lesson => lesson.tutorial == tutorial)|length / tutorial.lessons|length)*100|round }}%</span>
+				</div>
+			{% endif %}
 		</div>
 	</div>
-	<div class="bodyContainer container-fluid">
-		<div>
-			<div class="lessonSpace cards-container">
-				{% for lesson in lessons %}
-					<div class="alignCard card justify-content-center col-5 col-lg-4">
-						<a class="lesson" href="{{ path('lesson_show', { id: lesson.id }) }}">
-							<h2 class="descript fs-4">{{ lesson.title }}</h2>
-						</a>
-					</div>
-				{% endfor %}
-			</div>
+	<div class="blockContainer container-fluid">
+		<div class="lessonSpace cards-container">
+			{% for lesson in lessons %}
+				<div class="alignCard card text-center justify-content-center col-5 col-lg-4 {% if app.user.lessons.contains(lesson) %}{% endif %}">
+					<a class="lesson" href="{{ path('lesson_show', { id: lesson.id }) }}">
+						<h2 class="descript fs-4 mx-1">{{ lesson.title }}</h2>
+						{% if app.user.lessons.contains(lesson) %}
+							<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-check2-circle text-success" viewbox="0 0 16 16">
+								<path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
+								<path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+							</svg>
+						{% endif %}
+					</a>
+				</div>
+			{% endfor %}
 		</div>
 	{% endblock %}

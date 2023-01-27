@@ -1,19 +1,27 @@
 @import "theme.scss";
 
 .cards-container {
-	display: flex;
-	justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
     flex-direction: column;
-    margin: 10px;
 }
 
-.alignCard{
-    width: 48%;
-    height: 170px;
+.alignCard {
+    width: 46%;
+    height: 160px;
     background: $light;
-    text-align: center; 
     box-shadow: rgba(0, 0, 0, 0.15) 1px 3px 4px 0px;
     border-radius: 30px;
+    position: relative;
+}
+
+.alignCard a::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
 }
 
 .alignCard:nth-child(even) {
@@ -30,18 +38,18 @@
     text-decoration: none;
     transform: scale(1.05);
     transition: 0.4s;
-} 
-
-.lesson{
-    text-decoration: none; 
 }
 
-.descript{
+.lesson {
+    text-decoration: none;
+}
+
+.descript {
     color: $intermediate;
     font-weight: 300;
 }
 
-.titleTuto{
+.titleTuto {
     display: flex;
     justify-content: center;
     color: $secondary;
@@ -52,10 +60,9 @@
     margin-top: 100px;
 }
 
-.progress{
+.progress {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     margin-top: 50px;
     margin-bottom: 130px;
     background-color: $intermediate;
@@ -70,16 +77,55 @@
     margin: 0;
 }
 
-.userName{
+.userName {
     margin-left: 5px;
     font-weight: bold;
 }
 
-.wordMain{
+.wordMain {
     display: flex;
     color: $light;
     margin-top: 40px;
     margin-bottom: 100px;
     margin-left: 25px;
 }
-    
+
+.bodyContainer {
+    margin-bottom: 6rem;
+}
+
+.blockContainer {
+    margin-bottom: 6rem;
+}
+
+.progress-circle {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+    position: relative;
+    text-align: center;
+}
+
+.bg-path,
+.bar-path {
+    fill: none;
+    stroke: $validation;
+    stroke-width: 2.5;
+}
+
+.bg-path {
+    stroke: $light;
+}
+
+.percentage {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.progress-text {
+    margin-right: auto;
+    margin-top: 10px;
+}

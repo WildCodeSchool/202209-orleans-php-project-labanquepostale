@@ -5,8 +5,8 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Lesson;
 use App\Entity\Tutorial;
-use App\Form\LessonType;
 use App\Entity\Explanation;
+use App\Form\QuizLessonType;
 use App\Repository\LessonRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,7 +37,7 @@ class LessonController extends AbstractController
         $tutorial = $lesson->getTutorial();
         $quizzDone = $lesson->getUsers()->contains($this->getUser());
         if (!$quizzDone) {
-            $form = $this->createForm(LessonType::class, $lesson);
+            $form = $this->createForm(QuizLessonType::class, $lesson);
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
                 /** @var User */

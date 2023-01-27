@@ -1,0 +1,17 @@
+@import "theme.scss";
+
+.profile {
+    justify-content: center;
+    background-color: $intermediate;
+    border-radius: 20px;
+    margin-top: 120px;
+}
+
+.titleProfile{
+    color: $secondary;
+}
+
+.profileImg {
+    width: 100px;
+    height: 120px;
+}

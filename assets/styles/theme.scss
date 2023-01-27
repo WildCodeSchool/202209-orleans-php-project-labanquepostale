@@ -10,6 +10,8 @@ $intermediate: #21214F;
 $light: #FAFAFA;
 $dark: #000611;
 $background: #EFEFEF;
+$validation :#00BC40;
+$answercolor: limegreen;
 
 @import "~bootstrap/scss/bootstrap";
 
@@ -41,4 +43,9 @@ h1 {
 .btn {
     --bs-btn-border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 2px 0px;
+}
+
+.btnReturn {
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.15) 2px 2px 3px;
 }

@@ -21,9 +21,8 @@ class Lesson
     #[Assert\Length(max: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: 'text')]
     #[Assert\NotBlank]
-    #[Assert\Length(max: 255)]
     private ?string $description = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -55,7 +54,7 @@ class Lesson
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(?string $title): self
     {
         $this->title = $title;
 
@@ -67,7 +66,7 @@ class Lesson
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
@@ -79,7 +78,7 @@ class Lesson
         return $this->video;
     }
 
-    public function setVideo(string $video): self
+    public function setVideo(?string $video): self
     {
         $this->video = $video;
 
