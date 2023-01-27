@@ -22,7 +22,7 @@ class CheckGoodAnswer
         }
 
         foreach ($questions as $question) {
-            $answer = $this->explanationRepo->find($question['response']);
+            $answer = $this->explanationRepo->find($question['responses']);
             if ($answer->isIsCorrect() === true) {
                 $goodAnswers++;
             }

@@ -18,14 +18,22 @@ Encore
 
         // optional target path, relative to the output dir
         // to: 'images/[path][name].[ext]',
-
         // if versioning is enabled, add the file hash too
         to: 'images/[path][name].[hash:8].[ext]',
 
         // only copy files matching this pattern
         // pattern: /\.(png|jpg|jpeg)$/
-        
+
     })
+    .copyFiles([
+        { from: './node_modules/ckeditor4/', to: 'ckeditor/[path][name].[ext]', pattern: /\.(js|css)$/, includeSubdirectories: false },
+        { from: './node_modules/ckeditor4/adapters', to: 'ckeditor/adapters/[path][name].[ext]' },
+        { from: './node_modules/ckeditor4/lang', to: 'ckeditor/lang/[path][name].[ext]' },
+        { from: './node_modules/ckeditor4/plugins', to: 'ckeditor/plugins/[path][name].[ext]' },
+        { from: './node_modules/ckeditor4/skins', to: 'ckeditor/skins/[path][name].[ext]' },
+        { from: './node_modules/ckeditor4/vendor', to: 'ckeditor/vendor/[path][name].[ext]' },
+    ])
+
     /*
      * ENTRY CONFIG
      *
@@ -38,6 +46,7 @@ Encore
     .addStyleEntry('login', './assets/styles/login.scss')
     .addStyleEntry('lesson', './assets/styles/lesson.scss')
     .addStyleEntry('admin', './assets/styles/admin.scss')
+    .addStyleEntry('profile', './assets/styles/profile.scss')
     .addStyleEntry('quiz', './assets/styles/quiz.scss')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)

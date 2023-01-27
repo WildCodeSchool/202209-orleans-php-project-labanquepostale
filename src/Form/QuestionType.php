@@ -3,35 +3,33 @@
 namespace App\Form;
 
 use App\Entity\Question;
-use App\Entity\Explanation;
-use Doctrine\ORM\EntityRepository;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\UX\LiveComponent\Form\Type\LiveCollectionType;
 
 class QuestionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
-            $question = $event->getData();
-            $form = $event->getForm();
-
-            $form->add('response', EntityType::class, [
-                'class' => Explanation::class,
+        $builder
+            ->add('questionText', TextType::class, [
+                'label' => 'Question',
+            ])
+            ->add('responses', LiveCollectionType::class, [
+                'entry_type' => ExplanationType::class,
                 'label' => false,
-                'choice_label' => 'answer',
-                'multiple' => false,
-                'expanded' => true,
-                'mapped' => false,
-                'query_builder' => function (EntityRepository $er) use ($question) {
-                    return $er->createQueryBuilder('r')
-                        ->where('r.question=' . $question->getId());
-                },
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
             ]);
-        });
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => Question::class,
+        ]);
     }
 }

@@ -21,9 +21,8 @@ class Lesson
     #[Assert\Length(max: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: 'text')]
     #[Assert\NotBlank]
-    #[Assert\Length(max: 255)]
     private ?string $description = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -34,7 +33,6 @@ class Lesson
     private Collection $questions;
 
     #[ORM\ManyToOne(inversedBy: 'lessons')]
-    #[Assert\NotBlank]
     private ?Tutorial $tutorial = null;
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'lessons')]

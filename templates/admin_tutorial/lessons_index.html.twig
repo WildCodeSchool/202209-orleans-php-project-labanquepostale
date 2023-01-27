@@ -10,12 +10,12 @@
 {% block content %}
 	<div class="container text-start">
 		<div class="col justify-content-start">
-			<h1 class="d-flex justify-content-start">{{ tutorial.title }} : Leçons</h1>
+			<h1 class="d-flex justify-content-center mb-4">Tutoriel : {{ tutorial.title }}</h1>
+			<h1 class="d-flex justify-content-start fs-2">Leçons</h1>
 			<section class="d-flex justify-content-start">
 				<table class="table overflow-auto">
 					<thead>
 						<tr>
-							<th scope="col">ID</th>
 							<th scope="col">Titre</th>
 							<th scope="col">Administrer</th>
 						</tr>
@@ -23,10 +23,10 @@
 					<tbody class="table-group-divider">
 						{% for lesson in lessons %}
 							<tr>
-								<td scope="row">{{ lesson.id }}</td>
 								<td>{{ lesson.title }}</td>
 								<td>
-									<a class="btn btn-outline-primary mt-1 me-2" href="{{ path('app_admin_lesson_edit', {'id': lesson.id}) }}" role="button">Éditer</a>
+									<a class="btn btn-outline-primary mt-1 me-2" href="{{ path('app_admin_tutorial_lesson_edit', {'tutorial': tutorial.id, 'lesson': lesson.id}) }}" role="button">Éditer</a>
+									<a class="btn btn-outline-primary mt-1 me-2" href="{{ path('app_admin_tutorial_lesson_quiz_show', {'tutorial': tutorial.id, 'lesson': lesson.id}) }}" role="button">Quiz</a>
 								</td>
 							</tr>
 						{% else %}
@@ -38,7 +38,7 @@
 				</table>
 			</section>
 
-			<a class="btn btn-primary mt-2" href="{{ path('app_admin_lesson_new') }}" role="button">Créer une nouvelle leçon</a>
+			<a class="btn btn-primary mt-2" href="{{ path('app_admin_tutorial_lesson_new', {'tutoriel': tutoriel.id}) }}" role="button">Créer une nouvelle leçon</a>
 		</div>
 	</div>
 {% endblock %}
