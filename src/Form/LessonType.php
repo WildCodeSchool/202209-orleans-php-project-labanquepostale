@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Lesson;
 use Symfony\Component\Form\AbstractType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
@@ -18,7 +19,7 @@ class LessonType extends AbstractType
             ->add('title', TextType::class, [
                 'label' => 'Titre'
             ])
-            ->add('description', TextareaType::class)
+            ->add('description', CKEditorType::class)
             ->add('video', UrlType::class, [
                 'label' => 'Vidéo'
             ]);

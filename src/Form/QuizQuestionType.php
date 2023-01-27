@@ -20,7 +20,7 @@ class QuizQuestionType extends AbstractType
             $question = $event->getData();
             $form = $event->getForm();
 
-            $form->add('response', EntityType::class, [
+            $form->add('responses', EntityType::class, [
                 'class' => Explanation::class,
                 'label' => false,
                 'choice_label' => 'answer',
