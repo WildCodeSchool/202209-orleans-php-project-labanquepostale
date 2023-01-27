@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use DateTime;
 use DateTimeImmutable;
+use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
@@ -62,12 +63,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     )]
     private ?File $profileImageFile = null;
 
-    // #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    // private ?DatetimeInterface $updatedAt = null;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?DatetimeInterface $updatedAt = null;
 
     public function __construct()
     {
         $this->lessons = new ArrayCollection();
+        $this->updatedAt = new DateTime();
     }
 
     public function getId(): ?int
@@ -188,17 +190,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getProfilImageFile(): ?File
+    public function getProfileImageFile(): ?File
     {
         return $this->profileImageFile;
     }
 
     public function setProfileImageFile(File $profileImageFile = null): void
     {
-        // $this->profileImageFile = $profileImageFile;
-        // if ($profileImageFile) {
-        //     $this->updatedAt = new DateTime('now');
-        //   }
+        $this->profileImageFile = $profileImageFile;
+        if ($profileImageFile) {
+            $this->updatedAt = new DateTime('now');
+        }
     }
 
     public function getProfileImageName(): string
