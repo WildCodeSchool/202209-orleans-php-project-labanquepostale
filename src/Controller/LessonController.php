@@ -13,26 +13,16 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/lesson', name: 'lesson_')]
+#[Route('/tutoriel', name: 'tutorial_lesson_')]
 class LessonController extends AbstractController
 {
-    #[Route('/{id}', name: 'index')]
-    public function index(Tutorial $tutorial): Response
-    {
-        $lessons = $tutorial->getLessons();
-
-        return $this->render('lesson/index.html.twig', [
-            'lessons' => $lessons,
-            'tutorial' => $tutorial,
-        ]);
-    }
-
-    #[Route('/show/{id}', requirements: ['id' => '\d+'], name: 'show')]
+    #[Route('/{tutorial}/lecon/{lesson}', requirements: ['id' => '\d+'], name: 'show')]
     public function show(
         Lesson $lesson,
         Request $request,
         LessonRepository $lessonRepository,
-        Explanation $explanation
+        
+        Tutorial $tutorial
     ): Response {
         $tutorial = $lesson->getTutorial();
         $quizzDone = $lesson->getUsers()->contains($this->getUser());
@@ -45,7 +35,7 @@ class LessonController extends AbstractController
                 $lesson->addUser($user);
 
                 $lessonRepository->save($lesson, true);
-                return $this->redirectToRoute('lesson_show', ['id' => $lesson->getId()]);
+                return $this->redirectToRoute('tutorial_lesson_show', ['id' => $lesson->getId()]);
             }
         }
         return $this->renderForm('lesson/show.html.twig', [
@@ -53,7 +43,7 @@ class LessonController extends AbstractController
             'quizzDone' => $quizzDone,
             'lesson' => $lesson,
             'tutorial' => $tutorial,
-            'explanation' => $explanation
+          
         ]);
     }
 }

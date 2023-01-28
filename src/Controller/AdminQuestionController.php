@@ -15,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/admin/tutoriel', name: 'app_admin_tutorial_lesson_quiz_')]
 class AdminQuestionController extends AbstractController
 {
-    #[Route('/{tutorial}/leçons/{lesson}/quiz', name: 'show', methods: ['GET'])]
+    #[Route('/{tutorial}/lecon/{lesson}/quiz', name: 'show', methods: ['GET'])]
     public function showQuiz(
         Request $request,
         Tutorial $tutorial,
@@ -42,7 +42,7 @@ class AdminQuestionController extends AbstractController
         ]);
     }
 
-    #[Route('/{tutorial}/leçons/{lesson}/quiz/ajouter', name: 'new', methods: ['GET', 'POST'])]
+    #[Route('/{tutorial}/lecon/{lesson}/quiz/ajouter', name: 'new', methods: ['GET', 'POST'])]
     public function newQuiz(
         Request $request,
         Tutorial $tutorial,
@@ -73,7 +73,7 @@ class AdminQuestionController extends AbstractController
     }
 
 
-    #[Route('/{tutorial}/leçons/{lesson}/quiz/editer', name: 'edit', methods: ['GET', 'POST'])]
+    #[Route('/{tutorial}/lecons/{lesson}/quiz/editer', name: 'edit', methods: ['GET', 'POST'])]
     public function editQuiz(
         Request $request,
         Question $question,
@@ -102,7 +102,7 @@ class AdminQuestionController extends AbstractController
         ]);
     }
 
-    #[Route('/{tutorial}/leçons/{lesson}/quiz/{question}/supprimer', name: 'delete', methods: ['POST'])]
+    #[Route('/{tutorial}/lecon/{lesson}/quiz/{question}/supprimer', name: 'delete', methods: ['POST'])]
     public function deleteQuiz(
         Request $request,
         Question $question,
