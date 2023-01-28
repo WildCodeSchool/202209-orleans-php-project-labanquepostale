@@ -22,17 +22,6 @@ class TutorialController extends AbstractController
         ]);
     }
 
- /*    #[Route('/{tutorial}', requirements: ['id' => '\d+'], name: 'show')]
-    public function show(Tutorial $tutorial, LessonRepository $lessonRepository): Response
-    {
-        $lesson = $lessonRepository->findBy(['tutorial' => $tutorial]);
-
-        return $this->render('tutorial/show.html.twig', [
-            'lesson' => $lesson,
-            'tutorial' => $tutorial
-        ]);
-    } */
-
     #[Route('/{id}', name: 'show')]
     public function show(Tutorial $tutorial): Response
     {

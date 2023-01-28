@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Lesson;
 use App\Entity\Tutorial;
-use App\Entity\Explanation;
 use App\Form\QuizLessonType;
 use App\Repository\LessonRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,7 +20,6 @@ class LessonController extends AbstractController
         Lesson $lesson,
         Request $request,
         LessonRepository $lessonRepository,
-        
         Tutorial $tutorial
     ): Response {
         $tutorial = $lesson->getTutorial();
@@ -43,7 +41,6 @@ class LessonController extends AbstractController
             'quizzDone' => $quizzDone,
             'lesson' => $lesson,
             'tutorial' => $tutorial,
-          
         ]);
     }
 }
