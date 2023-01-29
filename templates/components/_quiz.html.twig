@@ -4,7 +4,7 @@
 
 
 {% block body %}
-	{% if quizzDone == true %}
+	{% if quizzDone  == true %}
 		<h2 class="text-center">Bravo !</h2>
 		<h2 class="text-center">Vous avez validé le quiz !</h2>
 		<div class="mt-3 d-flex justify-content-center align-items-center">
@@ -27,7 +27,7 @@
 							<div class="response my-3">
 								<p class="choice mx-3">{{ form_widget(responseForm) }}
 									{{ form_label(responseForm)}}</p>
-									<div class="checkmark"></div>
+								<div class="checkmark"></div>
 							</div>
 						{% endfor %}
 					</div>
