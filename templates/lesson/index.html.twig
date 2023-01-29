@@ -26,10 +26,10 @@
 			{% endif %}
 		</div>
 	</div>
-	<div class="blockContainer container-fluid">
+	<div class="blockContainer container">
 		<div class="lessonSpace cards-container">
 			{% for lesson in lessons %}
-				<div class="alignCard card text-center justify-content-center col-5 col-lg-4 {% if app.user.lessons.contains(lesson) %}{% endif %}">
+				<div class="alignCard card text-center justify-content-center col-5 {% if app.user.lessons.contains(lesson) %}{% endif %}">
 					<a class="lesson" href="{{ path('lesson_show', { id: lesson.id }) }}">
 						<h2 class="descript fs-4 mx-1">{{ lesson.title }}</h2>
 						{% if app.user.lessons.contains(lesson) %}

@@ -15,10 +15,10 @@
 		<h2>Bonjour,</h2>
 		<h2 class="userName">{{ app.user.firstName }}!</h2>
 	</div>
-	<div class="bodyContainer container-fluid">
+	<div class="bodyContainer container">
 		<div class="cards-container">
 			{% for tutorial in tutorials %}
-				<div class="alignCard card justify-content-center col-6 col-lg-4 text-center">
+				<div class="alignCard card justify-content-center col-6 text-center">
 					<div class="mt-2">
 						<a class="lesson" href="{{ path('lesson_index', {id: tutorial.id}) }}">
 							<h2 class="descript fs-4 mx-1">{{ tutorial.title }}</h2>
