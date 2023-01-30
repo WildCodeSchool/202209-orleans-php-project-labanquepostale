@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/tutorial', name: 'tutorial_')]
+#[Route('/tutoriel', name: 'tutorial_')]
 class TutorialController extends AbstractController
 {
     #[Route('/', name: 'index')]
@@ -22,14 +22,14 @@ class TutorialController extends AbstractController
         ]);
     }
 
-    #[Route('/show/{id}', requirements: ['id' => '\d+'], name: 'show')]
-    public function show(Tutorial $tutorial, LessonRepository $lessonRepository): Response
+    #[Route('/{id}', name: 'show')]
+    public function show(Tutorial $tutorial): Response
     {
-        $lesson = $lessonRepository->findBy(['tutorial' => $tutorial]);
+        $lessons = $tutorial->getLessons();
 
-        return $this->render('tutorial/show.html.twig', [
-            'lesson' => $lesson,
-            'tutorial' => $tutorial
+        return $this->render('lesson/index.html.twig', [
+            'lessons' => $lessons,
+            'tutorial' => $tutorial,
         ]);
     }
 }

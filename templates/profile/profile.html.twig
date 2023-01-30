@@ -11,18 +11,22 @@
 
 {% block body %}
 	<p class="titleProfile text-center fs-1 fw-bold mt-5">Profil</p>
-	<div class="profile card m-3 mt-5" style="max-width: 540px;">
+	<div class="profile card m-3 mt-5" style="max-width: 100%;">
 		<div class="row g-0">
 			<div class="col">
-				<img src="{{ asset('build/images/profil.png') }}" class="profileImg img-fluid rounded-start ms-4 mt-4" alt="Profil photo">
+				{% if app.user.profileImageName %}
+					<img src="{{ asset('uploads/userImages/' ~ app.user.profileImageName) }}" class="profileImg img-fluid rounded ms-4 mt-4" alt="{{ app.user.lastName }} {{ app.user.firstName }}"/>
+				{% else %}
+					<img src="{{ asset('build/images/profil.png') }}" class="profileImg img-fluid rounded ms-4 mt-4" alt="{{ app.user.lastName }} {{ app.user.firstName }}">
+				{% endif %}
 			</div>
 			<div class="col">
 				<div class="card-body">
 					<h5 class="titleProfile card-title mt-3">Bonjour</h5>
 					<p class="titleProfile card-text fs-1 fw-bold">{{ app.user.firstName }}!</p>
-					<p class="titleProfile card-text">
-						<small class="text-muted">{{ app.user.email }}!</small>
-					</p>
+					<a class="block fs-5 text-primary" role="button" href="{{ path('app_edit')}}">
+						<small class="text-muted">Modifier</small>
+					</a>
 				</div>
 			</div>
 		</div>

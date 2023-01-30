@@ -13,23 +13,23 @@ class QuestionFixtures extends Fixture implements DependentFixtureInterface
 {
     public const QUESTIONS = [
         [
-            'Je dois créer un compte pour utiliser l\'application',
-            'Je dois valider le quiz pour voir les autres leçons',
+            'Je dois créer un compte pour utiliser l\'application.',
+            'Je dois valider le quiz pour voir les autres leçons.',
             'Combien y\'a t-il de tutoriels dans Blue Line ?',
         ],
         [
-            'Éteindre son téléphone, c\'est le mettre en veille',
+            'Éteindre son téléphone, c\'est le mettre en veille.',
             'Mon téléphone est en silencieux : est-il éteint ?',
         ],
         [
-            'Je ne peux pas allumer mon téléphone s\'il charge',
-            'Augmenter la luminosité consomme plus de batterie',
-            'La performance de la batterie diminue avec le temps',
+            'Je ne peux pas allumer mon téléphone s\'il charge.',
+            'Augmenter la luminosité consomme plus de batterie.',
+            'La performance de la batterie diminue avec le temps.',
         ],
         [
-            'Je ne peux pas allumer mon téléphone s\'il charge',
-            'Augmenter la luminosité consomme plus de batterie',
-            'La performance de la batterie diminue avec le temps',
+            'Je ne peux pas allumer mon téléphone s\'il charge.',
+            'Augmenter la luminosité consomme plus de batterie.',
+            'La performance de la batterie diminue avec le temps.',
         ],
     ];
 
