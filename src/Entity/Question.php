@@ -21,6 +21,7 @@ class Question
     private ?string $questionText = null;
 
     #[ORM\ManyToOne(inversedBy: 'questions')]
+    #[Assert\NotBlank]
     private ?Lesson $lesson = null;
 
     #[
