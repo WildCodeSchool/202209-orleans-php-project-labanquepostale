@@ -53,8 +53,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $lessons;
 
     #[Assert\Length(max: 255)]
-    #[ORM\Column(type: 'string', nullable: true)]
-    private string $profileImageName;
+    #[ORM\Column(nullable: true)]
+    private ?string $profileImageName = null;
 
     #[Vich\UploadableField(mapping: 'profileImages', fileNameProperty: 'profileImageName')]
     #[Assert\File(
@@ -65,6 +65,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?DatetimeInterface $updatedAt = null;
+
+    public function __serialize(): array
+    {
+        return [
+            'id' => $this->id,
+            'email' => $this->email,
+            'password' => $this->password,
+        ];
+    }
 
     public function __construct()
     {
@@ -195,7 +204,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->profileImageFile;
     }
 
-    public function setProfileImageFile(File $profileImageFile = null): void
+    public function setProfileImageFile(?File $profileImageFile = null): void
     {
         $this->profileImageFile = $profileImageFile;
         if ($profileImageFile) {
@@ -203,13 +212,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
     }
 
-    public function getProfileImageName(): string
+    public function getProfileImageName(): ?string
     {
         return $this->profileImageName;
     }
 
-    public function setProfileImageName(string $profileImageName): void
+    public function setProfileImageName(?string $profileImageName): void
     {
         $this->profileImageName = $profileImageName;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+        return $this;
     }
 }

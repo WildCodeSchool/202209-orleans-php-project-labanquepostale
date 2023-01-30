@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -26,10 +27,18 @@ class ProfileType extends AbstractType
                     'placeholder' => 'Verne'
                 ],
             ])
-            ->add('imageFile', VichImageType::class, [
+
+            ->add('email', EmailType::class, [
+                'label' => 'Adresse email',
+                'attr' => [
+                    'placeholder' => 'jules.verne@email.com'
+                ],
+            ])
+            ->add('profileImageFile', VichImageType::class, [
                 'label' => 'Image',
-                'allow_delete'  => true,
                 'required'   => false,
+                'allow_delete'  => true,
+                'download_label' => false
             ]);
     }
 

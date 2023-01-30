@@ -24,7 +24,8 @@ class ProfileController extends AbstractController
         Request $request,
         UserRepository $userRepository
     ): Response {
-        $user = new User();
+        /** @var User */
+        $user = $this->getUser();
         $form = $this->createForm(ProfileType::class, $user);
         $form->handleRequest($request);
 
@@ -35,7 +36,7 @@ class ProfileController extends AbstractController
             return $this->redirectToRoute('app_profile', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('app_profile/profile_form.html.twig', [
+        return $this->renderForm('profile/profile_form.html.twig', [
             'user' => $user,
             'form' => $form,
         ]);
