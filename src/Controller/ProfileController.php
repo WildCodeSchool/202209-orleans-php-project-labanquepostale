@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Lesson;
+use App\Entity\Tutorial;
 use App\Entity\User;
 use App\Form\ProfileType;
 use App\Form\UserType;
@@ -14,9 +16,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ProfileController extends AbstractController
 {
     #[Route('/profil', name: 'app_profile')]
-    public function index(): Response
+    public function index(Tutorial $tutorial, Lesson $lesson): Response
     {
-        return $this->render('profile/profile.html.twig');
+        return $this->render('profile/profile.html.twig', [
+            'tutorial' => $tutorial,
+            'lesson' => $lesson,
+        ]);
     }
 
     #[Route('/editer', name: 'app_edit', methods: ['GET', 'POST'])]
