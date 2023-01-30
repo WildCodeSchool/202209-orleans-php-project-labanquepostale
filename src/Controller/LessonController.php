@@ -44,7 +44,10 @@ class LessonController extends AbstractController
                 if ($isGoodAnswer) {
                     $lesson->addUser($user);
                     $lessonRepository->save($lesson, true);
-                    return $this->redirectToRoute('tutorial_lesson_show', ['id' => $lesson->getId()]);
+                    return $this->redirectToRoute(
+                        'tutorial_lesson_show',
+                        ['tutorial' => $tutorial->getId(), 'lesson' => $lesson->getId()]
+                    );
                 } else {
                     $this->addFlash('danger', 'Presque ! Réessaie !');
                 }
