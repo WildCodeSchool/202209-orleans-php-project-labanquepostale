@@ -15,15 +15,15 @@
 		<h2>Bonjour,</h2>
 		<h2 class="userName">{{ app.user.firstName }}!</h2>
 	</div>
-	<div class="bodyContainer container-fluid">
+	<div class="bodyContainer container">
 		<div class="cards-container">
 			{% for tutorial in tutorials %}
-				<div class="alignCard card justify-content-center col-6 col-lg-4 text-center">
+				<div class="alignCard card justify-content-center col-6 text-center">
 					<div class="mt-2">
-						<a class="lesson" href="{{ path('lesson_index', {id: tutorial.id}) }}">
+						<a class="lesson" href="{{ path('tutorial_show', {id: tutorial.id}) }}">
 							<h2 class="descript fs-4 mx-1">{{ tutorial.title }}</h2>
 						</a>
-						<p class="lessonNb fs-6 text-primary">
+						<p class="lessonNb fs-6 text-primary">{{ (app.user.lessons|filter(lesson => lesson.tutorial == tutorial)|length) }} sur
 							{{ tutorial.lessons|length }}
 							Leçon(s)</p>
 					</div>

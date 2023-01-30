@@ -10,10 +10,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/admin/tutoriel', name: 'app_admin_tutorial_')]
+#[Route('/admin', name: 'app_admin_tutorial_')]
 class AdminTutorialController extends AbstractController
 {
-    #[Route('/', name: 'index', methods: ['GET'])]
+    #[Route('/tutoriel', name: 'index', methods: ['GET'])]
     public function index(TutorialRepository $tutorialRepository): Response
     {
         return $this->render('admin_tutorial/index.html.twig', [
@@ -21,7 +21,7 @@ class AdminTutorialController extends AbstractController
         ]);
     }
 
-    #[Route('/ajouter', name: 'new', methods: ['GET', 'POST'])]
+    #[Route('/tutoriel/ajouter', name: 'new', methods: ['GET', 'POST'])]
     public function newTutorial(Request $request, TutorialRepository $tutorialRepository): Response
     {
         $tutorial = new Tutorial();
@@ -41,7 +41,7 @@ class AdminTutorialController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/editer', name: 'edit', methods: ['GET', 'POST'])]
+    #[Route('/tutoriel/{id}/editer', name: 'edit', methods: ['GET', 'POST'])]
     public function editTutorial(Request $request, Tutorial $tutorial, TutorialRepository $tutorialRepository): Response
     {
         $form = $this->createForm(TutorialType::class, $tutorial);
@@ -60,7 +60,7 @@ class AdminTutorialController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'delete', methods: ['POST'])]
+    #[Route('/tutoriel/{id}', name: 'delete', methods: ['POST'])]
     public function deleteTutorial(
         Request $request,
         Tutorial $tutorial,

@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/tutoriel', name: 'app_admin_tutorial_lesson_')]
 class AdminLessonController extends AbstractController
 {
-    #[Route('/{id}/lecons', name: 'show', methods: ['GET'])]
+    #[Route('/{id}/lecon', name: 'show', methods: ['GET'])]
     public function showLessons(Tutorial $tutorial): Response
     {
         $lessons = $tutorial->getLessons();
@@ -26,25 +26,25 @@ class AdminLessonController extends AbstractController
         ]);
     }
 
-    #[Route('/{tutoriel}/lecons/ajouter', name: 'new', methods: ['GET', 'POST'])]
-    public function newLesson(Request $request, LessonRepository $lessonRepository, Tutorial $tutoriel): Response
+    #[Route('/{tutorial}/lecon/ajouter', name: 'new', methods: ['GET', 'POST'])]
+    public function newLesson(Request $request, LessonRepository $lessonRepository, Tutorial $tutorial): Response
     {
         $lesson = new Lesson();
         $form = $this->createForm(LessonType::class, $lesson);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $lesson->setTutorial($tutoriel);
+            $lesson->setTutorial($tutorial);
             $lessonRepository->save($lesson, true);
             $this->addFlash('success', 'La nouvelle leçon a été crééé avec succès.');
 
-            return $this->redirectToRoute('app_admin_tutorial_lesson_show', ['id' => $tutoriel->getId()]);
+            return $this->redirectToRoute('app_admin_tutorial_lesson_show', ['id' => $tutorial->getId()]);
         }
 
         return $this->renderForm('admin_lesson/new.html.twig', [
             'lesson' => $lesson,
             'form' => $form,
-            'tutorial' => $tutoriel
+            'tutorial' => $tutorial
         ]);
     }
 
