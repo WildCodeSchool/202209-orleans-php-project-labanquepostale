@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+{% set title = 'Profil' %}
+
+{% block stylesheets %}
+	{{ encore_entry_link_tags('profile') }}
+{% endblock %}
+
+{% block title %}Profile
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid">
+		<div class="block-registration mb-5 rounded">
+			<p class="registration-title text-center fs-1 text-secondary mt-5 my-4 fw-bold">Profil</p>
+			<div class="mx-3">
+				<div class="text-center">
+					<h2 class="text-secondary fs-4">Modifier votre profil ?</h2>
+				</div>
+			</div>
+			{{ form_start(form) }}
+			<div class="col">
+				<div class="profile-form bg-light mx-4 mx-lg-auto mb-3 col-lg-4">
+					<h3 class="text-center mt-4 mb-4 pt-3 fs-4">Remplissez les champs</h3>
+
+					<div class="my-3 col-10 m-auto fs-5">
+						{{ form_row(form.lastName, { 'attr': {'class': 'profile-input'} }) }}
+					</div>
+					<div class="my-3 col-10 m-auto fs-5">
+						{{ form_row(form.firstName, { 'attr': {'class': 'profile-input'} }) }}
+					</div>
+					<div class="my-3 col-10 m-auto fs-5">
+						{{ form_row(form.email, { 'attr': {'class': 'profile-input'} }) }}
+					</div>
+					<div class="my-3 col-10 m-auto fs-5  width="50" height"50"">
+							{{ form_row(form.profileImageFile, { 'attr': {'class': 'profile-input'} }) }}
+						</div>
+					</div>
+					<div class="my-3 d-flex justify-content-center">
+						<button type="submit" class="btn btn-primary my-3 mb-5 fs-5 px-3 p-1">Valider</button>
+					</div>
+				</div>
+			</div>
+			{{ form_end(form) }}
+		</div>
+	</div>
+{% endblock %}
