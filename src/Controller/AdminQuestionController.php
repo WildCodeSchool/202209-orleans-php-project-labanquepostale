@@ -73,7 +73,7 @@ class AdminQuestionController extends AbstractController
     }
 
 
-    #[Route('/{tutorial}/lecons/{lesson}/quiz/editer', name: 'edit', methods: ['GET', 'POST'])]
+    #[Route('/{tutorial}/lecon/{lesson}/quiz/editer', name: 'edit', methods: ['GET', 'POST'])]
     public function editQuiz(
         Request $request,
         Question $question,

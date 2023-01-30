@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/tutoriel', name: 'app_admin_tutorial_lesson_')]
 class AdminLessonController extends AbstractController
 {
-    #[Route('/{id}/lecons', name: 'show', methods: ['GET'])]
+    #[Route('/{id}/lecon', name: 'show', methods: ['GET'])]
     public function showLessons(Tutorial $tutorial): Response
     {
         $lessons = $tutorial->getLessons();
@@ -26,7 +26,7 @@ class AdminLessonController extends AbstractController
         ]);
     }
 
-    #[Route('/{tutorial}/lecons/ajouter', name: 'new', methods: ['GET', 'POST'])]
+    #[Route('/{tutorial}/lecon/ajouter', name: 'new', methods: ['GET', 'POST'])]
     public function newLesson(Request $request, LessonRepository $lessonRepository, Tutorial $tutorial): Response
     {
         $lesson = new Lesson();

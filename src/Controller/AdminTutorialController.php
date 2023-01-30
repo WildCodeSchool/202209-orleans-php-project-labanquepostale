@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/admin', name: 'app_admin_tutorial_')]
 class AdminTutorialController extends AbstractController
 {
-    #[Route('/tutoriels', name: 'index', methods: ['GET'])]
+    #[Route('/tutoriel', name: 'index', methods: ['GET'])]
     public function index(TutorialRepository $tutorialRepository): Response
     {
         return $this->render('admin_tutorial/index.html.twig', [
@@ -21,7 +21,7 @@ class AdminTutorialController extends AbstractController
         ]);
     }
 
-    #[Route('/tutoriels/ajouter', name: 'new', methods: ['GET', 'POST'])]
+    #[Route('/tutoriel/ajouter', name: 'new', methods: ['GET', 'POST'])]
     public function newTutorial(Request $request, TutorialRepository $tutorialRepository): Response
     {
         $tutorial = new Tutorial();
