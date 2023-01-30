@@ -29,8 +29,9 @@
 	<div class="blockContainer container">
 		<div class="lessonSpace cards-container">
 			{% for lesson in lessons %}
-				<div class="alignCard card text-center justify-content-center col-5 {% if app.user.lessons.contains(lesson) %}{% endif %}">
-					<a class="lesson" href="{{ path('lesson_show', { id: lesson.id }) }}">
+				<div class="alignCard card text-center justify-content-center col-5 col-lg-4 {% if app.user.lessons.contains(lesson) %}{% endif %}">
+					<a class="lesson" href="{{ path('tutorial_lesson_show', { tutorial: tutorial.id, lesson: lesson.id }) }}">
+						<h2 class="descript fs-4 mx-1">{{ lesson.title }}</h2>
 						{% if app.user.lessons.contains(lesson) %}
 							<h2 class="descript fs-4 mx-1 mt-3">{{ lesson.title }}</h2>
 							<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-check2-circle text-success" viewbox="0 0 16 16">
