@@ -16,7 +16,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AdminQuestionController extends AbstractController
 {
     #[Route('/{tutorial}/lecon/{lesson}/quiz', name: 'show', methods: ['GET'])]
-    public function showQuiz(Tutorial $tutorial, Lesson $lesson): Response {
+    public function showQuiz(Tutorial $tutorial, Lesson $lesson): Response
+    {
         $questions = $lesson->getQuestions();
 
         return $this->renderForm('admin_tutorial/quiz_index.html.twig', [
