@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% set title = 'Login' %}
+
+{% block stylesheets %}
+	{{ encore_entry_link_tags('login') }}
+{% endblock %}
+
+{% block body %}
+
+	<div class="loginbody container-fluid">
+		<p class="title text-center text-secondary mt-5 fs-1 fw-bold">Attention !</p>
+
+		<div class="login bg-light mx-4 mx-lg-auto col-lg-4">
+			<h3 class="text-center mt-4 mb-4 pt-3 fs-3 fw-bold">Erreur 404 !</h3>
+			<div class="mx-3 my-3 d-flex flex-column gap-2 align-items-center">
+				<p>Vous avez sûrement essayé d'accéder à une page qui n'existe pas.</p>
+				<p>Pas de panique ! Cliquez sur le lien ci-dessous pour revenir au menu des tutoriels.</p>
+				<a class="fs-3 mb-4 text-primary text-decoration-none" href="{{ path('tutorial_index') }}">Revenir au menu</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}
