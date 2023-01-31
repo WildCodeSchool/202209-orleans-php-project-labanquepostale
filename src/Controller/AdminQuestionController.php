@@ -31,7 +31,7 @@ class AdminQuestionController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $questionRepository->save($question, true);
 
-            return $this->redirectToRoute('app_admin_tutorial_lesson_quiz', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_admin_tutorial_lesson_quiz_show', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('admin_tutorial/quiz_index.html.twig', [

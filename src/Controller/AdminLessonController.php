@@ -56,7 +56,7 @@ class AdminLessonController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $lessonRepository->save($lesson, true);
-            $this->addFlash('success', 'La leçon a été éditée avec succès.');
+            $this->addFlash('info', 'La leçon a été éditée avec succès.');
 
             return $this->redirectToRoute('app_admin_tutorial_lesson_show', ['id' => $lesson->getTutorial()->getId()]);
         }
@@ -67,12 +67,12 @@ class AdminLessonController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'delete', methods: ['POST'])]
+    #[Route('/{id}/supprimer', name: 'delete', methods: ['POST'])]
     public function deleteLesson(Request $request, Lesson $lesson, LessonRepository $lessonRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $lesson->getId(), $request->request->get('_token'))) {
             $lessonRepository->remove($lesson, true);
-            $this->addFlash('danger', 'La nouvelle leçon a été supprimée avec succès.');
+            $this->addFlash('danger', 'La leçon a été supprimée avec succès.');
         }
 
         return $this->redirectToRoute('app_admin_tutorial_lesson_show', ['id' => $lesson->getTutorial()->getId()]);
