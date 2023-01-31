@@ -1,33 +1,49 @@
-{% if quizzDone  == true %}
-	<h2 class="text-center">Bravo !</h2>
-	<h2 class="text-center">Vous avez validé le quiz !</h2>
-	<div class="mt-3 d-flex justify-content-center align-items-center">
-		<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-check2-circle text-success" viewbox="0 0 16 16">
-			<path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
-			<path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
-		</svg>
-	</div>
-{% else %}
-	<p class="quiztitle text-center my-4 fs-2">Quiz</p>
-	{{ form_start(form) }}
-	<div class="container item">
-		<div class="row">
-			{% for questionForm in form.questions %}
-				<div class="question rounded bg-primary">
-					<h3 class="text-center text-light p-3">{{questionForm.vars.data.questionText}}</h3>
-				</div>
-				<div class="answer rounded bg-white p-3 mb-4">
-					{% for responseForm in questionForm.responses %}
-						<div class="response my-3">
-							<p class="choice mx-3">{{ form_widget(responseForm) }}
-								{{ form_label(responseForm)}}</p>
-							<div class="checkmark"></div>
-						</div>
-					{% endfor %}
-				</div>
-			{% endfor %}
+{% block stylesheets %}
+	{{ encore_entry_link_tags('quiz') }}
+{% endblock %}
+
+
+{% block body %}
+	{% if quizzDone  == true %}
+		<div class="quiz-success col-lg-6 col-10 mx-auto bg-light p-2">
+			<div class="d-flex justify-content-center align-items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" width="150" height="105" fill="currentColor" class="text-primary bi bi-check2-all" viewbox="0 0 16 16">
+					<path d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0l7-7zm-4.208 7-.896-.897.707-.707.543.543 6.646-6.647a.5.5 0 0 1 .708.708l-7 7a.5.5 0 0 1-.708 0z"/>
+					<path d="m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708z"/>
+				</svg>
+			</div>
+			<h2 class="text-center text-success fw-bold">BRAVO !</h2>
+			<h2 class="text-center mx-1 fs-5 text-muted">Vous avez validé le quiz !</h2>
 		</div>
-	</div>
-	<button class="validate btn btn-lg btn-primary col-6 col-lg-3 ms-1 mb-5">VALIDER</button>
-	{{ form_end(form) }}
-{% endif %}
+	{% else %}
+		<p class="quiztitle text-center mt-3 display-5 fw-bold">Quiz
+			<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="ms-2 mb-1 bi bi-wechat text-secondary" viewbox="0 0 16 16">
+				<path d="M11.176 14.429c-2.665 0-4.826-1.8-4.826-4.018 0-2.22 2.159-4.02 4.824-4.02S16 8.191 16 10.411c0 1.21-.65 2.301-1.666 3.036a.324.324 0 0 0-.12.366l.218.81a.616.616 0 0 1 .029.117.166.166 0 0 1-.162.162.177.177 0 0 1-.092-.03l-1.057-.61a.519.519 0 0 0-.256-.074.509.509 0 0 0-.142.021 5.668 5.668 0 0 1-1.576.22ZM9.064 9.542a.647.647 0 1 0 .557-1 .645.645 0 0 0-.646.647.615.615 0 0 0 .09.353Zm3.232.001a.646.646 0 1 0 .546-1 .645.645 0 0 0-.644.644.627.627 0 0 0 .098.356Z"/>
+				<path d="M0 6.826c0 1.455.781 2.765 2.001 3.656a.385.385 0 0 1 .143.439l-.161.6-.1.373a.499.499 0 0 0-.032.14.192.192 0 0 0 .193.193c.039 0 .077-.01.111-.029l1.268-.733a.622.622 0 0 1 .308-.088c.058 0 .116.009.171.025a6.83 6.83 0 0 0 1.625.26 4.45 4.45 0 0 1-.177-1.251c0-2.936 2.785-5.02 5.824-5.02.05 0 .1 0 .15.002C10.587 3.429 8.392 2 5.796 2 2.596 2 0 4.16 0 6.826Zm4.632-1.555a.77.77 0 1 1-1.54 0 .77.77 0 0 1 1.54 0Zm3.875 0a.77.77 0 1 1-1.54 0 .77.77 0 0 1 1.54 0Z"/>
+			</svg>
+		</p>
+		{{ form_start(form) }}
+		<div class="container item">
+			<div class="row col-lg-6 mx-auto">
+				{% for questionForm in form.questions %}
+					<div class="question bg-primary">
+						<h3 class="text-center text-light p-3 fs-4">{{questionForm.vars.data.questionText}}</h3>
+					</div>
+					<div class="answer bg-white p-3 mb-4">
+						{% for responseForm in questionForm.responses %}
+							<div class="response my-3">
+								<p class="choice mx-3">{{ form_widget(responseForm) }}
+									{{ form_label(responseForm)}}</p>
+								<div class="checkmark"></div>
+							</div>
+						{% endfor %}
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="d-flex justify-content-center">
+			<button class="validate btn btn-lg btn-primary col-10 col-lg-3 ms-1 mb-5 ">Valider</button>
+		</div>
+		{{ form_end(form) }}
+	{% endif %}
+{% endblock %}
