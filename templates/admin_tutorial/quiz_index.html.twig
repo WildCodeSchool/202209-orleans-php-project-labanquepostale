@@ -10,9 +10,17 @@
 {% block content %}
 	<div class="container text-start">
 		<div class="col justify-content-start">
-			<h1 class="d-flex justify-content-center mb-4">Tutoriel : {{ lesson.tutorial.title }}</h1>
-			<h1 class="d-flex justify-content-center fs-2 mb-4">Leçon : {{ lesson.title }}</h1>
-			<h1 class="d-flex justify-content-start fs-2">Questions</h1>
+			<h1 class="d-flex justify-content-center mb-4">Tutoriel :
+				{{ lesson.tutorial.title }}</h1>
+			<h1 class="d-flex justify-content-center fs-2 mb-4 text-primary">Leçon :
+				{{ lesson.title }}</h1>
+			<div class="d-flex justify-content-between mb-4">
+				<h1 class="d-flex justify-content-start fs-2 text-primary">Questions</h1>
+				<a class="btn btn-primary mt-2 me-3" href="{{ path('app_admin_tutorial_lesson_quiz_new', {'tutorial': tutorial.id, 'lesson': lesson.id }) }}" role="button">
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="mb-1 me-1 bi bi-plus" viewbox="0 0 16 16">
+						<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+					</svg>Créer une nouvelle question</a>
+			</div>
 			<section class="d-flex justify-content-start">
 				<table class="table overflow-auto">
 					<thead>
@@ -25,8 +33,12 @@
 						{% for question in questions %}
 							<tr>
 								<td>{{ question.questiontext }}</td>
-								<td>
-									<a class="btn btn-outline-primary mt-1 me-2" href="{{ path('app_admin_tutorial_lesson_quiz_edit', {'tutorial': tutorial.id, 'lesson': lesson.id }) }}" role="button">Éditer</a>
+								<td class="d-flex">
+									<a class="btn btn-outline-primary mt-1 me-2 p-2" href="{{ path('app_admin_tutorial_lesson_quiz_edit', {'tutorial': tutorial.id, 'lesson': lesson.id }) }}" role="button">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mb-1 me-2 bi bi-pencil-square" viewbox="0 0 16 16">
+											<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+											<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+										</svg>Éditer</a>
 									{{ include('admin_question/_delete_form.html.twig') }}
 								</td>
 							</tr>
@@ -39,7 +51,7 @@
 				</table>
 			</section>
 
-			<a class="btn btn-primary mt-2" href="{{ path('app_admin_tutorial_lesson_quiz_new', {'tutorial': tutorial.id, 'lesson': lesson.id }) }}" role="button">Créer une nouvelle question</a>
+
 		</div>
 	</div>
 {% endblock %}
