@@ -9,7 +9,7 @@
 }
 
 .titleProfile {
-    color: $secondary;
+    color: $light;
 }
 
 .profileImg {
@@ -19,4 +19,36 @@
 
 .vich-image img {
     width: 100%;
+}
+.progressBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $light;
+    height: auto;
+    color: $intermediate;
+    border-radius: 20px;
+}
+
+.progress-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    height: 220px;
+    position: relative;
+}
+
+.percentage span {
+    font-weight: bold;
+
+}
+
+.bg-path {
+    stroke: rgb(208, 208, 300);
+}
+
+.progressBar-text {
+    padding: auto;
+    margin-top: 10px;
 }
