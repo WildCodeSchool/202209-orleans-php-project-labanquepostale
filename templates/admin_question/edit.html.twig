@@ -1,6 +1,6 @@
 {% extends 'layoutAdmin.html.twig' %}
 
-{% block title %}Éditer un quiz
+{% block title %}Admin - Éditer quiz
 {% endblock %}
 
 {% block content %}
@@ -8,10 +8,10 @@
 		<div class="col justify-content-start">
 			<h1 class="d-flex justify-content-center mb-4">Tutoriel :
 				{{ lesson.tutorial.title }}</h1>
-			<h1 class="d-flex justify-content-center fs-2 mb-4">Leçon :
+			<h1 class="d-flex justify-content-center fs-2 mb-4 text-primary">Leçon :
 				{{ lesson.title }}</h1>
 			<div class="row">
-				<h1 class="p-0 fs-2 mt-4">Question</h1>
+				<h1 class="p-0 fs-2 mt-4 text-primary">Question</h1>
 				<div class="g-2">
 
 					{{ component('_form_collection_question', {
@@ -20,7 +20,7 @@
 					}) }}
 
 				</div>
-					<a href="{{ path('app_admin_tutorial_lesson_quiz_show', {'tutorial': tutorial.id, 'lesson': lesson.id}) }}" class="btn btn-outline-primary mt-5 ms-2" role="button" aria-disabled="true">Retour aux questions</a>
+				<a href="{{ path('app_admin_tutorial_lesson_quiz_show', {'tutorial': tutorial.id, 'lesson': lesson.id}) }}" class="btn btn-outline-primary mt-5 ms-2" role="button" aria-disabled="true">Retour aux questions</a>
 			</div>
 		</div>
 	</div>

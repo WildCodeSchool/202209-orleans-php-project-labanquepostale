@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<link rel="icon" type="image/png" href="{{ asset('build/images/favicon.png') }}"/>
+		<link rel="icon" type="image/png" href="{{ asset('build/images/Logo.png') }}"/>
 		<title>
 			{% block title %}Blue Line
 			{% endblock %}
@@ -23,16 +23,17 @@
 				{% include 'components/_header.html.twig' %}
 			{% endblock %}
 		</header>
-		{% block flash %}
-			{% for type, messages in app.session.flashbag.all %}
-				{% for message in messages %}
-					<div class="alert alert-{{ type }}">
-						{{ message|trans }}
-					</div>
+		{% block body %}
+			{% block flash %}
+				{% for type, messages in app.session.flashbag.all %}
+					{% for message in messages %}
+						<div class="alert alert-{{ type }}">
+							{{ message|trans }}
+						</div>
+					{% endfor %}
 				{% endfor %}
-			{% endfor %}
+			{% endblock %}
 		{% endblock %}
-		{% block body %}{% endblock %}
 		<footer>
 			{% block footer %}
 				{% include 'components/_navbar.html.twig' %}

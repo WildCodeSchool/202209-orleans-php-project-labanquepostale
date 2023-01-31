@@ -5,17 +5,16 @@
 {% endblock %}
 {% set title = 'Tutoriel' %}
 
-
-{% block title %}Tutoriel
+{% block title %}Tutoriels
 {% endblock %}
 
 {% block body %}
 	<p class="titleTuto fs-1 fw-bold">Tutoriels</p>
-	<div class="wordMain">
-		<h2>Bonjour,</h2>
-		<h2 class="userName">{{ app.user.firstName }}!</h2>
-	</div>
 	<div class="bodyContainer container">
+		<div class="wordMain">
+			<h2>Bonjour,</h2>
+			<h2 class="userName">{{ app.user.firstName }}!</h2>
+		</div>
 		<div class="cards-container">
 			{% for tutorial in tutorials %}
 				<div class="alignCard card justify-content-center col-6 text-center">
@@ -23,7 +22,8 @@
 						<a class="lesson" href="{{ path('tutorial_show', {id: tutorial.id}) }}">
 							<h2 class="descript fs-4 mx-1">{{ tutorial.title }}</h2>
 						</a>
-						<p class="lessonNb fs-6 text-primary">{{ (app.user.lessons|filter(lesson => lesson.tutorial == tutorial)|length) }} sur
+						<p class="lessonNb fs-6 text-primary">{{ (app.user.lessons|filter(lesson => lesson.tutorial == tutorial)|length) }}
+							sur
 							{{ tutorial.lessons|length }}
 							Leçon(s)</p>
 					</div>
