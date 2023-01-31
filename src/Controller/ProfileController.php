@@ -4,8 +4,8 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\ProfileType;
-use App\Form\UserType;
 use App\Repository\UserRepository;
+use App\Repository\LessonRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,9 +14,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ProfileController extends AbstractController
 {
     #[Route('/profil', name: 'app_profile')]
-    public function index(): Response
-    {
-        return $this->render('profile/profile.html.twig');
+    public function index(
+        LessonRepository $lessonRepository,
+    ): Response {
+
+        $lessons = $lessonRepository->findAll();
+
+        return $this->render('profile/profile.html.twig', [
+            'lessons' => $lessons,
+        ]);
     }
 
     #[Route('/editer', name: 'app_edit', methods: ['GET', 'POST'])]

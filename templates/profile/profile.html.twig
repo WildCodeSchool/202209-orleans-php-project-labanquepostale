@@ -31,4 +31,18 @@
 			</div>
 		</div>
 	</div>
+	<div class="container-fluid mt-5">
+		<div class="progress col-lg-6 mx-auto">
+			<p class="progress-text fs-3">Progression</p>
+			{% if lessons|length > 0 %}
+				<div class="progress-circle">
+					<svg viewbox="0 0 36 36">
+						<path class="bg-path" d="M 18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+						<path class="bar-path" style="stroke-dasharray: {{ (app.user.lessons|length) / lessons|length * 100|round }}, 100" d="M 18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+					</svg>
+					<span class="percentage">{{ (app.user.lessons|length) / lessons|length * 100|round }}%</span>
+				</div>
+			{% endif %}
+		</div>
+	</div>
 {% endblock %}

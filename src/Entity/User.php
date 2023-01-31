@@ -44,9 +44,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 255)]
     private ?string $firstName = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 255)]
     private ?string $lastName = null;
 
     #[ORM\ManyToMany(targetEntity: Lesson::class, inversedBy: 'users')]
