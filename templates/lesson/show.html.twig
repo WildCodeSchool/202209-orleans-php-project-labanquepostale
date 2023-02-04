@@ -15,7 +15,7 @@
 	<div class="quizbody container">
 		<div class="row">
 			<p class="title text-center text-secondary fs-1 fw-bold">{{ lesson.title }}</p>
-			<p class="text-light">{{ lesson.description|nl2br  }}</p>
+			<p class="text-light">{{ lesson.description|raw  }}</p>
 			<div class="text-center my-3">
 				<iframe width="315" height="250" src="{{lesson.video}}"></iframe>
 			</div>
