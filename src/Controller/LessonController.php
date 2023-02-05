@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Entity\Lesson;
 use App\Entity\Tutorial;
 use App\Form\QuizLessonType;
+use Exception;
 use App\Service\CheckGoodAnswer;
 use App\Repository\LessonRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -39,25 +40,31 @@ class LessonController extends AbstractController
             if ($form->isSubmitted() && $form->isValid()) {
                 /** @var User */
                 $user = $this->getUser();
-                $answerIds = $request->request->all('quiz_lesson')['questions'];
-                $isGoodAnswer = $this->checkGoodAnswer->checkQuizz($answerIds);
-                if ($isGoodAnswer) {
-                    $lesson->addUser($user);
-                    $lessonRepository->save($lesson, true);
-                    return $this->redirectToRoute(
-                        'tutorial_lesson_show',
-                        ['tutorial' => $tutorial->getId(), 'lesson' => $lesson->getId()]
-                    );
+                $nbAnswers = count($lesson->getQuestions());
+                $answersResponded = $request->request->all('quiz_lesson');
+                if (!key_exists('questions', $answersResponded) || $nbAnswers > count($answersResponded['questions'])) {
+                    $this->addFlash('danger', 'Veuillez répondre à toutes les questions !');
                 } else {
-                    $this->addFlash('danger', 'Presque ! Réessaie !');
+                    $answerIds = $answersResponded['questions'];
+                    $isGoodAnswer = $this->checkGoodAnswer->checkQuizz($answerIds);
+                    if ($isGoodAnswer) {
+                        $lesson->addUser($user);
+                        $lessonRepository->save($lesson, true);
+                        return $this->redirectToRoute(
+                            'tutorial_lesson_show',
+                            ['tutorial' => $tutorial->getId(), 'lesson' => $lesson->getId()]
+                        );
+                    } else {
+                        $this->addFlash('danger', 'Presque ! Réessaie !');
+                    }
                 }
             }
+            return $this->renderForm('lesson/show.html.twig', [
+                'form' => $form ?? null,
+                'quizzDone' => $quizzDone,
+                'lesson' => $lesson,
+                'tutorial' => $tutorial,
+            ]);
         }
-        return $this->renderForm('lesson/show.html.twig', [
-            'form' => $form ?? null,
-            'quizzDone' => $quizzDone,
-            'lesson' => $lesson,
-            'tutorial' => $tutorial,
-        ]);
     }
 }
