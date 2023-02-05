@@ -6,7 +6,6 @@ use App\Entity\User;
 use App\Entity\Lesson;
 use App\Entity\Tutorial;
 use App\Form\QuizLessonType;
-use Exception;
 use App\Service\CheckGoodAnswer;
 use App\Repository\LessonRepository;
 use Symfony\Component\HttpFoundation\Request;
