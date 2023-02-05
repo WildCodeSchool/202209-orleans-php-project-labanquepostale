@@ -32,7 +32,6 @@ class LessonController extends AbstractController
         Tutorial $tutorial,
     ): Response {
         $quizzDone = $lesson->getUsers()->contains($this->getUser());
-
         if (!$quizzDone) {
             $form = $this->createForm(QuizLessonType::class, $lesson);
             $form->handleRequest($request);
@@ -40,6 +39,7 @@ class LessonController extends AbstractController
             if ($form->isSubmitted() && $form->isValid()) {
                 /** @var User */
                 $user = $this->getUser();
+
                 $nbAnswers = count($lesson->getQuestions());
                 $answersResponded = $request->request->all('quiz_lesson');
                 if (!key_exists('questions', $answersResponded) || $nbAnswers > count($answersResponded['questions'])) {
@@ -59,12 +59,12 @@ class LessonController extends AbstractController
                     }
                 }
             }
-            return $this->renderForm('lesson/show.html.twig', [
-                'form' => $form ?? null,
-                'quizzDone' => $quizzDone,
-                'lesson' => $lesson,
-                'tutorial' => $tutorial,
-            ]);
         }
+        return $this->renderForm('lesson/show.html.twig', [
+            'form' => $form ?? null,
+            'quizzDone' => $quizzDone,
+            'lesson' => $lesson,
+            'tutorial' => $tutorial,
+        ]);
     }
 }
