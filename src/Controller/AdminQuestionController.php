@@ -81,7 +81,7 @@ class AdminQuestionController extends AbstractController
 
             if ($countCorrect === 0) {
                 $this->addFlash('danger', 'Veuillez mettre une réponse en "correct".');
-            } else if ($countCorrect > 1) {
+            } elseif ($countCorrect > 1) {
                 $this->addFlash('danger', 'Veuillez ne mettre qu\'une seule réponse en "correct".');
             } else {
                 $questionRepository->save($question, true);
