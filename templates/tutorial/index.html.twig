@@ -10,25 +10,27 @@
 
 {% block body %}
 	<p class="titleTuto fs-1 fw-bold">Tutoriels</p>
-	<div class="bodyContainer container">
-		<div class="wordMain">
-			<h2>Bonjour,</h2>
-			<h2 class="userName">{{ app.user.firstName }}!</h2>
-		</div>
-		<div class="cards-container">
-			{% for tutorial in tutorials %}
-				<div class="alignCard card justify-content-center col-6 text-center">
-					<div class="mt-2">
-						<a class="lesson" href="{{ path('tutorial_show', {id: tutorial.id}) }}">
-							<h2 class="descript fs-4 mx-1">{{ tutorial.title }}</h2>
-						</a>
-						<p class="lessonNb fs-6 text-primary">{{ (app.user.lessons|filter(lesson => lesson.tutorial == tutorial)|length) }}
-							sur
-							{{ tutorial.lessons|length }}
-							Leçon(s)</p>
+	<div class="col-lg-5 mx-auto">
+		<div class="bodyContainer container">
+			<div class="wordMain">
+				<h2>Bonjour,</h2>
+				<h2 class="userName">{{ app.user.firstName }}!</h2>
+			</div>
+			<div class="cards-container">
+				{% for tutorial in tutorials %}
+					<div class="alignCard card justify-content-center text-center">
+						<div class="mt-2">
+							<a class="lesson" href="{{ path('tutorial_show', {id: tutorial.id}) }}">
+								<h2 class="descript fs-4 mx-1">{{ tutorial.title }}</h2>
+							</a>
+							<p class="lessonNb fs-6 text-primary">{{ (app.user.lessons|filter(lesson => lesson.tutorial == tutorial)|length) }}
+								sur
+								{{ tutorial.lessons|length }}
+								Leçon(s)</p>
+						</div>
 					</div>
-				</div>
-			{% endfor %}
+				{% endfor %}
+			</div>
 		</div>
 	</div>
 {% endblock %}

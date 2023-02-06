@@ -49,6 +49,12 @@ class LessonController extends AbstractController
                     if ($isGoodAnswer) {
                         $lesson->addUser($user);
                         $lessonRepository->save($lesson, true);
+                        $this->addFlash(
+                            'success',
+                            'Bravo, tu as réussi avec au moins ' .
+                                round(CheckGoodAnswer::EXPECTED_SCORE * 100) .
+                                '% de bonnes réponses !'
+                        );
                         return $this->redirectToRoute(
                             'tutorial_lesson_show',
                             ['tutorial' => $tutorial->getId(), 'lesson' => $lesson->getId()]
