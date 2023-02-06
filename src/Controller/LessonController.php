@@ -11,10 +11,11 @@ use App\Repository\LessonRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 #[Route('/tutoriel', name: 'tutorial_lesson_')]
+#[IsGranted('ROLE_USER')]
 class LessonController extends AbstractController
 {
     private CheckGoodAnswer $checkGoodAnswer;
@@ -31,10 +32,6 @@ class LessonController extends AbstractController
         LessonRepository $lessonRepository,
         Tutorial $tutorial,
     ): Response {
-        $user = $this->getUser();
-        if (!$user) {
-            throw new AccessDeniedException('Accès refusé');
-        }
         $quizzDone = $lesson->getUsers()->contains($this->getUser());
         if (!$quizzDone) {
             $form = $this->createForm(QuizLessonType::class, $lesson);
