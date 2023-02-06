@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 #[Route('/tutoriel', name: 'tutorial_lesson_')]
 class LessonController extends AbstractController
@@ -38,7 +39,6 @@ class LessonController extends AbstractController
             if ($form->isSubmitted() && $form->isValid()) {
                 /** @var User */
                 $user = $this->getUser();
-
                 $nbAnswers = count($lesson->getQuestions());
                 $answersResponded = $request->request->all('quiz_lesson');
                 if (!key_exists('questions', $answersResponded) || $nbAnswers > count($answersResponded['questions'])) {
