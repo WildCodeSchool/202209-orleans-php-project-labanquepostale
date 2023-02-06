@@ -23,17 +23,16 @@
 				{% include 'components/_header.html.twig' %}
 			{% endblock %}
 		</header>
-		{% block body %}
-			{% block flash %}
-				{% for type, messages in app.session.flashbag.all %}
-					{% for message in messages %}
-						<div class="alert alert-{{ type }}">
-							{{ message|trans }}
-						</div>
-					{% endfor %}
+		{% block flash %}
+			{% for type, messages in app.session.flashbag.all %}
+				{% for message in messages %}
+					<div class="alert alert-{{ type }}">
+						{{ message|trans }}
+					</div>
 				{% endfor %}
-			{% endblock %}
+			{% endfor %}
 		{% endblock %}
+		{% block body %}{% endblock %}
 		<footer>
 			{% block footer %}
 				{% include 'components/_navbar.html.twig' %}
