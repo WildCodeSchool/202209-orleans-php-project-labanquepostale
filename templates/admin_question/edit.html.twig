@@ -1,18 +1,21 @@
 {% extends 'layoutAdmin.html.twig' %}
 
+{% block stylesheets %}
+	{{ encore_entry_link_tags('admin') }}
+{% endblock %}
+
 {% block title %}Admin - Éditer quiz
 {% endblock %}
 
 {% block content %}
 	<div class="container text-start">
-		<div class="col justify-content-start">
+		<div class="col justify-content-center">
 			<h1 class="d-flex justify-content-center mb-4">Tutoriel :
 				{{ lesson.tutorial.title }}</h1>
 			<h1 class="d-flex justify-content-center fs-2 mb-4 text-primary">Leçon :
 				{{ lesson.title }}</h1>
 			<div class="row">
-				<h1 class="p-0 fs-2 mt-4 text-primary">Question</h1>
-				<div class="g-2">
+				<div class="g-2 ms-5">
 
 					{{ component('_form_collection_question', {
 						form: form,
