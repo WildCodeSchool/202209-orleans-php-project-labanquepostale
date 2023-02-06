@@ -31,6 +31,10 @@ class LessonController extends AbstractController
         LessonRepository $lessonRepository,
         Tutorial $tutorial,
     ): Response {
+        $user = $this->getUser();
+        if (!$user) {
+            throw new AccessDeniedException('Accès refusé');
+        }
         $quizzDone = $lesson->getUsers()->contains($this->getUser());
         if (!$quizzDone) {
             $form = $this->createForm(QuizLessonType::class, $lesson);
