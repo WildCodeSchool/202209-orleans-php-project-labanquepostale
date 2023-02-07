@@ -39,6 +39,7 @@
 
 .form-check-label:hover {
     background-color: $light;
+    cursor: pointer;
 }
 
 .form-check-label {
@@ -54,7 +55,7 @@
 }
 
 .form-check-input:checked~.form-check-label {
-    background-color: $answercolor;
+    background-color: $selectedlabel;
     border-radius: 20px;
     font-size: 1.5rem;
     color: $light;
@@ -80,7 +81,16 @@
 }
 
 .description-block {
-    border-radius: 15px;
-    background-color: rgba(33, 33, 79, 0.8);
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 2px 0px;
+    p {
+        border-radius: 15px;
+        background-color: rgba(33, 33, 79, 0.8);
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 2px 0px;
+    }
+}
+
+.video_lesson {
+    iframe {
+        height: 350px;
+        width: 100%;
+    }
 }
