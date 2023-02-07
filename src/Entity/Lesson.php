@@ -32,7 +32,7 @@ class Lesson
     #[ORM\OneToMany(mappedBy: 'lesson', targetEntity: Question::class, cascade: ["persist", "remove"])]
     private Collection $questions;
 
-    #[ORM\ManyToOne(inversedBy: 'lessons', targetEntity: Tutorial::class, cascade: ["persist", "remove"])]
+    #[ORM\ManyToOne(inversedBy: 'lessons')]
     private ?Tutorial $tutorial = null;
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'lessons')]
