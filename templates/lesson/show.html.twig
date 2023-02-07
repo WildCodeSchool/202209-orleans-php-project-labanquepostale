@@ -1,4 +1,4 @@
-{% extends 'layout.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block stylesheets %}
 	{{ parent() }}
@@ -23,9 +23,6 @@
 				<iframe class="embed-responsive-item" src="{{lesson.video}}" allowfullscreen></iframe>
 			</div>
 		</div>
-		{% block flash %}
-			{{ parent() }}
-		{% endblock %}
 		<div class="container mt-3 mb-5">
 			{% include 'components/_quiz.html.twig' %}
 		</div>

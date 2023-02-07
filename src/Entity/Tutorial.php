@@ -20,7 +20,7 @@ class Tutorial
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $title = null;
 
-    #[ORM\OneToMany(mappedBy: 'tutorial', targetEntity: Lesson::class)]
+    #[ORM\OneToMany(mappedBy: 'tutorial', targetEntity: Lesson::class, cascade: ["persist", "remove"])]
     private Collection $lessons;
 
     public function __construct()

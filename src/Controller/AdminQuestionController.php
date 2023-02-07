@@ -70,15 +70,29 @@ class AdminQuestionController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $questionRepository->save($question, true);
-            $this->addFlash('info', 'La nouvelle leçon a été éditée avec succès.');
+            $quizResponses = $question->getResponses();
 
-            return $this->redirectToRoute(
-                'app_admin_tutorial_lesson_quiz_show',
-                ['tutorial' => $tutorial->getId(), 'lesson' => $lesson->getId()]
-            );
+            $countCorrect = 0;
+            foreach ($quizResponses as $quizResponse) {
+                if ($quizResponse->isIsCorrect() == true) {
+                    $countCorrect++;
+                }
+            }
+
+            if ($countCorrect === 0) {
+                $this->addFlash('danger', 'Veuillez mettre une réponse en "correct".');
+            } elseif ($countCorrect > 1) {
+                $this->addFlash('danger', 'Veuillez ne mettre qu\'une seule réponse en "correct".');
+            } else {
+                $questionRepository->save($question, true);
+                $this->addFlash('info', 'La nouvelle leçon a été éditée avec succès.');
+
+                return $this->redirectToRoute(
+                    'app_admin_tutorial_lesson_quiz_show',
+                    ['tutorial' => $tutorial->getId(), 'lesson' => $lesson->getId()]
+                );
+            }
         }
-
         return $this->renderForm('admin_question/edit.html.twig', [
             'tutorial' => $tutorial,
             'lesson' => $lesson,

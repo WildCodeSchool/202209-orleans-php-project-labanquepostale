@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/admin', name: 'app_admin_tutorial_')]
 class AdminTutorialController extends AbstractController
 {
-    #[Route('/tutoriel', name: 'index', methods: ['GET'])]
+    #[Route('/', name: 'index', methods: ['GET'])]
     public function index(TutorialRepository $tutorialRepository): Response
     {
         return $this->render('admin_tutorial/index.html.twig', [
