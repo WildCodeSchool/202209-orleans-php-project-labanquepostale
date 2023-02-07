@@ -24,12 +24,7 @@
 					<input type="password" class="form-control" id="password" name="_password">
 				</div>
 				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-				{% if is_granted("ROLE_ADMIN") %}
-					<input type="hidden" name="_target_path" value="{{ path('app_admin') }}">
-				{% else %}
-					<input type="hidden" name="_target_path" value="{{ path('tutorial_index') }}">
-				{% endif %}
-
+				<input type="hidden" name="_target_path" value="{{ path('tutorial_index') }}">
 				<button type="submit" class="btn btn-primary w-75 m-auto mb-5 mt-4 fw-bold fs-5">Se connecter</button>
 			</form>
 			<div class="text-center mb-3">

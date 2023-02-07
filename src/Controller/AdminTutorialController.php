@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/admin', name: 'app_admin_tutorial_')]
 class AdminTutorialController extends AbstractController
 {
-    #[Route('/tutoriel', name: 'index', methods: ['GET'])]
+    #[Route('/', name: 'index', methods: ['GET'])]
     public function index(TutorialRepository $tutorialRepository): Response
     {
         return $this->render('admin_tutorial/index.html.twig', [
@@ -49,7 +49,7 @@ class AdminTutorialController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $tutorialRepository->save($tutorial, true);
-            $this->addFlash('success', 'Le tutoriel a été édité avec succès.');
+            $this->addFlash('info', 'Le tutoriel a été édité avec succès.');
 
             return $this->redirectToRoute('app_admin_tutorial_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -68,7 +68,7 @@ class AdminTutorialController extends AbstractController
     ): Response {
         if ($this->isCsrfTokenValid('delete' . $tutorial->getId(), $request->request->get('_token'))) {
             $tutorialRepository->remove($tutorial, true);
-            $this->addFlash('danger', 'Le nouveau tutoriel a été supprimé avec succès.');
+            $this->addFlash('danger', 'Le tutoriel a été supprimé avec succès.');
         }
 
         return $this->redirectToRoute('app_admin_tutorial_index', [], Response::HTTP_SEE_OTHER);

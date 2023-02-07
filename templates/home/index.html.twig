@@ -38,5 +38,7 @@
 		<span class="me-4">
 			S'inscrire</span>
 	</a>
-	<a href='https://www.economie.gouv.fr/entreprises/site-internet-mentions-obligatoires' target="_blank" class='mention primary text-decoration-none'>Mentions légales</a>
-</div></div>{% block footer %}{% endblock %}{% endblock %}
+	<a href="{{ path('app_legal') }}" class='mention primary text-decoration-none'>Mentions légales</a>
+</div>
+{% block footer %}{% endblock %}
+{% endblock %}

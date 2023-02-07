@@ -29,7 +29,7 @@ class Lesson
     #[Assert\NotBlank]
     private ?string $video = null;
 
-    #[ORM\OneToMany(mappedBy: 'lesson', targetEntity: Question::class)]
+    #[ORM\OneToMany(mappedBy: 'lesson', targetEntity: Question::class, cascade: ["persist", "remove"])]
     private Collection $questions;
 
     #[ORM\ManyToOne(inversedBy: 'lessons')]

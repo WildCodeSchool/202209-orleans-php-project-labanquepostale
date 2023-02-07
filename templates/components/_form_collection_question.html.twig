@@ -11,17 +11,17 @@
 		</div>
 	</div>
 	<div class="container">
-		<div class="row justify-content-around">
+		<div class="row justify-content-start ms-2">
 			{% for key, responseForm in form.responses %}
-				<div class="col-4">
+				<div class="col-4 my-3">
 					<p>Réponse</p>
-					{{ form_row(responseForm.answer, {label: false, attr: { placeholder: 'Entrez une réponse de votre choix'}}) }}
+				{{ form_row(responseForm.answer, {label: false, attr: { placeholder: 'Entrez une réponse de votre choix'}}) }}
 				</div>
-				<div class="col-4 ms-5 d-flex flex-column justify-content-center align-items-center">
-					<p>Correct ?</p>
-					<span class="p-0 ms-3 form-check form-switch">{{ form_row(responseForm.isCorrect, {row_attr: {class: ''}, label: false, }) }}</span>
+				<div class="col-4 d-flex flex-column justify-content-center align-items-center">
+					<p class="mt-2 me-4">Correct ?</p>
+					<span class="p-0 form-check form-switch">{{ form_row(responseForm.isCorrect, {row_attr: {class: ''}, label: false, }) }}</span>
 				</div>
-				<div class="col-3 mt-5 ms-4">
+				<div class="deleteButton col-3">
 					{{ form_row(responseForm.vars.button_delete, { label: 'X', attr: { class: 'btn btn-outline-danger' } }) }}
 				</div>
 			{% endfor %}

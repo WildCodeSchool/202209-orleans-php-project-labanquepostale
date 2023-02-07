@@ -16,29 +16,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AdminQuestionController extends AbstractController
 {
     #[Route('/{tutorial}/lecon/{lesson}/quiz', name: 'show', methods: ['GET'])]
-    public function showQuiz(
-        Request $request,
-        Tutorial $tutorial,
-        Lesson $lesson,
-        Question $question,
-        QuestionRepository $questionRepository
-    ): Response {
+    public function showQuiz(Tutorial $tutorial, Lesson $lesson): Response
+    {
         $questions = $lesson->getQuestions();
-
-        $form = $this->createForm(QuestionType::class, $question);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $questionRepository->save($question, true);
-
-            return $this->redirectToRoute('app_admin_tutorial_lesson_quiz', [], Response::HTTP_SEE_OTHER);
-        }
 
         return $this->renderForm('admin_tutorial/quiz_index.html.twig', [
             'tutorial' => $tutorial,
             'lesson' => $lesson,
             'questions' => $questions,
-            'form' => $form
         ]);
     }
 
@@ -85,15 +70,29 @@ class AdminQuestionController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $questionRepository->save($question, true);
-            $this->addFlash('info', 'La nouvelle leçon a été éditée avec succès.');
+            $quizResponses = $question->getResponses();
 
-            return $this->redirectToRoute(
-                'app_admin_tutorial_lesson_quiz_show',
-                ['tutorial' => $tutorial->getId(), 'lesson' => $lesson->getId()]
-            );
+            $countCorrect = 0;
+            foreach ($quizResponses as $quizResponse) {
+                if ($quizResponse->isIsCorrect() == true) {
+                    $countCorrect++;
+                }
+            }
+
+            if ($countCorrect === 0) {
+                $this->addFlash('danger', 'Veuillez mettre une réponse en "correct".');
+            } elseif ($countCorrect > 1) {
+                $this->addFlash('danger', 'Veuillez ne mettre qu\'une seule réponse en "correct".');
+            } else {
+                $questionRepository->save($question, true);
+                $this->addFlash('info', 'La nouvelle leçon a été éditée avec succès.');
+
+                return $this->redirectToRoute(
+                    'app_admin_tutorial_lesson_quiz_show',
+                    ['tutorial' => $tutorial->getId(), 'lesson' => $lesson->getId()]
+                );
+            }
         }
-
         return $this->renderForm('admin_question/edit.html.twig', [
             'tutorial' => $tutorial,
             'lesson' => $lesson,

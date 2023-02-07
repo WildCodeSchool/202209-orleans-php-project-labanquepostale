@@ -1,4 +1,4 @@
-{% extends 'layout.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block stylesheets %}
 	{{ parent() }}
@@ -8,16 +8,19 @@
 {% set title = 'Exercice'  %}
 {% set return_path = path('tutorial_show', {id: tutorial.id}) %}
 
-{% block title %}Leçon
+{% block title %}
+	{{lesson.title}}
 {% endblock %}
 
 {% block body %}
 	<div class="quizbody container">
 		<div class="row">
 			<p class="title text-center text-secondary fs-1 fw-bold">{{ lesson.title }}</p>
-			<p class="mt-3 text-light">{{ lesson.description|nl2br  }}</p>
-			<div class="text-center my-3">
-				<iframe width="315" height="250" src="{{lesson.video}}"></iframe>
+			<div class="description-block my-4 col-11 col-lg-10 mx-auto">
+				<p class="description_text text-light mx-1 mt-2">{{ lesson.description|raw  }}</p>
+			</div>
+			<div class="text-center my-3 ratio ratio-16x9">
+				<iframe class="embed-responsive-item" src="{{lesson.video}}" allowfullscreen></iframe>
 			</div>
 		</div>
 		<div class="container mt-3 mb-5">

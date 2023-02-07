@@ -1,18 +1,19 @@
 {% extends 'layoutAdmin.html.twig' %}
 
-{% block title %}Créer une nouvelle leçon
+{% block title %}Admin - Créer leçon
 {% endblock %}
 
 {% block content %}
 	<div class="container text-start">
+		<a href="{{ path('app_admin_tutorial_lesson_show', {'id': tutorial.id }) }}" class="btn btn-outline-primary mt-2 mb-4" role="button">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mb-1 me-2 bi bi-arrow-left" viewbox="0 0 16 16">
+				<path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+			</svg>Retour aux leçons</a>
 		<div class="col justify-content-start">
 			<div class="row">
 				<h1 class="p-0">Créer une nouvelle leçon</h1>
 				<div class="g-2">
-
 					{{ include('admin_lesson/_form.html.twig') }}
-
-					<a href="{{ path('app_admin_tutorial_lesson_show', {'id': tutorial.id}) }}" class="btn btn-outline-primary mt-2" role="button" aria-disabled="true">Retour à la liste</a>
 				</div>
 			</div>
 		</div>
