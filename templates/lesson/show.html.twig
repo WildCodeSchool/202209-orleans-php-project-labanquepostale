@@ -16,9 +16,11 @@
 	<div class="quizbody container">
 		<div class="row">
 			<p class="title text-center text-secondary fs-1 fw-bold">{{ lesson.title }}</p>
-			<p class="text-light">{{ lesson.description|raw  }}</p>
-			<div class="text-center my-3">
-				<iframe width="315" height="250" src="{{lesson.video}}"></iframe>
+			<div class="description-block my-4 col-11 col-lg-10 mx-auto">
+				<p class="description_text text-light mx-1 mt-2">{{ lesson.description|nl2br  }}</p>
+			</div>
+			<div class="text-center my-3 ratio ratio-16x9">
+				<iframe class="embed-responsive-item" src="{{lesson.video}}" allowfullscreen></iframe>
 			</div>
 		</div>
 		<div class="container mt-3 mb-5">
