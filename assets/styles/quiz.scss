@@ -18,13 +18,17 @@
 }
 
 .response {
-    border: 1px solid $labelanswer;
-    font-size: 1rem;
-    border-radius: 20px;
+
+
     margin-inline: -5px;
 }
 
+
+
 .form-check {
+    border: 1px solid $labelanswer;
+    border-radius: 20px;
+    font-size: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -33,14 +37,27 @@
     margin-inline: 16px;
 }
 
-.form-check-label {
-    font-size: 24px;
-    max-width: 85%;
+.form-check-label:hover {
+    background-color: $light;
 }
 
-.form-check-input:checked {
+.form-check-label {
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    background-color: $background;
+    border-radius: 20px;
+}
+
+.form-check-input {
+    visibility: hidden;
+}
+
+.form-check-input:checked~.form-check-label {
     background-color: $answercolor;
-    transition: 0.3s;
+    border-radius: 20px;
+    font-size: 1.5rem;
+    color: $light;
 }
 
 .validate {
