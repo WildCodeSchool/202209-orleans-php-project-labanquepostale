@@ -56,9 +56,6 @@
     margin-top: 4.5rem;
 }
 
-.lessonSpace {
-    margin-top: 100px;
-}
 
 .progress {
     display: flex;
@@ -90,11 +87,12 @@
 }
 
 .bodyContainer {
-    margin-bottom: 6rem;
+    padding-bottom: 6rem;
 }
 
 .blockContainer {
-    margin-bottom: 6rem;
+    margin-top: 100px;
+    padding-bottom: 6rem;
 }
 
 .progress-circle {

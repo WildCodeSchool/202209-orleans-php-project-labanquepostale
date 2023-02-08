@@ -37,7 +37,7 @@ class ProfileType extends AbstractType
             ->add('profileImageFile', VichImageType::class, [
                 'label' => 'Image',
                 'required'   => false,
-                'allow_delete'  => true,
+                'allow_delete'  => false,
                 'download_label' => false
             ]);
     }
