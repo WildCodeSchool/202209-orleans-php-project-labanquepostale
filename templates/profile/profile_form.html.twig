@@ -8,13 +8,15 @@
 {% block title %}Profile
 {% endblock %}
 
+{% set return_path = path('app_profile') %}
+
 {% block body %}
 	<div class="container-fluid">
 		<div class="block-registration">
 			<p class="registration-title text-center fs-1 text-secondary mt-5 my-4 fw-bold">Profil</p>
 			<div class="mx-3">
 				<div class="text-center">
-					<h2 class="text-secondary fs-4">Modifier votre profil</h2>
+					<h2 class="text-secondary fs-4">Modifiez votre profil</h2>
 				</div>
 			</div>
 			{{ form_start(form) }}
