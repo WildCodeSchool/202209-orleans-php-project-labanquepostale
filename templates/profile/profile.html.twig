@@ -41,7 +41,7 @@
 				<div class="col text-center mt-3">
 					<p class="progressBar-text text-centre fs-1">Progression globale
 					{% if lessons|length > 0 %}
-						<span class="percentage">{{ (app.user.lessons|length) / lessons|length * 100|round }}%</span>
+						<span class="percentage">{{ ((app.user.lessons|length) / lessons|length * 100)|round }}%</span>
 					</p>
 						<div class="progress-circle mx-auto pt-5 mb-5">
 							<svg viewbox="0 0 36 36">
