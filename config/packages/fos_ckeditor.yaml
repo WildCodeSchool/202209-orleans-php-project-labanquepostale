@@ -11,5 +11,5 @@ fos_ck_editor:
     configs: 
         main_config: 
             height: 400
-            width: 1150
+            width: 900
             toolbar: standard

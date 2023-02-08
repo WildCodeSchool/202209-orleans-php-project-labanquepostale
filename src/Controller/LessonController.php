@@ -11,9 +11,11 @@ use App\Repository\LessonRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/tutoriel', name: 'tutorial_lesson_')]
+#[IsGranted('ROLE_USER')]
 class LessonController extends AbstractController
 {
     private CheckGoodAnswer $checkGoodAnswer;
@@ -38,7 +40,6 @@ class LessonController extends AbstractController
             if ($form->isSubmitted() && $form->isValid()) {
                 /** @var User */
                 $user = $this->getUser();
-
                 $nbAnswers = count($lesson->getQuestions());
                 $answersResponded = $request->request->all('quiz_lesson');
                 if (!key_exists('questions', $answersResponded) || $nbAnswers > count($answersResponded['questions'])) {
