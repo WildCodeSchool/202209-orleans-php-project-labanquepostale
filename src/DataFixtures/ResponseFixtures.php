@@ -48,11 +48,11 @@ class ResponseFixtures extends Fixture implements DependentFixtureInterface
                             $manager->persist($response);
                         }
                     } else {
-                        for ($k = 0; $k < count(self::ANSWERS[$k]); $k++) {
+                        for ($l = 0; $l < count(self::ANSWERS[$k]); $l++) {
                             $response = new Explanation();
                             $response->setAnswer($faker->sentence(3, true));
                             $response->setIsCorrect(false);
-                            if ($k == 1) {
+                            if ($l == 1) {
                                 $response->setIsCorrect(true);
                             }
                             $question = $this->getReference('tutorial_' . $i . '_lesson_' . $j . '_question_' . $k);
