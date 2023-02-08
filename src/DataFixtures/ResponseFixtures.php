@@ -14,7 +14,7 @@ class ResponseFixtures extends Fixture implements DependentFixtureInterface
         [
             'Vrai',
             'Faux',
-            'Vrai, si l\icône de la batterie est en rouge',
+            'Vrai, si l\'icône de la batterie est en rouge',
         ],
         [
             'Baisser la luminosité',
@@ -28,32 +28,37 @@ class ResponseFixtures extends Fixture implements DependentFixtureInterface
         ],
     ];
 
-    public const NB_ANSWERS = 4;
-
     public function load(ObjectManager $manager): void
     {
-        /* $faker = Factory::create(); */
+        $faker = Factory::create();
 
         for ($tutoKey = 0; $tutoKey < count(TutorialFixtures::TUTORIALS); $tutoKey++) {
-            for ($i = 0; $i < count(QuestionFixtures::QUESTIONS); $i++) {
-                for ($j = 0; $j < count(QuestionFixtures::QUESTIONS[$i]); $j++) {
-                    for ($k = 0; $k < self::NB_ANSWERS; $k++) {
-                        $response = new Explanation();
-                        if ($k == 1) {
-                            $response->setIsCorrect(true);
-                        } else {
+            for ($lessonKey = 0; $lessonKey < count(LessonFixtures::LESSONS); $lessonKey++) {
+                for ($questionKey = 0; $questionKey < count(QuestionFixtures::QUESTIONS[$lessonKey]); $questionKey++) {
+                    if ($lessonKey == 2) {
+                        foreach (self::ANSWERS[$questionKey] as $key => $answerText) {
+                            $response = new Explanation();
                             $response->setIsCorrect(false);
-                        }
-                      /*   if ($i == 2) {
-                            foreach (self::ANSWERS as $k => $answerText) {
-                                $response->setAnswer($answerText);
+                            $response->setAnswer($answerText);
+                            if ($key == 1) {
+                                $response->setIsCorrect(true);
                             }
-                        } else {
+                            $question = $this->getReference('tutorial_' . $tutoKey . '_lesson_' . $lessonKey . '_question_' . $questionKey);
+                            $response->setQuestion($question);
+                            $manager->persist($response);
+                        }
+                    } else {
+                        for ($k = 0; $k < count(self::ANSWERS[$questionKey]); $k++) {
+                            $response = new Explanation();
                             $response->setAnswer($faker->sentence(3, true));
-                        } */
-                        $question = $this->getReference('tutorial_' . $tutoKey . '_lesson_' . $i . '_question_' . $j);
-                        $response->setQuestion($question);
-                        $manager->persist($response);
+                            $response->setIsCorrect(false);
+                            if ($k == 1) {
+                                $response->setIsCorrect(true);
+                            }
+                            $question = $this->getReference('tutorial_' . $tutoKey . '_lesson_' . $lessonKey . '_question_' . $questionKey);
+                            $response->setQuestion($question);
+                            $manager->persist($response);
+                        }
                     }
                 }
             }
