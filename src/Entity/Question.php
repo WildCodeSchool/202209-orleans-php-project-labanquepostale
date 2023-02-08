@@ -20,7 +20,7 @@ class Question
     #[Assert\NotBlank]
     private ?string $questionText = null;
 
-    #[ORM\ManyToOne(inversedBy: 'questions', targetEntity: Lesson::class, cascade: ["persist", "remove"])]
+    #[ORM\ManyToOne(inversedBy: 'questions')]
     private ?Lesson $lesson = null;
 
     #[

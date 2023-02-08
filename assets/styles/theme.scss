@@ -13,16 +13,16 @@ $background: #EFEFEF;
 $validation :#00BC40;
 $answercolor: limegreen;
 $labelanswer: #ecebed;
+$selectedlabel: #9EA4DC;
 
 @import "~bootstrap/scss/bootstrap";
 
 body {
-    min-height: 100vh;
+    max-height: 100vh;
     background-repeat: no-repeat;
     font-family: $font-body;
     font-size: $font-size;
     background: $background;
-    margin-bottom: 20px;
 }
 
 .top-bg {

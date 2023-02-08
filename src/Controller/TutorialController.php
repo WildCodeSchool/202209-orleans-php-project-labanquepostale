@@ -3,13 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Tutorial;
-use App\Repository\LessonRepository;
 use App\Repository\TutorialRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/tutoriel', name: 'tutorial_')]
+#[IsGranted('ROLE_USER')]
 class TutorialController extends AbstractController
 {
     #[Route('/', name: 'index')]
