@@ -32,7 +32,7 @@ class ResponseFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager): void
     {
-        $faker = Factory::create();
+        /* $faker = Factory::create(); */
 
         for ($tutoKey = 0; $tutoKey < count(TutorialFixtures::TUTORIALS); $tutoKey++) {
             for ($i = 0; $i < count(QuestionFixtures::QUESTIONS); $i++) {
@@ -44,13 +44,13 @@ class ResponseFixtures extends Fixture implements DependentFixtureInterface
                         } else {
                             $response->setIsCorrect(false);
                         }
-                        if ($i == 2) {
-                            foreach (self::ANSWERS as $k => $answer) {
-                                $response->setAnswer($answer);
+                      /*   if ($i == 2) {
+                            foreach (self::ANSWERS as $k => $answerText) {
+                                $response->setAnswer($answerText);
                             }
                         } else {
                             $response->setAnswer($faker->sentence(3, true));
-                        }
+                        } */
                         $question = $this->getReference('tutorial_' . $tutoKey . '_lesson_' . $i . '_question_' . $j);
                         $response->setQuestion($question);
                         $manager->persist($response);
