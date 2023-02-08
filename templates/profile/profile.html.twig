@@ -36,22 +36,21 @@
 				</div>
 			</div>
 		</div>
-		<div class="container-fluid">
-			<div class="progressBar m-3">
-				<div class="col text-center mt-3">
-					<p class="progressBar-text text-centre fs-1">Progression globale
+		<div class="progressBar">
+			<div class="col text-center mt-3">
+				<p class="progressBar-text text-centre fs-1">Progression globale
 					{% if lessons|length > 0 %}
 						<span class="percentage">{{ ((app.user.lessons|length) / lessons|length * 100)|round }}%</span>
 					</p>
-						<div class="progress-circle mx-auto pt-5 mb-5">
-							<svg viewbox="0 0 36 36">
-								<path class="bg-path" d="M 18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-								<path class="bar-path" style="stroke-dasharray: {{ (app.user.lessons|length) / lessons|length * 100|round }}, 100" d="M 18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-							</svg>
-						</div>
-					{% endif %}
-				</div>
+					<div class="progress-circle mx-auto pt-5 mb-5">
+						<svg viewbox="0 0 36 36">
+							<path class="bg-path" d="M 18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+							<path class="bar-path" style="stroke-dasharray: {{ (app.user.lessons|length) / lessons|length * 100|round }}, 100" d="M 18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+						</svg>
+					</div>
+				{% endif %}
 			</div>
 		</div>
+
 	</div>
 {% endblock %}

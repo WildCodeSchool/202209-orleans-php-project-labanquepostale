@@ -23,6 +23,7 @@
     width: 100%;
     margin-top: 15px;
 }
+
 .progressBar {
     display: flex;
     align-items: center;
@@ -31,6 +32,7 @@
     height: auto;
     color: $intermediate;
     border-radius: 20px;
+    margin-bottom: 6rem;
 }
 
 .progress-circle {
@@ -53,4 +55,8 @@
 .progressBar-text {
     padding: auto;
     margin-top: 10px;
+}
+
+.profile-form {
+    padding-bottom: 1.25rem;
 }
