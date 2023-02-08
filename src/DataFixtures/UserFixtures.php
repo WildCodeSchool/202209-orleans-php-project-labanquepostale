@@ -22,8 +22,8 @@ class UserFixtures extends Fixture
         $this->filesystem->mkdir(__DIR__ . '/../../public/uploads/userImages/');
 
         copy(
-            './src/DataFixtures/userImages/profileAdmin.jpeg',
-            __DIR__ . '/../../public/uploads/userImages/profileAdmin.jpeg'
+            './src/DataFixtures/userImages/profileAdmin.png',
+            __DIR__ . '/../../public/uploads/userImages/profileAdmin.png'
         );
         copy(
             './src/DataFixtures/userImages/profileUser.jpg',
@@ -47,7 +47,7 @@ class UserFixtures extends Fixture
         $admin->setFirstName('Jacky');
         $admin->setLastName('Chan');
         $admin->setRoles(['ROLE_ADMIN']);
-        $admin->setProfileImageName('profileAdmin.jpeg');
+        $admin->setProfileImageName('profileAdmin.png');
         $hashedPassword = $this->passwordHasher->hashPassword(
             $admin,
             'admin1234'
