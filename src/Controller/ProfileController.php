@@ -11,9 +11,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+#[Route('/profil', name: 'app_profile_')]
 class ProfileController extends AbstractController
 {
-    #[Route('/profil', name: 'app_profile')]
+    #[Route('/', name: 'index')]
     public function index(
         LessonRepository $lessonRepository,
     ): Response {
@@ -25,7 +26,7 @@ class ProfileController extends AbstractController
         ]);
     }
 
-    #[Route('/editer', name: 'app_edit', methods: ['GET', 'POST'])]
+    #[Route('/editer', name: 'edit', methods: ['GET', 'POST'])]
     public function editUser(
         Request $request,
         UserRepository $userRepository

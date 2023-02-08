@@ -22,19 +22,15 @@ class UserFixtures extends Fixture
         $this->filesystem->mkdir(__DIR__ . '/../../public/uploads/userImages/');
 
         copy(
-            './src/DataFixtures/userImages/profileAdmin.png',
-            __DIR__ . '/../../public/uploads/userImages/profileAdmin.png'
-        );
-        copy(
-            './src/DataFixtures/userImages/profileUser.jpg',
-            __DIR__ . '/../../public/uploads/userImages/profileUser.jpg'
+            './src/DataFixtures/userImages/profile.png',
+            __DIR__ . '/../../public/uploads/userImages/profile.png'
         );
 
         $user = new User();
         $user->setEmail('user@email.com');
         $user->setFirstName('Teddy');
-        $user->setLastName('Slexiqe');
-        $user->setProfileImageName('profileUser.jpg');
+        $user->setLastName('Andria');
+        $user->setProfileImageName('profile.png');
         $hashedPassword = $this->passwordHasher->hashPassword(
             $user,
             'azerty'
@@ -44,10 +40,10 @@ class UserFixtures extends Fixture
 
         $admin = new User();
         $admin->setEmail('admin@email.com');
-        $admin->setFirstName('Jacky');
-        $admin->setLastName('Chan');
+        $admin->setFirstName('Grégory');
+        $admin->setLastName('Silvestri');
         $admin->setRoles(['ROLE_ADMIN']);
-        $admin->setProfileImageName('profileAdmin.png');
+        $admin->setProfileImageName('profile.png');
         $hashedPassword = $this->passwordHasher->hashPassword(
             $admin,
             'admin1234'
