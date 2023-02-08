@@ -23,8 +23,8 @@ class QuestionFixtures extends Fixture implements DependentFixtureInterface
         ],
         [
             'Je ne peux pas allumer mon téléphone s\'il charge.',
-            'Augmenter la luminosité consomme plus de batterie.',
-            'La performance de la batterie diminue avec le temps.',
+            'Qu\'est-ce qui ne permet PAS d\'économiser de la batterie ?',
+            'Quelle option n\'existe pas ?',
         ],
         [
             'Je ne peux pas allumer mon téléphone s\'il charge.',

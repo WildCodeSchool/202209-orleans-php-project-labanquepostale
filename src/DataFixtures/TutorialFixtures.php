@@ -9,10 +9,19 @@ use Doctrine\Persistence\ObjectManager;
 class TutorialFixtures extends Fixture
 {
     public const TUTORIALS = [
-            'Utiliser Blue Line',
-            'Utiliser son téléphone',
-            'Naviguer dans une application',
             'Naviguer dans Blue Line',
+            'Utiliser un smartphone',
+            'Paramétrer son appareil',
+            'Téléphoner',
+            'Les SMS',
+            'Les e-mails',
+            'Naviguer sur internet',
+            'Installer une application',
+            'Se déplacer, se localiser',
+            'Notions de sécurité',
+            'Utiliser les réseaux sociaux',
+            'Pour aller plus loin'
+
     ];
     public function load(ObjectManager $manager): void
     {
